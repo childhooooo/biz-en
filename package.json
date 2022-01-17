@@ -24,11 +24,12 @@
     "eslint-config-next": "12.0.7",
     "polished": "^4.1.3",
     "prettier": "^2.5.1",
+    "react-hook-form": "^7.22.5",
     "rellax": "^1.12.1",
     "sass": "^1.45.0",
     "styled-components": "^5.3.3",
     "typescript": "4.5.4",
-    "unflexible-ui": "https://github.com/childhooooo/unflexible-ui.git#v0.2.1"
+    "unflexible-ui": "https://github.com/childhooooo/unflexible-ui.git#v0.2.5"
   },
   "browserslist": [
     "> 0.25% in JP",

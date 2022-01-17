@@ -49,7 +49,7 @@ export default class MyDocument extends Document {
           <meta name="theme-color" content="#ffffff" />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-          <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100&display=swap" rel="stylesheet" />
+          <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100&family=M+PLUS+Rounded+1c:wght@400&display=swap" rel="stylesheet" />
         </Head>
         <body id="myapp">
           <noscript dangerouslySetInnerHTML={{ __html: `` }}></noscript>
@@ -69,16 +69,31 @@ const GlobalStyle = createGlobalStyle`
     --gray: ${color.gray};
     --dark-gray: ${color.darkGray};
     --light-gray: ${color.lightGray};
+    --semi-light-gray: ${color.semiLightGray};
     --blue: ${color.blue};
+    --sky-blue: ${color.skyBlue};
+    --semi-sky-blue: ${color.semiSkyBlue};
+    --light-blue: ${color.lightBlue};
+    --text-blue: ${color.textBlue};
+    --marine-blue: ${color.marineBlue};
     --red: ${color.red};
     --gold: ${color.gold};
     --light-purple: ${color.lightPurple};
+    --pink-purple: ${color.pinkPurple};
+    --white-purple: ${color.whitePurple};
+    --purple: ${color.purple};
+    --orange: ${color.orange};
     --sans-serif: ${font.sansSerif};
     --serif: ${font.serif};
+    --maru: ${font.maru};
     --en: ${font.en};
 
     --stacked-padding-normal: 60px;
     --stacked-padding-narrow: 30px;
     --stacked-padding-thin: 10px;
+
+    --plain-base-line-height: 2;
+
+    font-family: var(--maru);
   }
 `;

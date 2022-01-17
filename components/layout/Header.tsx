@@ -51,9 +51,20 @@ const Header = ({ title, language }: Props) => {
           </Sitelogo>
 
           <ul>
-            <li><a href={view.url('about')}>About us</a></li>
-            <li><a href={view.url('service')}>Service</a></li>
-            <li><a href={view.url('contact')}>Contact</a></li>
+            <li>
+              <h3>About us</h3>
+              <ul>
+                <li><a href={view.url('')}><span>外国人材群馬就職支援事業について</span></a></li>
+                <li><a href={view.url('')}><span>ご挨拶</span></a></li>
+                <li><a href={view.url('')}><span>会社概要</span></a></li>
+              </ul>
+            </li>
+            <li>
+              <h3>Service</h3>
+            </li>
+            <li>
+              <h3>Contact</h3>
+            </li>
           </ul>
         </Menu>
       </Stacked>
@@ -111,40 +122,99 @@ a {
 
 const Menu = styled.div`
   display: flex;
-  padding: .25rem 0;
+  align-items: center;
 
-ul {
+> ul {
   display: flex;
   align-items: center;
   margin-left: 1.5rem;
   list-style: none;
 
-  a {
+  h3 {
     display: block;
-    padding: 0 1rem;
-    font-weight: 700;
+    padding: .5rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 400;
     color: var(--black);
     text-decoration: none;
-
-    &:hover {
-      text-decoration: underline;
-    }
   }
 }
 
-li {
+> ul > li {
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 75px;
+  cursor: pointer;
 
   &:not(:first-child) {
     &:before {
       content: '';
       position: absolute;
-      top: 15%;
+      top: 40%;
       left: 0;
       display: block;
       width: 1px;
-      height: calc(70%);
+      height: calc(20%);
       background-color: var(--gray);
+    }
+  }
+
+  > ul {
+    position: fixed;
+    z-index: 1;
+    top: 99px;
+    left: 0;
+    transform: translateY(-100%);
+    display: flex;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, .6);
+    list-style: none;
+    opacity: 0;
+    pointer-events: none;
+    transition-duration: .3s;
+
+    a {
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding: 3rem;
+      color: var(--white);
+      text-decoration: none;
+
+      span {
+        transition-duration: .3s;
+      }
+
+      &:before {
+        content: '';
+        position: relative;;
+        display: block;
+        width: 18px;
+        height: 18px;
+        margin-right: 10px;
+        background-image: url(${view.url('images/icon_arrow_theme.png')});
+        background-size: contain;
+      }
+
+      &:hover {
+        span {
+          transform: translateX(.5em);
+        }
+      }
+    }
+  }
+
+  &:hover {
+    h3 {
+      color: var(--gray);
+    }
+
+    ul {
+      transform: translateY(0);
+      pointer-events: auto;
+      opacity: 1;
     }
   }
 }

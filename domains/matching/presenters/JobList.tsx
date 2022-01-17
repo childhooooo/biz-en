@@ -3,6 +3,8 @@ import { Columns } from 'unflexible-ui';
 import styled from 'styled-components';
 
 interface Props {
+  perPage: number;
+  page: number;
 }
 
 const JobList = ({}: Props) => {
