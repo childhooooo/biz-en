@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import styled from 'styled-components';
-import { view } from 'unflexible-ui';
+import { view } from 'unflexible-ui-legacy';
+import { color, font } from 'lib/config';
 
 interface Props {
   children: ReactNode;
@@ -17,8 +18,8 @@ const FormTable = ({ children }: Props) => {
 const Component = styled.table`
   width: 100%;
   border-collapse: collapse;
-  border: 1px solid var(--black);
-  border-top: 3px solid var(--semi-sky-blue);
+  border: 1px solid ${color.black};
+  border-top: 3px solid ${color.semiSkyBlue};
 
   thead {
     tr {
@@ -31,15 +32,15 @@ const Component = styled.table`
       padding: .5rem 1.5rem;
       font-size: 1.25rem;
       font-weight: 400;
-      font-family: var(--sans-serif);
+      font-family: ${font.sansSerif};
       text-align: left;
-      background-color: var(--white);
+      background-color: ${color.white};
     }
   }
 
   tr {
     display: flex;
-    border-top: 1px solid var(--black);
+    border-top: 1px solid ${color.black};
   }
 
   th, td {
@@ -53,15 +54,15 @@ const Component = styled.table`
     width: 300px;
     flex-grow: 0;
     flex-shrink: 0;
-    background-color: var(--semi-light-gray);
+    background-color: ${color.semiLightGray};
 
     &.required::after {
       display: block;
       margin-left: 1rem;
       padding: .15rem .5rem;
       content: '必須';
-      color: var(--white);
-      background-color: var(--orange);
+      color: ${color.white};
+      background-color: ${color.orange};
       border-radius: 2px;
     }
   }
@@ -70,20 +71,26 @@ const Component = styled.table`
     flex-grow: 1;
     flex-shrink: 1;
 
-  p:not(:first-child) {
-    margin-top: 1rem;
+    p:not(:first-child), ul:not(:first-child) {
+      margin-top: 1rem;
     }
   }
 
-  .radio {
-    ul {
-      display: flex;
-      list-style: none;
+  ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
 
-    &:not(:first-child) {
-    margin-left: 1rem;
+    li {
+      &:not(:first-child) {
+        margin-left: 1rem;
+      }
     }
-    }
+  }
+
+  ul.radio {
+    display: flex;
+    list-style: none;
 
     li:not(:first-child) {
       margin-left: 1.5rem;
@@ -96,21 +103,21 @@ const Component = styled.table`
 
   .nowrap {
     display: flex;
-  align-items: center;
+    align-items: center;
   }
 
-.inline-label {
-  margin-right: .5rem;
-}
+  .inline-label {
+    margin-right: .5rem;
+  }
 
   input, textarea {
     padding: .5rem;
-    color: var(--black);
+    color: ${color.black};
     outline: none;
-    border: 1px solid var(--black);
+    border: 1px solid ${color.black};
   }
 
-  input[type="text"], input[type="email"], input[type="password"] {
+  input[type="text"], input[type="email"], input[type="tel"], input[type="password"], textarea {
     width: 500px;
     max-width: 100%;
 
@@ -130,7 +137,7 @@ const Component = styled.table`
 .select {
   position: relative;
   width: 300px;
-  border: 1px solid var(--black);
+  border: 1px solid ${color.black};
 
   &:after {
     position: absolute;
@@ -138,17 +145,17 @@ const Component = styled.table`
     right: .5rem;
     top: 50%;
     display: block;
-width: 20px;
-  height: 20px;
-background-image: url(${view.url('images/arrow_black.png')});
-background-size: contain;
-  background-position: 50% 50%;
-  content: '';
-  transform: translateY(-40%);
+    width: 20px;
+    height: 20px;
+    background-image: url(${view.url('images/arrow_black.png')});
+    background-size: contain;
+    background-position: 50% 50%;
+    content: '';
+    transform: translateY(-40%);
   }
 
   select {
-  width: 100%;
+    width: 100%;
     padding: .5rem;
   }
 }

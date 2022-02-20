@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import styled from 'styled-components';
+import { color } from 'lib/config';
 
 interface Props {
   name: string;
@@ -17,12 +18,12 @@ const List01 = ({ name, children}: Props) => {
 
 const Component = styled.div`
   padding: 1.5rem;
-  background-color: var(--light-gray);
+  background-color: ${color.lightGray};
 
   h3 {
   font-size: 1.25rem;
   font-weight: 400;
-  color: var(--text-blue);
+  color: ${color.textBlue};
   }
 
   ul {
@@ -36,7 +37,7 @@ const Component = styled.div`
     &:before {
       content: '⚫︎ ';
       margin-right: .25rem;
-      color: var(--text-blue);
+      color: ${color.textBlue};
     }
   }
 `

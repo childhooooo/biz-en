@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { font } from 'lib/config';
 
 const tags: { [key: string]: any } = {
   'h1': styled.h1``,
@@ -30,7 +31,7 @@ const Component = styled.div`
 
   p {
     font-size: 3rem;
-    font-family: var(--en);
+    font-family: ${font.en};
     line-height: 1.25;
   }
 

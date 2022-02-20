@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { Stacked } from 'unflexible-ui';
+import { Stacked } from 'unflexible-ui-legacy';
 
 import styled from 'styled-components';
 import { rgba } from 'polished';

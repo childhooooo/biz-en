@@ -1,7 +1,7 @@
-import { Stacked, Columns, Block, PlainText } from 'unflexible-ui';
+import { Stacked, Columns, Block, PlainText } from 'unflexible-ui-legacy';
 
 import styled from 'styled-components';
-import { view } from 'unflexible-ui';
+import { view } from 'unflexible-ui-legacy';
 import { color } from 'lib/config';
 
 interface Props {
@@ -126,7 +126,7 @@ const Footer = ({}: Props) => {
 };
 
 const Component = styled.div`
-  border-top: 5px solid var(--light-purple);
+  border-top: 5px solid ${color.lightPurple};
 `
 
 const Menu = styled.ul`
@@ -141,7 +141,7 @@ const Menu = styled.ul`
   }
 
   a {
-    color: var(--black);
+    color: ${color.black};
     font-size: .9rem;
     text-decoration: none;
 

@@ -2,7 +2,8 @@ import styled from 'styled-components';
 import { useForm, SubmitHandler } from "react-hook-form";
 import { FormTable } from 'components/block';
 
-import { view } from 'unflexible-ui';
+import { view } from 'unflexible-ui-legacy';
+import { color } from 'lib/config';
 import { Education, EducationKindValues, Qualification, QualificationKindValues, JLPT, JLPTKindValues } from 'domains/matching';
 
 interface Props {
@@ -64,8 +65,8 @@ const NewSeeker = ({}: Props) => {
 
             <tr>
               <th className="required">性別</th>
-              <td className="radio">
-                <ul>
+              <td>
+                <ul className="radio">
                   <li>
                     <input
                       {...register("sex", { required: true })}
@@ -136,39 +137,43 @@ const NewSeeker = ({}: Props) => {
                   <span className="inline-label">国籍</span>
                   <input type="text" className="semishort" placeholder="日本" {...register("nationality", { required: true })}/>
                 </p>
-                <p className="radio nowrap">
-                  <span className="inline-label">学歴</span>
-                  <div className="select">
-                    <select id="education" defaultValue="" {...register("education", { required: true })}>
-                      <option value="" selected disabled>選択してください</option>
-                        {EducationKindValues.map(v => {
-                          const label = Education.fromNumber(v)?.toString() || null;
-                          if(label !== null) {
-                            return <option value={v}>{label}</option>;
-                          }
-                        })}
-                    </select>
-                  </div>
-                  <ul>
-                    <li>
-                      <input
-                        {...register("educationKind", { required: true })}
-                        id="education-kind-guraduated"
-                        type="radio"
-                        checked
-                      />
-                      <label htmlFor="education-kind-guraduated">既卒</label>
-                    </li>
-                    <li>
-                      <input
-                        {...register("educationKind", { required: true })}
-                        id="education-kind-larning"
-                        type="radio"
-                      />
-                      <label htmlFor="education-kind-larning">在学中</label>
-                    </li>
-                  </ul>
-                </p>
+                <ul>
+                  <li className="nowrap">
+                    <span className="inline-label">学歴</span>
+                    <div className="select">
+                      <select id="education" defaultValue="" {...register("education", { required: true })}>
+                        <option value="" selected disabled>選択してください</option>
+                          {EducationKindValues.map(v => {
+                            const label = Education.fromNumber(v)?.toString() || null;
+                            if(label !== null) {
+                              return <option value={v}>{label}</option>;
+                            }
+                          })}
+                      </select>
+                    </div>
+                  </li>
+                  <li>
+                    <ul className="radio">
+                      <li>
+                        <input
+                          {...register("educationKind", { required: true })}
+                          id="education-kind-guraduated"
+                          type="radio"
+                          checked
+                        />
+                        <label htmlFor="education-kind-guraduated">既卒</label>
+                      </li>
+                      <li>
+                        <input
+                          {...register("educationKind", { required: true })}
+                          id="education-kind-larning"
+                          type="radio"
+                        />
+                        <label htmlFor="education-kind-larning">在学中</label>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
                 <p>
                   <input type="text" placeholder="学校名を記入してください" {...register("educationSchool", { required: true })} />
                 </p>
@@ -215,8 +220,8 @@ const NewSeeker = ({}: Props) => {
 
             <tr>
               <th>求人情報メール配信</th>
-              <td className="radio">
-                <ul>
+              <td>
+                <ul className="radio">
                   <li>
                     <input id="accept-email-yes" type="radio" {...register("acceptEmail")} />
                     <label htmlFor="accept-email-yes">利用する</label>
@@ -259,7 +264,7 @@ const Component = styled.div`
   text-align: center;
 
   a {
-    color: var(--marine-blue);
+    color: ${color.marineBlue};
     text-decoration: none;
 
     &:hover {
@@ -274,8 +279,8 @@ input[type="submit"] {
   margin: 1.5rem auto 0 auto;
   padding: .5rem;
   font-size: 1.25rem;
-  color: var(--white);
-  background-color: var(--marine-blue);
+  color: ${color.white};
+  background-color: ${color.marineBlue};
   text-align: center;
   border-radius: 15px;
 }

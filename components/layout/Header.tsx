@@ -1,7 +1,7 @@
-import { Stacked, Columns, Block, PlainText } from 'unflexible-ui';
+import { Stacked, Columns, Block, PlainText } from 'unflexible-ui-legacy';
 
 import styled from 'styled-components';
-import { view } from 'unflexible-ui';
+import { view } from 'unflexible-ui-legacy';
 import { color } from 'lib/config';
 
 interface Props {
@@ -81,7 +81,7 @@ const SelectLanguage = styled.div`
   h3 {
     font-size: .9rem;
     font-weight: 400;
-    color: var(--white);
+    color: ${color.white};
   }
 
 ul {
@@ -102,7 +102,7 @@ li {
       display: block;
       width: 1px;
       height: calc(100% - .6rem);
-      background-color: var(--white);
+      background-color: ${color.white};
       transform: rotate(30deg);
     }
   }
@@ -111,11 +111,11 @@ li {
 a {
   padding: .25rem .5rem;
   text-decoration: none;
-  color: var(--white);
+  color: ${color.white};
   font-size: .9rem;
 
   &.selected, &:hover {
-    color: var(--theme);
+    color: ${color.theme};
   }
 }
 `;
@@ -135,7 +135,7 @@ const Menu = styled.div`
     padding: .5rem 1.5rem;
     font-size: 1rem;
     font-weight: 400;
-    color: var(--black);
+    color: ${color.black};
     text-decoration: none;
   }
 }
@@ -157,7 +157,7 @@ const Menu = styled.div`
       display: block;
       width: 1px;
       height: calc(20%);
-      background-color: var(--gray);
+      background-color: ${color.gray};
     }
   }
 
@@ -180,7 +180,7 @@ const Menu = styled.div`
       display: flex;
       align-items: center;
       padding: 3rem;
-      color: var(--white);
+      color: ${color.white};
       text-decoration: none;
 
       span {
@@ -208,7 +208,7 @@ const Menu = styled.div`
 
   &:hover {
     h3 {
-      color: var(--gray);
+      color: ${color.gray};
     }
 
     ul {

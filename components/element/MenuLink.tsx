@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { view } from 'unflexible-ui';
+import { view } from 'unflexible-ui-legacy';
+import { color } from 'lib/config';
 
 interface Props {
   name: string;
@@ -27,11 +28,11 @@ const Component = styled.a`
   display: block;
   height: 100%;
   padding: .75rem;
-  background-color: var(--white);
-  border: 1px solid var(--gray);
-  border-top: 5px solid var(--gray);
+  background-color: ${color.white};
+  border: 1px solid ${color.gray};
+  border-top: 5px solid ${color.gray};
   text-decoration: none;
-  color: var(--black);
+  color: ${color.black};
 
   h3 {
     display: flex;
@@ -65,7 +66,7 @@ const Component = styled.a`
 
   &:hover {
     h3, p {
-      color: var(--gray);
+      color: ${color.gray};
     }
   }
 `

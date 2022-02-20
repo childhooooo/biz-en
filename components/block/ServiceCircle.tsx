@@ -1,6 +1,6 @@
-
 import styled from 'styled-components';
-import { view } from 'unflexible-ui';
+import { view } from 'unflexible-ui-legacy';
+import { color } from 'lib/config';
 
 const Circle = ({ name, en, href }: CircleProps) => {
   return (
@@ -19,17 +19,17 @@ const CircleComponent = styled.a`
   width: 240px;
   height: 240px;
   border-radius: 50%;
-  border: 10px solid var(--pink-purple);
+  border: 10px solid ${color.pinkPurple};
   text-decoration: none;
-  background-color: var(--white);
+  background-color: ${color.white};
   box-shadow: inset 0px 16px 12px rgba(0, 0, 0, .15);
   transition-duration: .3s;
 
   &:hover {
-    background-color: var(--light-purple);
+    background-color: ${color.lightPurple};
 
     p, h3 {
-      color: var(--white);
+      color: ${color.white};
     }
   }
 
@@ -38,7 +38,7 @@ const CircleComponent = styled.a`
   }
 
   p {
-    color: var(--dark-gray);
+    color: ${color.darkGray};
     font-size: 1.75rem;
     text-align: center;
     line-height: 1.25;
@@ -51,7 +51,7 @@ const CircleComponent = styled.a`
 
   h3 {
     margin-top: 1rem;
-    color: var(--purple);
+    color: ${color.purple};
     font-size: 1.25rem;
     font-weight: 400;
     text-align: center;

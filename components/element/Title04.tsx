@@ -31,7 +31,7 @@ const Inner = styled.span`
   padding: .25rem 1.25rem;
   font-size: 1.5rem;
   font-weight: 700;
-  border-left: 5px solid var(--light-blue);
+  border-left: 5px solid ${color.lightBlue};
 `;
 
 export default Title01;

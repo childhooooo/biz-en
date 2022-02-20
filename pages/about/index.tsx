@@ -1,11 +1,11 @@
 import type { NextPage } from 'next';
-import { Page, Stacked, Columns, Block } from 'unflexible-ui';
+import { Page, Stacked, Columns, Block } from 'unflexible-ui-legacy';
 import { Header, Footer } from 'components/layout';
 import { PageTitle } from 'components/block';
 import { MenuLink } from 'components/element';
 import { color } from 'lib/config';
 
-import { view } from 'unflexible-ui';
+import { view } from 'unflexible-ui-legacy';
 
 interface Props {}
 

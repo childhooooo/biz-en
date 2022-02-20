@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { rgba } from 'polished';
-import { view } from 'unflexible-ui';
+import { view } from 'unflexible-ui-legacy';
 import { color } from 'lib/config';
 
 interface Props {
@@ -60,7 +60,7 @@ figure {
     width: 30vw;
     height: 30vw;
     transform: translateY(-50%);
-    background-color: var(--red);
+    background-color: ${color.red};
     border-radius: 50%;
     mix-blend-mode: multiply;
     transition-duration: .3s;
@@ -87,7 +87,7 @@ a {
   height: 30vw;
   padding: 3rem;
   transform: translateY(-50%);
-  color: var(--white);
+  color: ${color.white};
   text-decoration: none;
   transition-duration: .3s;
 }

@@ -2,7 +2,8 @@ import styled from 'styled-components';
 import { useForm, SubmitHandler } from "react-hook-form";
 import { FormTable } from 'components/block';
 
-import { view } from 'unflexible-ui';
+import { view } from 'unflexible-ui-legacy';
+import { color } from 'lib/config';
 
 interface Props {
 }
@@ -66,10 +67,16 @@ const NewEmployer = ({}: Props) => {
             <tr>
               <th className="required">ご担当者氏名</th>
               <td>
-                <label htmlFor="last-name" className="inline-label">氏</label>
-                <input type="text" id="last-name" className="short" {...register("lastName", { required: true })} />
-                <label htmlFor="first-name" className="inline-label">名</label>
-                <input type="text" id="first-name" className="short" {...register("firstName", { required: true })} />
+                <ul>
+                  <li>
+                    <label htmlFor="last-name" className="inline-label">氏</label>
+                    <input type="text" id="last-name" className="short" {...register("lastName", { required: true })} />
+                  </li>
+                  <li>
+                    <label htmlFor="first-name" className="inline-label">名</label>
+                    <input type="text" id="first-name" className="short" {...register("firstName", { required: true })} />
+                  </li>
+                </ul>
               </td>
             </tr>
 
@@ -95,7 +102,7 @@ const NewEmployer = ({}: Props) => {
             <tr>
               <th className="required">募集職種</th>
               <td>
-                <textarea {...register("requiredOccupation", { required: true })} />
+                <textarea rows={5} {...register("requiredOccupation", { required: true })} />
               </td>
             </tr>
 
@@ -124,7 +131,7 @@ const Component = styled.div`
   text-align: center;
 
   a {
-    color: var(--marine-blue);
+    color: ${color.marineBlue};
     text-decoration: none;
 
     &:hover {
@@ -139,8 +146,8 @@ input[type="submit"] {
   margin: 1.5rem auto 0 auto;
   padding: .5rem;
   font-size: 1.25rem;
-  color: var(--white);
-  background-color: var(--marine-blue);
+  color: ${color.white};
+  background-color: ${color.marineBlue};
   text-align: center;
   border-radius: 15px;
 }

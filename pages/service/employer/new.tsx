@@ -1,16 +1,16 @@
 import type { NextPage } from 'next';
-import { Page, Stacked, PlainText } from 'unflexible-ui';
+import { Page, Stacked, PlainText } from 'unflexible-ui-legacy';
 import { Header, Footer } from 'components/layout';
 import { PageTitle } from 'components/block';
 import { Title04, IconButton01 } from 'components/element';
 
 import { NewEmployer } from 'domains/matching';
 import { color } from 'lib/config';
-import { view } from 'unflexible-ui';
+import { view } from 'unflexible-ui-legacy';
 
 interface Props {}
 
-const ServiceSeekerNewPage: NextPage = ({}: Props) => {
+const ServiceEmployerNewPage: NextPage = ({}: Props) => {
   const routes = [
     { name: 'TOP', href: view.url('') },
     { name: 'Service', href: view.url('service') },
@@ -74,4 +74,4 @@ const ServiceSeekerNewPage: NextPage = ({}: Props) => {
   );
 };
 
-export default ServiceSeekerNewPage;
+export default ServiceEmployerNewPage;

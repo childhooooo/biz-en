@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { view } from 'unflexible-ui';
+import { view } from 'unflexible-ui-legacy';
+import { color, font } from 'lib/config';
 
 interface Props {
 }
@@ -49,8 +50,8 @@ h2 {
   transform: translateY(-50%);
   font-size: 5rem;
   font-weight: 100;
-  font-family: var(--en);
-  color: var(--white);
+  font-family: ${font.en};
+  color: ${color.white};
   text-align: center;
 }
 
@@ -61,7 +62,7 @@ p {
   right: 0;
   width: 40%;
   padding: 1rem 1.25rem;
-  color: var(--white);
+  color: ${color.white};
   background-color: rgba(0, 0, 0, .75);
 }
 `

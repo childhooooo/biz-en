@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { color } from 'lib/config';
 
 export interface Route {
   name: string;
@@ -30,7 +31,7 @@ const Component = styled.ul`
 
   a {
     text-decoration: none;
-    color: var(--black);
+    color: ${color.black};
 
     &:hover {
       text-decoration: underline;
@@ -45,13 +46,13 @@ const Component = styled.ul`
       content: '>';
       display: block;
       margin: 0 .15rem;
-      color: var(--gray);
+      color: ${color.gray};
     }
   }
 
   li:last-child {
     a {
-      color: var(--gray);
+      color: ${color.gray};
     }
   }
 `

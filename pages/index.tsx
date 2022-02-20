@@ -1,12 +1,12 @@
 import type { NextPage } from 'next';
-import { Page, Stacked, Columns, Block, Figure, PlainText } from 'unflexible-ui';
+import { Page, Stacked, Columns, Block, Figure, PlainText } from 'unflexible-ui-legacy';
 import { Header, Footer } from 'components/layout';
 import { Link, Parallax } from 'components/container';
 import { MainVisual } from 'components/block';
 import { Title02, Button01, ServiceLink } from 'components/element';
 import { color } from 'lib/config';
 
-import { view, config } from 'unflexible-ui';
+import { view } from 'unflexible-ui-legacy';
 
 interface Props {}
 

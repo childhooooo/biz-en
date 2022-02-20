@@ -38,9 +38,9 @@ const Inner = styled.span`
   width: 100%;
   padding: 1rem;
   font-size: 1.5rem;
-  color: var(--white);
+  color: ${color.white};
   text-align: center;
-  border: 2px solid var(--white);
+  border: 2px solid ${color.white};
   border-radius: 20px;
   transition-duration: .3s;
 

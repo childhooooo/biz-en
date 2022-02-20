@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import styled from 'styled-components';
+import { color } from 'lib/config';
 
 interface Props {
   name: string;
@@ -23,12 +24,12 @@ const Component = styled.div`
   display: flex;
   align-items: center;
   padding: 1.5rem;
-  background-color: var(--white-purple);
+  background-color: ${color.whitePurple};
 
   h3 {
   font-size: 1.25rem;
   font-weight: 400;
-  color: var(--gold);
+  color: ${color.gold};
   text-align: center;
 
   &:before {
@@ -43,7 +44,7 @@ const Component = styled.div`
   p {
   font-size: 2.5rem;
   font-weight: 300;
-  color: var(--gold);
+  color: ${color.gold};
   text-align: center;
   }
 

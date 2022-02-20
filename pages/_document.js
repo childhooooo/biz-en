@@ -1,6 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet, createGlobalStyle } from 'styled-components';
-import { view } from 'unflexible-ui';
+import { view } from 'unflexible-ui-legacy';
 import { color, font } from 'lib/config';
 
 export default class MyDocument extends Document {
@@ -63,37 +63,6 @@ export default class MyDocument extends Document {
 
 const GlobalStyle = createGlobalStyle`
   #myapp {
-    --theme: ${color.theme};
-    --black: ${color.black};
-    --white: ${color.white};
-    --gray: ${color.gray};
-    --dark-gray: ${color.darkGray};
-    --light-gray: ${color.lightGray};
-    --semi-light-gray: ${color.semiLightGray};
-    --blue: ${color.blue};
-    --sky-blue: ${color.skyBlue};
-    --semi-sky-blue: ${color.semiSkyBlue};
-    --light-blue: ${color.lightBlue};
-    --text-blue: ${color.textBlue};
-    --marine-blue: ${color.marineBlue};
-    --red: ${color.red};
-    --gold: ${color.gold};
-    --light-purple: ${color.lightPurple};
-    --pink-purple: ${color.pinkPurple};
-    --white-purple: ${color.whitePurple};
-    --purple: ${color.purple};
-    --orange: ${color.orange};
-    --sans-serif: ${font.sansSerif};
-    --serif: ${font.serif};
-    --maru: ${font.maru};
-    --en: ${font.en};
-
-    --stacked-padding-normal: 60px;
-    --stacked-padding-narrow: 30px;
-    --stacked-padding-thin: 10px;
-
-    --plain-base-line-height: 2;
-
-    font-family: var(--maru);
+    font-family: ${font.maru};
   }
 `;

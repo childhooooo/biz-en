@@ -6,11 +6,10 @@ import { view } from 'unflexible-ui-legacy';
 import { color } from 'lib/config';
 
 interface Props {
-  name: string;
   routes: Route[]
 }
 
-const PageTitle = ({ name, routes }: Props) => {
+const EnPageTitle = ({ routes }: Props) => {
   return (
     <Component>
       <Stacked paddingSize="thin" wrap>
@@ -22,8 +21,8 @@ const PageTitle = ({ name, routes }: Props) => {
 
         <Stacked paddingSize="thin">
           <h2>
-            <img src={view.url('images/icon_pagetitle.png')} alt="アイコン" />
-            <span>{name}</span>
+            <img src={view.url('images/logo_en.png')} alt="縁 -en-" />
+            <span>群馬県内に就職を希望する外国人材就職応援サイト</span>
           </h2>
         </Stacked>
       </Stacked>
@@ -36,17 +35,16 @@ const Component = styled.div`
   margin-top: 99px;
   border-top: 5px solid ${color.darkGray};
   border-bottom: 5px solid ${color.white};
-  background-image: url(${view.url('images/back_pagetitle.png')});
-  background-size: contain;
-  background-position: 100% 50%;
 
   h2 {
     display: flex;
     align-items: center;
-    font-size: 1.25rem;
+    font-size: 1rem;
+    color: ${color.darkGray};
 
     img {
-      width: 50px;
+      width: auto;
+      height: 4rem;
     }
 
     span {
@@ -55,4 +53,4 @@ const Component = styled.div`
   }
 `
 
-export default PageTitle;
+export default EnPageTitle;

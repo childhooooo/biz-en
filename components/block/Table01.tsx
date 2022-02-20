@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import styled from 'styled-components';
+import { color } from 'lib/config';
 
 interface Props {
   children: ReactNode;
@@ -17,10 +18,10 @@ const Component = styled.table`
   border-collapse: collapse;
 
   tr {
-    border-top: 1px solid var(--black);
+    border-top: 1px solid ${color.black};
 
     &:last-child {
-      border-bottom: 1px solid var(--black);
+      border-bottom: 1px solid ${color.black};
     }
   }
 

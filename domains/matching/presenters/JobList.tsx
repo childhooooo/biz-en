@@ -1,4 +1,4 @@
-import { Columns } from 'unflexible-ui';
+import { Columns } from 'unflexible-ui-legacy';
 
 import styled from 'styled-components';
 

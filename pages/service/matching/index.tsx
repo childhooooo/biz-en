@@ -1,21 +1,50 @@
 import type { NextPage } from 'next';
-import { Page, Stacked, Columns, PlainText } from 'unflexible-ui';
+import { Page, Stacked, Columns, Block, PlainText } from 'unflexible-ui-legacy';
 import { Header, Footer } from 'components/layout';
-// import {} from 'components/block';
-// import {} from 'components/element';
+import { JobLink } from 'domains/matching';
+import { EnPageTitle } from 'components/block';
 
-import { Job } from 'domains/matching';
+import { Job, JobListStateProvider, useJobListState, getDummyJobList, fetchJobList } from 'domains/matching';
 import { color } from 'lib/config';
-import { view } from 'unflexible-ui';
+import { view } from 'unflexible-ui-legacy';
 
-interface Props {}
+export function getStaticProps() {
+  const jobList = getDummyJobList();
 
-const ServiceMatchingPage: NextPage = ({}: Props) => {
+  return {
+    props: {
+      initialJobList: JSON.stringify(jobList)
+    }
+  };
+}
+
+interface Props {
+  initialJobList: string | undefined;
+}
+
+const ServiceMatchingPage: NextPage<Props> = ({ initialJobList }) => {
+  let jobList: Job[] = [];
+  try {
+    jobList = JSON.parse(initialJobList || '[]').map((j: any) => Job.fromJsonObject(j));
+  } catch(e: any) {
+    console.error(e);
+  }
+
+  return (
+    <JobListStateProvider initialJobList={jobList || []}>
+      <ServiceMatchingContents />
+    </JobListStateProvider>
+  );
+}
+
+const ServiceMatchingContents: NextPage = () => {
   const routes = [
     { name: 'TOP', href: view.url('') },
     { name: 'Service', href: view.url('service') },
     { name: '外国人材マッチングサイト', href: view.url('service/matching') }
   ];
+
+  const jobListState = useJobListState();
 
   return (
     <Page
@@ -32,15 +61,25 @@ const ServiceMatchingPage: NextPage = ({}: Props) => {
       footer={<Footer/>}
       fixHeader
     >
+      <Stacked paddingPos="none" color={color.lightGray} isSection>
+        <EnPageTitle routes={routes} />
+      </Stacked>
 
       <Stacked paddingSize="thin" color={color.blue} wrap>
         <PlainText h3Color={color.white} h3Weight="400" h3SizeXL="1.25rem" h3SizeL="1.25rem" h3SizeM="1.25rem" h3SizeS="1.25rem" h3SizeXS="1.25rem">
-          <h2>求人情報検索</h2>
+          <h3>求人情報検索</h3>
         </PlainText>
       </Stacked>
 
-      <Stacked paddingPos="top" paddingSize="narrow" wrap>
-        <Columns>
+      <Stacked paddingSize="narrow" wrap>
+        <Columns repeat={3}>
+          {jobListState.list.value.map((job: Job, index: number) => {
+            return (
+              <Block key={index}>
+                <JobLink job={job} />
+              </Block>
+            );
+          })}
         </Columns>
       </Stacked>
     </Page>

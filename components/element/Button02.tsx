@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { darken } from 'polished';
 import { ButtonKind } from './buttonKind';
-import { color } from 'lib/config';
+import { color, font } from 'lib/config';
 
 interface Props {
   name: string;
@@ -38,11 +38,11 @@ const Inner = styled.span`
   width: 100%;
   padding: 1rem 4rem;
   font-size: 1.5rem;
-  color: var(--white);
-  background-color: var(--theme);
-  font-family: var(--sans-serif);
+  color: ${color.white};
+  background-color: ${color.theme};
+  font-family: ${font.sansSerif};
   text-align: center;
-  border: 2px solid var(--white);
+  border: 2px solid ${color.white};
   border-radius: 20px;
   transition-duration: .3s;
 

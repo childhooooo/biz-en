@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { ButtonKind } from './buttonKind';
+import { color } from 'lib/config';
 
 interface Props {
   name: string;
@@ -59,14 +60,14 @@ img {
     margin-left: .1rem;
     font-size: 1.5rem;
     font-weight: 400;
-    color: var(--theme);
+    color: ${color.theme};
   }
 
 .arrow {
   margin-bottom: .25rem;
   margin-left: .5rem;
 font-size: 3rem;
-color: var(--theme);
+color: ${color.theme};
 }
 `
 

@@ -1,5 +1,6 @@
 export { default as MainVisual } from './MainVisual';
 export { default as PageTitle } from './PageTitle';
+export { default as EnPageTitle } from './EnPageTitle';
 export { default as ServiceCircle } from './ServiceCircle';
 export { default as Match } from './Match';
 export { default as List01 } from './List01';
