@@ -18,7 +18,9 @@ export const color = {
   pinkPurple: '#dabcff',
   whitePurple: '#ebebff',
   purple: '#9f81ff',
-  orange: '#ff5000'
+  orange: '#ff5000',
+  beige: '#ffffcd',
+  lightBeige: '#ffffeb'
 };
 
 export const font = {

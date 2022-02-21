@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 import { Job } from '../entities/job';
+import { JobCategory } from '../entities/jobCategory';
 
 import { view } from 'unflexible-ui-legacy';
+import { color, font } from 'lib/config';
 
 interface Props {
   job: Job;
@@ -9,40 +11,144 @@ interface Props {
 
 const JobLink = ({job}: Props) => {
   return (
-    <Component href={view.url(`service/matching/${job.id}`)}>
-      <Name>{job.name}</Name>
-      <Categories>
-        {job.categories.map((c: JobCateogry, index: number) => {
-          return (
-            <Category color={c.color}>{c.name}</Category>
-          );
-        })}
-      </Categories>
+    <Component>
+      <Contents>
+        <Header>
+          <Name>{job.name}</Name>
+        </Header>
 
-      <Details>
-        <dt>仕事内容</dt>
-        <dd dangerouslySetInnerHTML={{ __html: job.description }} />
-      </Details>
+        <Body>
+          <Categories>
+            {job.categories.map((c: JobCateogry, index: number) => {
+              return (
+                <Category color={c.color}>{c.name}</Category>
+              );
+            })}
+          </Categories>
+
+          <Details>
+            <div>
+              <dt>仕事内容</dt>
+              <dd dangerouslySetInnerHTML={{ __html: job.description }} />
+            </div>
+
+            <div>
+              <dt>勤 務 地</dt>
+              <dd dangerouslySetInnerHTML={{ __html: job.workAt }} />
+            </div>
+
+            <div>
+              <dt>給　　与</dt>
+              <dd dangerouslySetInnerHTML={{ __html: job.salary }} />
+            </div>
+
+            <div>
+              <dt>勤務時間</dt>
+              <dd dangerouslySetInnerHTML={{ __html: job.officeHours }} />
+            </div>
+
+            <div>
+              <dt>休　　日</dt>
+              <dd dangerouslySetInnerHTML={{ __html: job.holiday }} />
+            </div>
+          </Details>
+        </Body>
+      </Contents>
+
+      <Footer>
+        <Link href={view.url(`service/matching/${job.id}`)}>
+          詳細を見る
+        </Link>
+      </Footer>
     </Component>
   );
 };
 
-const Component = styled.a`
-  display: block;
+const Component = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 100%;
   height: 100%;
-`
+  font-family: ${font.sansSerif};
+  background-color: ${color.lightBeige};
+`;
+
+const Contents = styled.div`
+`;
+
+const Header = styled.div`
+  padding: 1rem 1.5rem;
+  background-color: ${color.beige};
+  border-bottom: 1px solid ${color.orange};
+`;
 
 const Name = styled.h3`
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1;
+`;
+
+const Body = styled.div`
+  padding: 1.5rem;
 `;
 
 const Categories = styled.ul`
+  display: flex;
+  list-style: none;
 `;
 
-const Category = styled.li`
+interface CategoryProps {
+  color: string;
+}
+
+const Category = styled.li<CategoryProps>`
+  padding: .25rem .75rem;
+  color: ${color.white};
+  background-color: ${props => props.color};
 `;
 
 const Details = styled.dl`
+  margin-top: 1rem;
+
+  > div {
+    display: flex;
+
+    &:not(:first-child) {
+      margin-top: 1rem;
+    }
+  }
+
+  dt {
+    flex-shrink: 0;
+    width: 4rem;
+  }
+
+  dd {
+    margin-left: 1rem;
+  }
+`;
+
+const Footer = styled.div`
+  padding: 1.5rem;
+`;
+
+const Link = styled.a`
+  display: block;
+  width: 200px;
+  margin: 0 auto;
+  padding: .75rem;
+  text-decoration: none;
+  text-align: center;
+  line-height: 1;
+  color: ${color.white};
+  background-color: ${color.purple};
+  border-radius: 15px;
+  transition-duration: .3s;
+
+  &:hover {
+    background-color: ${color.lightPurple};
+}
 `;
 
 export default JobLink;

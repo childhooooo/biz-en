@@ -5,10 +5,10 @@ export { Seeker, Sex, Education, EducationKindValues, EducationState, EducationS
 export type { SexKind, EducationKind, EducationStateKind, QualificationKind, JLPTKind } from './entities/seeker';
 
 // Repository
-export { getDummyJobList } from './repository';
+export { getDummyJobList, getJobListSize } from './repository';
 
 // Usecases
-export { fetchJobList } from './usecase';
+export { fetchJobList, setPage, setPerPage, setOrder, setOrderBy } from './usecase';
 
 // Presenters
 export { default as NewSeeker } from './presenters/NewSeeker';

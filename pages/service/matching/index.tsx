@@ -4,34 +4,37 @@ import { Header, Footer } from 'components/layout';
 import { JobLink } from 'domains/matching';
 import { EnPageTitle } from 'components/block';
 
-import { Job, JobListStateProvider, useJobListState, getDummyJobList, fetchJobList } from 'domains/matching';
+import { Job, JobListStateProvider, useJobListState, getDummyJobList, fetchJobList, getJobListSize } from 'domains/matching';
 import { color } from 'lib/config';
 import { view } from 'unflexible-ui-legacy';
 
 export function getStaticProps() {
   const jobList = getDummyJobList();
+  const size = getJobListSize();
 
   return {
     props: {
-      initialJobList: JSON.stringify(jobList)
+      jobList: JSON.stringify(jobList),
+      size
     }
   };
 }
 
 interface Props {
-  initialJobList: string | undefined;
+  jobList: string | undefined;
+  size: number;
 }
 
-const ServiceMatchingPage: NextPage<Props> = ({ initialJobList }) => {
-  let jobList: Job[] = [];
+const ServiceMatchingPage: NextPage<Props> = ({ jobList, size }) => {
+  let list: Job[] = [];
   try {
-    jobList = JSON.parse(initialJobList || '[]').map((j: any) => Job.fromJsonObject(j));
+    list = JSON.parse(jobList || '[]').map((j: any) => Job.fromJsonObject(j));
   } catch(e: any) {
     console.error(e);
   }
 
   return (
-    <JobListStateProvider initialJobList={jobList || []}>
+    <JobListStateProvider initialJobList={{ list, size }}>
       <ServiceMatchingContents />
     </JobListStateProvider>
   );
@@ -71,11 +74,11 @@ const ServiceMatchingContents: NextPage = () => {
         </PlainText>
       </Stacked>
 
-      <Stacked paddingSize="narrow" wrap>
-        <Columns repeat={3}>
+      <Stacked paddingSize="" wrap>
+        <Columns repeat={3} gap="wide">
           {jobListState.list.value.map((job: Job, index: number) => {
             return (
-              <Block key={index}>
+              <Block key={index} height="100%">
                 <JobLink job={job} />
               </Block>
             );
