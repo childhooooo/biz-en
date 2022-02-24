@@ -300,7 +300,8 @@ export class JLPT {
 
 export class Seeker {
   constructor(
-    public readonly id: number,
+    public readonly id: string,
+    public readonly useId: string,
     public readonly name: string,
     public readonly kana: string,
     public readonly birthday: string,
@@ -318,9 +319,10 @@ export class Seeker {
     public readonly password: string | null
   ) {}
 
-  static fromJsonObject(json: any): Seeker | null {
+  static fromJsonObject(json: any): Seeker {
     if(
       json.id === undefined || json.id === null ||
+      json.useId === undefined || json.useId === null ||
       json.name === undefined || json.name === null ||
       json.kana === undefined || json.kana === null ||
       json.birthday === undefined || json.birthday === null ||
@@ -336,7 +338,7 @@ export class Seeker {
       json.jlpt === undefined || json.jlpt === null ||
       json.acceptEmail === undefined || json.acceptEmail === null
     ) {
-      return null;
+      throw new Error('Some required fields are not found');
     }
 
     const sexKind = typeof json.sex === 'string' ? parseInt(json.sex) : json.sex;
@@ -345,7 +347,7 @@ export class Seeker {
     const jlptKind = typeof json.jlpt === 'string' ? parseInt(json.jlpt) : json.jlpt;
 
     if(isNaN(sexKind) || isNaN(educationKind) || isNaN(educationStateKind) || isNaN(jlptKind)) {
-        return null;
+      throw new Error('Some fields have invalid value');
     }
 
     const sex = new Sex(sexKind);
@@ -354,11 +356,12 @@ export class Seeker {
     const jlpt = new JLPT(jlptKind);
 
     if(sex == null || education == null || educationState == null || jlpt == null) {
-      return null;
+      throw new Error('Some fields have invalid value');
     }
 
     return new Seeker(
       json.id,
+      json.useId,
       json.name,
       json.kana,
       json.birthday,

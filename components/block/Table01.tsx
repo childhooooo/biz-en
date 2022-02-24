@@ -16,6 +16,7 @@ const Table01 = ({children}: Props) => {
 
 const Component = styled.table`
   border-collapse: collapse;
+  width: 100%;
 
   tr {
     border-top: 1px solid ${color.black};

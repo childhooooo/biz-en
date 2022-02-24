@@ -30,7 +30,6 @@
     "sass": "^1.45.0",
     "styled-components": "^5.3.3",
     "typescript": "4.5.4",
-    "unflexible-ui": "https://github.com/childhooooo/unflexible-ui.git#v0.2.5",
     "unflexible-ui-legacy": "^0.0.10"
   },
   "browserslist": [

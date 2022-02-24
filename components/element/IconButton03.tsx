@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { darken } from 'polished';
 import { ButtonKind } from './buttonKind';
-import { color } from 'lib/config';
+import { color, font } from 'lib/config';
 
 interface Props {
   name: string;
@@ -12,16 +13,27 @@ interface Props {
 }
 
 const IconButton01 = ({ name, icon, color, kind, href, onClick }: Props) => {
-  if(kind === 'button' && onClick) {
+  if(kind === 'submit') {
     return (
-      <button onClick={onClick}>
+      <Button type="submit">
         <Inner color={color}>
           <Icon>
             <img src={icon} alt="アイコン" />
           </Icon>
           <Name>{name}</Name>
         </Inner>
-      </button>
+      </Button>
+    );
+  } else if(kind === 'button' && onClick) {
+    return (
+      <Button onClick={onClick}>
+        <Inner color={color}>
+          <Icon>
+            <img src={icon} alt="アイコン" />
+          </Icon>
+          <Name>{name}</Name>
+        </Inner>
+      </Button>
     );
   } else {
     return (
@@ -37,7 +49,13 @@ const IconButton01 = ({ name, icon, color, kind, href, onClick }: Props) => {
   }
 };
 
+const Button = styled.button`
+  width: 100%;
+`;
+
 const Link = styled.a`
+  display: block;
+  width: 100%;
   text-decoration: none;
 `;
 
@@ -48,6 +66,7 @@ const Name = styled.span`
   margin-left: 1rem;
   font-size: 1.25rem;
   font-weight: 400;
+  font-family: ${font.sansSerif};
 `;
 
 interface InnerProps {
@@ -56,11 +75,16 @@ interface InnerProps {
 
 const Inner = styled.div<InnerProps>`
   display: flex;
+  justify-content: center;
   align-items: center;
+  padding: .75rem 1.5rem;
+  background-color: ${props => props.color};
+  line-height: 1;
+  border-radius: 10px;
   transition-duration: .3s;
 
   &:hover {
-    transform: scale(1.03);
+    background-color: ${props => darken(.05, props.color)};
   }
 
   ${Icon} {
@@ -69,7 +93,6 @@ const Inner = styled.div<InnerProps>`
     align-items: center;
     width: 2rem;
     height: 2rem;
-    background-color: ${props => props.color};
   }
 
   img {
@@ -78,7 +101,7 @@ const Inner = styled.div<InnerProps>`
   }
 
   ${Name} {
-    color: ${props => props.color};
+    color: ${color.white};
   }
 `
 

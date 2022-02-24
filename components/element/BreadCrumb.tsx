@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { color } from 'lib/config';
+import { color, font } from 'lib/config';
 
 export interface Route {
   name: string;
@@ -30,6 +30,7 @@ const Component = styled.ul`
   list-style: none;
 
   a {
+    font-family: ${font.sansSerif};
     text-decoration: none;
     color: ${color.black};
 

@@ -1,5 +1,7 @@
 export class Employer {
   constructor(
+    public readonly id: string,
+    public readonly userId: string,
     public readonly companyName: string,
     public readonly companyKana: string,
     public readonly website: string | null,

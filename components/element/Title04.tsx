@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { color } from 'lib/config';
+import { color, font } from 'lib/config';
 
 const tags: { [key: string]: any } = {
   'h1': styled.h1``,
@@ -14,24 +14,30 @@ const tags: { [key: string]: any } = {
 interface Props {
   name: string;
   tag: string;
+  color: string;
 }
 
-const Title01 = ({name, tag}: Props) => {
+const Title01 = ({name, tag, color}: Props) => {
   const Component = tags[tag];
   return (
     <Component>
-      <Inner>{name}</Inner>
+      <Inner color={color}>{name}</Inner>
     </Component>
   );
 };
 
-const Inner = styled.span`
+interface InnerProps {
+  color: string;
+}
+
+const Inner = styled.span<InnerProps>`
   display: block;
   width: 100%;
   padding: .25rem 1.25rem;
   font-size: 1.5rem;
-  font-weight: 700;
-  border-left: 5px solid ${color.lightBlue};
+  font-weight: 400;
+  font-family: ${font.sansSerif};
+  border-left: 5px solid ${props => props.color};
 `;
 
 export default Title01;

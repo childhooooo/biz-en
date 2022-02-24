@@ -1,5 +1,4 @@
 import { ReactNode } from 'react';
-
 import { Dispatch, SetStateAction, createContext, useContext, useState } from 'react';
 import { Job } from '../entities/job';
 
