@@ -3,6 +3,12 @@ export { Job } from './entities/job';
 export { JobCategory } from './entities/jobCategory';
 
 export {
+  EditTypeKindValues,
+  EditType,
+  EditTypeKind
+} from './entities/editRequest';
+
+export {
   Seeker,
   Sex,
   Education,
@@ -46,7 +52,16 @@ export {
   JobListStateProvider,
   JobListStateContext
 } from './presenters/JobListState';
+
 export { default as NewSeeker } from './presenters/NewSeeker';
 export { default as NewEmployer } from './presenters/NewEmployer';
 export { default as JobLink } from './presenters/JobLink';
 export { default as Pagination } from './presenters/Pagination';
+
+export {
+  useSeekerAuthState,
+  SeekerAuthStateProvider
+} from './presenters/SeekerAuthState';
+
+export { default as SeekerAuth } from './presenters/SeekerAuth';
+export { default as NewEditRequest } from './presenters/NewEditRequest';
