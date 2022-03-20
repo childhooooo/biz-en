@@ -13,9 +13,9 @@ interface Props {
 const BreadCrumb = ({ routes }: Props) => {
   return (
     <Component>
-      {routes.map(s => {
+    {routes.map((s: any, index: number) => {
         return (
-          <li>
+          <li key={index}>
             <a href={s.href}>{s.name}</a>
           </li>
         );

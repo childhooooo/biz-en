@@ -1,7 +1,11 @@
+export type { Route } from './BreadCrumb';
+
 export { default as Title01 } from './Title01';
 export { default as Title02 } from './Title02';
 export { default as Title03 } from './Title03';
 export { default as Title04 } from './Title04';
+export { default as Title05 } from './Title05';
+export { default as Title06 } from './Title06';
 export { default as IconButton01 } from './IconButton01';
 export { default as IconButton02 } from './IconButton02';
 export { default as IconButton03 } from './IconButton03';
@@ -14,4 +18,5 @@ export { default as BreadCrumb } from './BreadCrumb';
 export { default as MenuLink } from './MenuLink';
 export { default as Border } from './Border';
 export { default as CloseButton } from './CloseButton';
-export type { Route } from './BreadCrumb';
+export { default as IconText } from './IconText';
+export { default as FukidashiText } from './FukidashiText';

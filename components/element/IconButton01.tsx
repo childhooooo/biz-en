@@ -7,11 +7,11 @@ interface Props {
   icon: string;
   kind?: ButtonKind;
   href?: string;
-  onClick?: string;
+  onClick?: (e: any) => void;
 }
 
 const IconButton01 = ({ name, icon, kind, href, onClick }: Props) => {
-  if(kind === 'button' && onClick) {
+  if (kind === 'button' && onClick) {
     return (
       <Button onClick={onClick}>
         <Inner>

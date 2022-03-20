@@ -105,7 +105,7 @@ const Footer = ({}: Props) => {
           <Columns align="flex-end" justify="space-between">
             <Block>
               <PlainText>
-                <p>@2021 Biz Solutions Co., Ltd. All Rights Reserved.</p>
+                <p>©2021 Biz Solutions Co., Ltd. All Rights Reserved.</p>
               </PlainText>
             </Block>
 

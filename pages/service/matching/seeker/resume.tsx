@@ -7,19 +7,38 @@ import { Auth, AuthStateProvider, EditUser } from 'domains/account';
 
 import styled from 'styled-components';
 import { color, font } from 'lib/config';
+import { withSessionSsr } from 'lib/session';
 import { view } from 'unflexible-ui-legacy';
-import { useSeekerAuthState } from 'domains/matching';
+import { useSeekerAuthState, signedIn } from 'domains/matching';
 
-const ServiceMatchingSeekerResumePage: NextPage = () => {
+export const getServerSideProps = withSessionSsr(
+  async function getServerSideProps({ req }) {
+    const seekerId = req.session.seeker?.id || null;
+    return {
+      props: {
+        seekerId
+      }
+    };
+  }
+);
+
+const ServiceMatchingSeekerResumePage: NextPage<Props> = ({ seekerId }) => {
   return (
     <AuthStateProvider>
-      <ServiceMatchingSeekerResumeContents />
+      <ServiceMatchingSeekerResumeContents seekerId={seekerId} />
     </AuthStateProvider>
   );
 }
 
-const ServiceMatchingSeekerResumeContents: NextPage = () => {
+interface Props {
+  seekerId: string | null;
+}
+
+const ServiceMatchingSeekerResumeContents: NextPage<Props> = ({ seekerId }) => {
   const seekerAuthState = useSeekerAuthState();
+  if(seekerId) {
+    signedIn(seekerAuthState, seekerId);
+  }
 
   const routes = [
     { name: 'TOP', href: view.url('') },

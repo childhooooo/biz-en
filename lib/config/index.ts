@@ -12,6 +12,7 @@ export const color = {
   lightBlue: '#00a0ff',
   skyBlue: '#f3ffff',
   semiSkyBlue: '#50c8ff',
+  whiteBlue: '#f2f9fa',
   red: '#e84961',
   gold: '#a3824f',
   lightPurple: '#bdbcdb',

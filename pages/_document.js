@@ -65,4 +65,10 @@ const GlobalStyle = createGlobalStyle`
   #myapp {
     font-family: ${font.maru};
   }
+
+img {
+  object-fit: cover;
+  object-position: 50% 50%;
+  font-family: 'object-fit: cover; object-position: 50% 50%;';
+}
 `;

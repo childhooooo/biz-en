@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { color as configColor } from 'lib/config';
+import { color as configColor, font } from 'lib/config';
 
 const tags: { [key: string]: any } = {
   'h1': styled.h1``,
@@ -44,6 +44,7 @@ img {
     margin-left: .75rem;
     font-size: 1.25rem;
     font-weight: 400;
+    font-family: ${font.sansSerif};
     color: ${props => props.color};
   }
 `

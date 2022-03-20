@@ -39,6 +39,7 @@ const Inner = styled.span`
   padding: 1rem;
   font-size: 1.5rem;
   color: ${color.white};
+  background-color: ${color.theme};
   text-align: center;
   border: 2px solid ${color.white};
   border-radius: 20px;

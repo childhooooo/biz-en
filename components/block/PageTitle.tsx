@@ -6,7 +6,7 @@ import { view } from 'unflexible-ui-legacy';
 import { color } from 'lib/config';
 
 interface Props {
-  name: string;
+  name?: string;
   routes: Route[]
 }
 
@@ -20,12 +20,14 @@ const PageTitle = ({ name, routes }: Props) => {
           </div>
         </Stacked>
 
-        <Stacked paddingSize="thin">
-          <h2>
-            <img src={view.url('images/icon_pagetitle.png')} alt="アイコン" />
-            <span>{name}</span>
-          </h2>
-        </Stacked>
+        {name &&
+          <Stacked paddingSize="thin">
+            <h2>
+              <img src={view.url('images/icon_pagetitle.png')} alt="アイコン" />
+              <span>{name}</span>
+            </h2>
+          </Stacked>
+        }
       </Stacked>
     </Component>
   );

@@ -1,5 +1,6 @@
 import { Job } from './entities/job';
 import { JobListState, Order } from './presenters/JobListState';
+import { SeekerAuthState } from './presenters/SeekerAuthState';
 import { getDummyJobList } from './repository';
 
 interface FetchOptions {
@@ -35,4 +36,27 @@ export function setOrder(state: JobListState, order: Order) {
 
 export function setOrderBy(state: JobListState, orderBy: string) {
   state.orderBy.setValue(orderBy);
+}
+
+export async function signIn(state: SeekerAuthState, email: string, password: string) {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_PATH}/api/seeker/login`, {
+    method: 'POST',
+    body: JSON.stringify({ email, password })
+  });
+
+  if(!res.ok) {
+    throw new Error(`Failed to POST: ${res.status} ${res.statusText}`);
+  }
+
+  const data = await res.json();
+
+  if(data.seekerId) {
+    state.seekerId.setValue(data.seekerId);
+  } else {
+    throw new Error('Unexpected Error');
+  }
+}
+
+export async function signedIn(state: SeekerAuthState, seekerId: string) {
+  state.seekerId.setValue(seekerId);
 }
