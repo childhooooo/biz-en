@@ -2,29 +2,41 @@ import styled from 'styled-components';
 import { useForm, SubmitHandler } from "react-hook-form";
 import { FormTable } from 'components/block';
 
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 import { view } from 'unflexible-ui-legacy';
-import { color } from 'lib/config';
+import { color, screen } from 'lib/config';
+import { InputEmployer, getEmployerByEmail } from 'domains/matching';
 
 interface Props {
 }
 
-interface InputEmployer {
-  companyName: string;
-  companyKana: string;
-  website: string;
-  department: string;
-  lastName: string;
-  firstName: string;
-  email: string;
-  reEmail: string;
-  tel: string;
-  requiredOccupation: string;
-  workAt: string;
-}
+const NewEmployer = ({ }: Props) => {
+  const router = useRouter();
+  const { register, handleSubmit, getValues, reset, formState: { errors } } = useForm<InputEmployer>();
+  const onSubmit: SubmitHandler<InputEmployer> = async (data) => {
+    let result;
+    try {
+      const res = await fetch('/api/matching/employer/', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
 
-const NewEmployer = ({}: Props) => {
-  const { register, handleSubmit, formState: { errors } } = useForm<InputEmployer>();
-  const onSubmit: SubmitHandler<InputEmployer> = data => console.log(data);
+      if(!res.ok) {
+        throw new Error(`${res.status}: ${res.statusText}`);
+      }
+    } catch (e: any) {
+      console.error(e);
+      alert('何か問題が発生しました。もう一度お試しください。');
+      reset();
+      return;
+    }
+
+    router.push(view.url('service/matching/employer/registered'));
+  };
 
   return (
     <Component>
@@ -40,6 +52,7 @@ const NewEmployer = ({}: Props) => {
               <th className="required">企業名</th>
               <td>
                 <input type="text" className="full" {...register("companyName", { required: true })} />
+                {errors.companyName && <p className="error">正しく入力してください</p>}
               </td>
             </tr>
 
@@ -47,13 +60,14 @@ const NewEmployer = ({}: Props) => {
               <th className="required">企業名（カタカナ）</th>
               <td>
                 <input type="text" className="full" placeholder="カナ入力" {...register("companyKana", { required: true })} />
+                {errors.companyKana && <p className="error">正しく入力してください</p>}
               </td>
             </tr>
 
             <tr>
               <th>ホームページ URL</th>
               <td>
-                <input type="text" className="full" {...register("website")} /><br/>
+                <input type="text" className="full" {...register("website")} /><br />
               </td>
             </tr>
 
@@ -61,6 +75,7 @@ const NewEmployer = ({}: Props) => {
               <th className="required">所属部署名</th>
               <td>
                 <input type="text" className="full" {...register("department", { required: true })} />
+                {errors.department && <p className="error">正しく入力してください</p>}
               </td>
             </tr>
 
@@ -77,18 +92,28 @@ const NewEmployer = ({}: Props) => {
                     <input type="text" id="first-name" className="short" {...register("firstName", { required: true })} />
                   </li>
                 </ul>
+                {(errors.lastName || errors.firstName) && <p className="error">正しく入力してください</p>}
               </td>
             </tr>
 
             <tr>
               <th className="required">メールアドレス</th>
               <td>
-                <p>
-                  <input type="email" {...register("email", { required: true })} />
-                </p>
-                <p>
-                  <input type="email" placeholder="もう一度入力してください" {...register("reEmail", { required: true })} />
-                </p>
+                <div>
+                  <input type="email" {...register("email", {
+                    required: true, validate: async (v: string) => {
+                      const employer = await getEmployerByEmail(v);
+                      console.log(employer);
+                      return employer === null;
+                    }
+                  })} />
+                  {errors.email?.type === 'required' && <p className="error">正しく入力してください</p>}
+                  {errors.email && errors.email?.type !== 'required' && <p className="error">既に使用されています</p>}
+                </div>
+                <div>
+                  <input type="email" placeholder="もう一度入力してください" {...register("reEmail", { required: true, validate: (v: string) => v === getValues('email') })} />
+                  {errors.reEmail && <p className="error">正しく入力してください</p>}
+                </div>
               </td>
             </tr>
 
@@ -96,6 +121,7 @@ const NewEmployer = ({}: Props) => {
               <th className="required">電話番号</th>
               <td>
                 <input type="tel" {...register("tel", { required: true })} />
+                {errors.tel && <p className="error">正しく入力してください</p>}
               </td>
             </tr>
 
@@ -103,6 +129,7 @@ const NewEmployer = ({}: Props) => {
               <th className="required">募集職種</th>
               <td>
                 <textarea rows={5} {...register("requiredOccupation", { required: true })} />
+                {errors.requiredOccupation && <p className="error">正しく入力してください</p>}
               </td>
             </tr>
 
@@ -110,13 +137,14 @@ const NewEmployer = ({}: Props) => {
               <th className="required">勤務場所</th>
               <td>
                 <input type="text" {...register("workAt", { required: true })} />
+                {errors.workAt && <p className="error">正しく入力してください</p>}
               </td>
             </tr>
           </tbody>
         </FormTable>
 
         <p className="confirmation">
-          <a href={view.url('')}>個人情報の取り扱い</a>に同意した上で送信してください。
+          <a href={view.url('privacy-policy')} target="_blank">個人情報の取り扱い</a>に同意した上で送信してください。
         </p>
 
         <input type="submit" value="同意して送信する" />
@@ -143,6 +171,7 @@ const Component = styled.div`
 input[type="submit"] {
   display: block;
   width: 400px;
+  max-width: 100%;
   margin: 1.5rem auto 0 auto;
   padding: .5rem;
   font-size: 1.25rem;
@@ -150,6 +179,10 @@ input[type="submit"] {
   background-color: ${color.marineBlue};
   text-align: center;
   border-radius: 15px;
+
+  @media only screen and (max-width: ${screen.xs}px) {
+    font-size: 1rem;
+  }
 }
 `
 

@@ -25,6 +25,7 @@ const ServicePage: NextPage = ({}: Props) => {
         <Header
           title="外国人材採用支援サービス（株式会社ビズソリューションズ）"
           language="ja"
+          selected="service"
         />
       )}
       footer={<Footer/>}
@@ -38,7 +39,7 @@ const ServicePage: NextPage = ({}: Props) => {
       </Stacked>
 
       <Stacked paddingSize="narrow" color={color.lightGray} isSection wrap>
-        <Columns repeat={3} gap="normal">
+        <Columns repeat={3} repeatM={2} repeatXS={1} gap="normal">
           <Block height="100%">
             <MenuLink
               name="外国人材紹介サービス"

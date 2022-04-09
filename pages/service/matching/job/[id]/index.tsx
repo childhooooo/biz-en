@@ -1,20 +1,37 @@
 import type { NextPage } from 'next';
 import { Page, Stacked, Columns, Block, PlainText } from 'unflexible-ui-legacy';
-import { Header, Footer } from 'components/layout';
+import { EnHeader, Footer } from 'components/layout';
 import { EnPageTitle, Table01 } from 'components/block';
 import { Button04 } from 'components/element';
 
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Job, getDummyJob } from 'domains/matching';
-import { color, font } from 'lib/config';
 import { view } from 'unflexible-ui-legacy';
+import { color, font } from 'lib/config';
+import { Job, getJob } from 'domains/matching';
+
+export async function getServerSideProps({ params }: any) {
+  try {
+    const job = await getJob(params.id);
+    return {
+      props: {
+        jobData: JSON.stringify(job)
+      }
+    };
+  } catch (e) {
+    return {
+      props: {
+        jobData: ''
+      }
+    };
+  }
+};
 
 interface Props {
+  jobData: string;
 }
 
-const ServiceMatchingSinglePage: NextPage<Props> = ({}) => {
+const ServiceMatchingSinglePage: NextPage<Props> = ({ jobData }) => {
   const router = useRouter();
   const id = Array.isArray(router.query?.id) ? router.query.id[0] : router.query.id;
 
@@ -25,18 +42,12 @@ const ServiceMatchingSinglePage: NextPage<Props> = ({}) => {
     { name: '募集要項', href: view.url(`service/matching/${id || ''}`) }
   ];
 
-  const [job, setJob] = useState<Job | null | undefined>(undefined);
-
-  useEffect(() => {
-    if(id) {
-      try {
-        const job = getDummyJob(id);
-        setJob(job);
-      } catch(e) {
-        setJob(null);
-      }
-    }
-  }, []);
+  let job: Job | null;
+  try {
+    job = Job.fromObject(JSON.parse(jobData));
+  } catch (e) {
+    job = null;
+  }
 
   return (
     <Page
@@ -45,23 +56,18 @@ const ServiceMatchingSinglePage: NextPage<Props> = ({}) => {
       path={`/service/matching/${job?.id || ''}`}
       ogType="article"
       header={(
-        <Header
+        <EnHeader
           title="募集要項 | 縁 -en- | 群馬県内に就職を希望する外国人材就職応援サイト"
           language="ja"
+          routes={routes}
         />
       )}
-      footer={<Footer/>}
+      footer={<Footer />}
       fixHeader
     >
       <Stacked paddingPos="none" color={color.lightGray}>
-        <EnPageTitle routes={routes} />
+        <EnPageTitle />
       </Stacked>
-
-      {!job &&
-        <Stacked isSection>
-          <p>読み込み中...</p>
-        </Stacked>
-      }
 
       {job &&
         <Stacked isSection>
@@ -78,7 +84,7 @@ const ServiceMatchingSinglePage: NextPage<Props> = ({}) => {
 
           <Stacked paddingPos="top" paddingSize="thin" wrap>
             <Columns justify="center">
-              <Button04 name="この求人にマッチングエントリーする" color={color.orange} kind="link" href={view.url(`service/matching/${job.id}/entry/new`)} />
+              <Button04 name="この求人にマッチングエントリーする" color={color.orange} kind="link" href={view.url(`service/matching/job/${job.id}/entry/new`)} />
             </Columns>
           </Stacked>
 
@@ -96,7 +102,7 @@ const ServiceMatchingSinglePage: NextPage<Props> = ({}) => {
 
               <tr>
                 <th>応募資格</th>
-                <td dangerouslySetInnerHTML={{ __html: job.qualifications }} />
+                <td dangerouslySetInnerHTML={{ __html: job.requirements }} />
               </tr>
 
               <tr>
@@ -111,7 +117,7 @@ const ServiceMatchingSinglePage: NextPage<Props> = ({}) => {
 
               <tr>
                 <th>在留資格</th>
-                <td dangerouslySetInnerHTML={{ __html: job.stateOfResidence || '' }} />
+                <td dangerouslySetInnerHTML={{ __html: job.qualifications || '' }} />
               </tr>
 
               <tr>
@@ -143,7 +149,7 @@ const ServiceMatchingSinglePage: NextPage<Props> = ({}) => {
 
           <Stacked paddingPos="top" paddingSize="narrow" wrap>
             <Columns justify="center">
-              <Button04 name="この求人にマッチングエントリーする" color={color.orange} kind="link" href={view.url(`service/matching/${job.id}/entry/new`)} />
+              <Button04 name="この求人にマッチングエントリーする" color={color.orange} kind="link" href={view.url(`service/matching/job/${job.id}/entry/new`)} />
             </Columns>
           </Stacked>
         </Stacked>

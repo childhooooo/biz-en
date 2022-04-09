@@ -19,7 +19,7 @@ export class Sex {
   }
 
   static toString(kind: SexKind): string | null {
-    switch(kind) {
+    switch (kind) {
       case SexKind.MALE:
         return '男性';
       case SexKind.FEMALE:
@@ -34,7 +34,7 @@ export class Sex {
   }
 
   static fromNumber(value: number): Sex {
-    switch(value) {
+    switch (value) {
       case 0:
         return new Sex(SexKind.NOTKNOWN);
       case 1:
@@ -61,10 +61,10 @@ export type EducationKind = typeof EducationKind[keyof typeof EducationKind];
 export const EducationKindValues = Object.values(EducationKind);
 
 export class Education {
-  constructor(public readonly kind: EducationKind) {}
+  constructor(public readonly kind: EducationKind) { }
 
   static fromNumber(value: number): Education {
-    switch(value) {
+    switch (value) {
       case 0:
         return new Education(EducationKind.UNIVERSITY);
       case 1:
@@ -87,7 +87,7 @@ export class Education {
   }
 
   static toString(kind: EducationKind): string | null {
-    switch(kind) {
+    switch (kind) {
       case EducationKind.UNIVERSITY:
         return '大学';
       case EducationKind.GURADUATE_SCHOOL:
@@ -114,10 +114,10 @@ export type EducationStateKind = typeof EducationStateKind[keyof typeof Educatio
 export const EducationStateKindValues = Object.values(EducationStateKind);
 
 export class EducationState {
-  constructor(public readonly kind: EducationStateKind) {}
+  constructor(public readonly kind: EducationStateKind) { }
 
   static fromNumber(value: number): EducationState | null {
-    switch(value) {
+    switch (value) {
       case 0:
         return new EducationState(EducationStateKind.GURADUATED);
       case 1:
@@ -128,7 +128,7 @@ export class EducationState {
   }
 
   static toString(kind: EducationStateKind): string | null {
-    switch(kind) {
+    switch (kind) {
       case EducationStateKind.GURADUATED:
         return '既卒';
       case EducationStateKind.LARNING:
@@ -156,65 +156,65 @@ export type QualificationKind = typeof QualificationKind[keyof typeof Qualificat
 export const QualificationKindValues = Object.values(QualificationKind);
 
 export class Qualification {
-  constructor(public readonly kind: QualificationKind) {}
+  constructor(public readonly kind: QualificationKind) { }
 
   static fromNumber(value: number) {
-    switch(value) {
+    switch (value) {
       case 0:
         return new Qualification(QualificationKind.SKILL_HUMANITY_INTERNATIONAL);
       case 1:
-      return new Qualification(QualificationKind.SPECIFIC_SKILL);
+        return new Qualification(QualificationKind.SPECIFIC_SKILL);
       case 2:
-      return new Qualification(QualificationKind.TECHNICAL_INTERN_1);
+        return new Qualification(QualificationKind.TECHNICAL_INTERN_1);
       case 3:
-      return new Qualification(QualificationKind.TECHNICAL_INTERN_2);
+        return new Qualification(QualificationKind.TECHNICAL_INTERN_2);
       case 4:
-      return new Qualification(QualificationKind.TECHNICAL_INTERN_3);
+        return new Qualification(QualificationKind.TECHNICAL_INTERN_3);
       case 5:
-      return new Qualification(QualificationKind.STUDY);
+        return new Qualification(QualificationKind.STUDY);
       case 6:
-      return new Qualification(QualificationKind.SPECIFIC_ACTIVITY);
+        return new Qualification(QualificationKind.SPECIFIC_ACTIVITY);
       case 7:
-      return new Qualification(QualificationKind.NURSING);
+        return new Qualification(QualificationKind.NURSING);
       case 8:
-      return new Qualification(QualificationKind.PROFESSION);
+        return new Qualification(QualificationKind.PROFESSION);
       case 9:
-      return new Qualification(QualificationKind.FAMILY);
+        return new Qualification(QualificationKind.FAMILY);
       case 10:
-      return new Qualification(QualificationKind.OTHERS);
+        return new Qualification(QualificationKind.OTHERS);
       default:
-      return null;
+        return null;
     }
   }
 
   static toString(kind: QualificationKind): string | null {
-    switch(kind) {
+    switch (kind) {
       case QualificationKind.SKILL_HUMANITY_INTERNATIONAL:
-      return '技術・人文知識・国際業務';
+        return '技術・人文知識・国際業務';
       case QualificationKind.SPECIFIC_SKILL:
-      return '特定技能1号';
+        return '特定技能1号';
       case QualificationKind.TECHNICAL_INTERN_1:
-      return '技能実習1号';
+        return '技能実習1号';
       case QualificationKind.TECHNICAL_INTERN_2:
-      return '技能実習2号';
+        return '技能実習2号';
       case QualificationKind.TECHNICAL_INTERN_3:
-      return '技能実習3号';
+        return '技能実習3号';
       case QualificationKind.STUDY:
-      return '留学';
+        return '留学';
       case QualificationKind.SPECIFIC_ACTIVITY:
-      return '特定活動';
+        return '特定活動';
       case QualificationKind.NURSING:
-      return '介護';
+        return '介護';
       case QualificationKind.PROFESSION:
-      return '高度専門職';
+        return '高度専門職';
       case QualificationKind.FAMILY:
-      return '家族滞在';
+        return '家族滞在';
       case QualificationKind.OTHERS:
-      return 'その他';
+        return 'その他';
       default:
-      return null;
+        return null;
     }
-    }
+  }
 
   toString(): string | null {
     return Qualification.toString(this.kind);
@@ -244,7 +244,7 @@ export class JLPT {
   }
 
   toString(): string | null {
-    switch(this.kind) {
+    switch (this.kind) {
       case JLPTKind.NONE:
         return 'なし';
       case JLPTKind.N_1:
@@ -271,7 +271,7 @@ export class JLPT {
   }
 
   static fromNumber(value: number): JLPT | null {
-    switch(value) {
+    switch (value) {
       case 0:
         return new JLPT(JLPTKind.NONE);
       case 1:
@@ -300,8 +300,7 @@ export class JLPT {
 
 export class Seeker {
   constructor(
-    public readonly id: string,
-    public readonly useId: string,
+    public readonly id: number,
     public readonly name: string,
     public readonly kana: string,
     public readonly birthday: string,
@@ -314,15 +313,35 @@ export class Seeker {
     public readonly educationState: EducationState,
     public readonly educationSchool: string,
     public readonly qualification: string,
-    public readonly jlpt: JLPT,
+    public readonly jlpt: JLPT | null,
     public readonly acceptEmail: boolean,
+    public readonly resumeId: number | null,
     public readonly password: string | null
-  ) {}
+  ) { }
 
-  static fromJsonObject(json: any): Seeker {
+  static deserialize(raw: string): Seeker {
+    const obj = JSON.parse(raw);
+
     if(
+      obj.sex?.kind === null || obj.sex?.kind === undefined ||
+      obj.education?.kind === null || obj.education?.kind === undefined ||
+      obj.educationState?.kind === null || obj.educationState?.kind === undefined
+    ) {
+      throw new Error('Any required fields are not found');
+    }
+
+    return Seeker.fromObject({
+      ...obj,
+      sex: obj.sex.kind,
+      education: obj.education.kind,
+      educationState: obj.educationState.kind,
+      jlpt: obj.jlpt?.kind || null
+    });
+  }
+
+  static fromObject(json: any): Seeker {
+    if (
       json.id === undefined || json.id === null ||
-      json.useId === undefined || json.useId === null ||
       json.name === undefined || json.name === null ||
       json.kana === undefined || json.kana === null ||
       json.birthday === undefined || json.birthday === null ||
@@ -332,13 +351,12 @@ export class Seeker {
       json.email === undefined || json.email === null ||
       json.nationality === undefined || json.nationality === null ||
       json.education === undefined || json.education === null ||
-      json.educationStatus === undefined || json.educationStatus === null ||
+      json.educationState === undefined || json.educationState === null ||
       json.educationSchool === undefined || json.educationScholl === null ||
       json.qualification === undefined || json.qualification === null ||
-      json.jlpt === undefined || json.jlpt === null ||
       json.acceptEmail === undefined || json.acceptEmail === null
     ) {
-      throw new Error('Some required fields are not found');
+      throw new Error('Any required fields are not found');
     }
 
     const sexKind = typeof json.sex === 'string' ? parseInt(json.sex) : json.sex;
@@ -346,22 +364,21 @@ export class Seeker {
     const educationStateKind = typeof json.educationState === 'string' ? parseInt(json.educationState) : json.educationState;
     const jlptKind = typeof json.jlpt === 'string' ? parseInt(json.jlpt) : json.jlpt;
 
-    if(isNaN(sexKind) || isNaN(educationKind) || isNaN(educationStateKind) || isNaN(jlptKind)) {
+    if (isNaN(sexKind) || isNaN(educationKind) || isNaN(educationStateKind)) {
       throw new Error('Some fields have invalid value');
     }
 
     const sex = new Sex(sexKind);
     const education = new Education(educationKind);
     const educationState = new EducationState(educationStateKind);
-    const jlpt = new JLPT(jlptKind);
+    const jlpt = jlptKind ? new JLPT(jlptKind) : null;
 
-    if(sex == null || education == null || educationState == null || jlpt == null) {
+    if (sex == null || education == null || educationState == null) {
       throw new Error('Some fields have invalid value');
     }
 
     return new Seeker(
       json.id,
-      json.useId,
       json.name,
       json.kana,
       json.birthday,
@@ -376,7 +393,105 @@ export class Seeker {
       json.qualification,
       jlpt,
       json.acceptEmail,
+      json.resumeId,
       json.password || null
     );
+  }
+}
+
+export class InputSeeker {
+  constructor(
+    public readonly name: string,
+    public readonly kana: string,
+    public readonly birthday: string,
+    public readonly sex: number,
+    public readonly postalcode: string,
+    public readonly address: string,
+    public readonly email: string,
+    public readonly reEmail: string,
+    public readonly nationality: string,
+    public readonly education: number,
+    public readonly educationState: number,
+    public readonly educationSchool: string,
+    public readonly qualification: number,
+    public readonly jlpt: number | null,
+    public readonly acceptEmail: string,
+    public readonly password: string
+  ) { }
+
+  toSnake(): any {
+    return {
+      name: this.name,
+      kana: this.kana,
+      birthday: this.birthday,
+      sex: this.sex,
+      postalcode: this.postalcode,
+      address: this.address,
+      email: this.email,
+      nationality: this.nationality,
+      education: this.education,
+      education_state: this.educationState,
+      education_school: this.educationSchool,
+      qualification: this.qualification,
+      jlpt: this.jlpt,
+      accept_email: this.acceptEmail === 'yes',
+      password: this.password
+    }
+  }
+
+  static fromObject(obj: any): InputSeeker {
+    if (
+      !obj.name ||
+      !obj.kana ||
+      !obj.birthday ||
+      obj.sex === null || obj.sex === undefined ||
+      !obj.postalcode ||
+      !obj.address ||
+      !obj.email ||
+      !obj.reEmail ||
+      !obj.nationality ||
+      obj.education === null || obj.education === undefined ||
+      obj.educationState === null || obj.educationState === undefined ||
+      !obj.educationSchool ||
+      !obj.password
+    ) {
+      throw new Error('Any required fields are not found');
+    }
+
+    return new InputSeeker(
+      obj.name,
+      obj.kana,
+      obj.birthday,
+      obj.sex,
+      obj.postalcode,
+      obj.address,
+      obj.email,
+      obj.reEmail,
+      obj.nationality,
+      obj.education,
+      obj.educationState,
+      obj.educationSchool,
+      obj.qualification,
+      obj.jlpt || null,
+      obj.acceptEmail,
+      obj.password
+    )
+  }
+}
+
+export class InputSeekerHashed extends InputSeeker {}
+
+export class Credential {
+  constructor(
+    public readonly email: string,
+    public readonly password: string
+  ) {}
+
+  static fromObject(obj: any): Credential {
+    if(!obj.email || !obj.password) {
+      throw new Error('Any required fields are not found');
+    }
+
+    return new Credential(obj.email, obj.password);
   }
 }

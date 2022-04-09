@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { rgba } from 'polished';
 import { view } from 'unflexible-ui-legacy';
-import { color } from 'lib/config';
+import { color, screen } from 'lib/config';
 
 interface Props {
   href: string;
@@ -109,6 +109,24 @@ text-align: left;
 &:hover {
   figure:before, a {
     left: -30px;
+  }
+}
+
+@media only screen and (max-width: ${screen.s}px) {
+  figure {
+    &:before {
+      top: 75%;
+      left: -30px;
+      width: 95vw;
+      height: 95vw;
+    }
+  }
+
+  a {
+    top: 75%;
+    left: -30px;
+    width: 95vw;
+    height: 95vw;
   }
 }
 `

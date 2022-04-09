@@ -3,7 +3,7 @@ import { Stacked } from 'unflexible-ui-legacy';
 
 import styled from 'styled-components';
 import { rgba } from 'polished';
-import { color } from 'lib/config';
+import { color, screen } from 'lib/config';
 
 interface Props {
   image: string;
@@ -14,7 +14,18 @@ interface Props {
 const Parallax = ({ image, srcSet, children }: Props) => {
   return (
     <Component>
-      <img src={image} srcSet={srcSet} alt="背景" className="rellax" data-rellax-speed="10" data-rellax-percentage="0.1" />
+      <img
+        src={image}
+        srcSet={srcSet}
+        alt="背景"
+        className="rellax"
+        data-rellax-speed="8"
+        data-rellax-desktop-speed="8"
+        data-rellax-tablet-speed="2"
+        data-rellax-mobile-speed="2"
+        data-rellax-xs-speed="2"
+        data-rellax-percentage="0.2"
+      />
       <Stacked paddingSize="wide">
         <Contents>
           <div>{children}</div>
@@ -31,11 +42,19 @@ const Component = styled.div`
   img {
     position: absolute;
     z-index: 1;
-    top: 0;
-    left: 0;
+    top: -10%;
+    left: -10%;
     display: block;
-    width: 100%;
-    height: auto;
+    width: 120%;
+    height: 180%;
+    object-fit: cover;
+    object-position: 50% 30%;
+  }
+
+  @media only screen and (max-width: ${screen.m}px) {
+    img {
+      height: 140%;
+    }
   }
 `;
 

@@ -25,6 +25,7 @@ const AboutGreetingPage: NextPage = ({}: Props) => {
         <Header
           title="ご挨拶 | 外国人材群馬支援事業（株式会社ビズソリューションズ）"
           language="ja"
+          selected="about"
         />
       )}
       footer={<Footer/>}
@@ -45,7 +46,7 @@ const AboutGreetingPage: NextPage = ({}: Props) => {
       </Stacked>
 
       <Stacked isSection wrap>
-        <Columns repeatXL={2} gap="wide" align="center">
+        <Columns repeatXL={2} repeatXS={1} gap="wide" align="center">
           <Block height="100%" fixHeight>
             <Figure src={view.url('images/greeting_01.jpg')} width="100%" height="100%"/>
           </Block>

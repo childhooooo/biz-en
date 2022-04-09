@@ -24,8 +24,9 @@ const AboutDescriptionPage: NextPage = ({}: Props) => {
       ogType="article"
       header={(
         <Header
-          title="外国人材群馬就職支援事業とは | 外国人材群馬支援事業（株式会社ビズソリューションズ）"
+          title="外国人材群馬就職支援事業とは | 外国人材群馬就職支援事業（株式会社ビズソリューションズ）"
           language="ja"
+          selected="about"
         />
       )}
       footer={<Footer/>}
@@ -47,12 +48,14 @@ const AboutDescriptionPage: NextPage = ({}: Props) => {
           </Columns>
         </Stacked>
 
-        <Stacked paddingSize="narrow">
+        <Stacked paddingSize="normal">
           <PlainText>
             <p>私たちは、日本で働くことを希望する東南アジアの若者たちと、優秀な人材を求める企業さまの求職・求人のマッチングサービスを行っています。外国人材の定着支援や生活支援など、受入企業さまと働く外国人材の方たち双方が満足いただけるサポートご提供いたします。</p>
           </PlainText>
         </Stacked>
       </Stacked>
+
+      <div id="service_01"></div>
 
       <Stacked paddingPos="top" wrap>
         <PlainText h3Align="center" h3Weight="400" h3Color={color.gold}>
@@ -70,6 +73,8 @@ const AboutDescriptionPage: NextPage = ({}: Props) => {
             <p>大学や、専門学校で学んだ知識（専攻科目・履修内容）や母国の企業で培ってきた経験や知識と、就職する企業での職務内容が関連している場合に取得できる在留資格です。学んだ知識や経験に応じて、理系ではエンジニアやプログラマー、文系では営業職や事務職、翻訳・通訳など。単純労働などの仕事に就くことはできません。この在留資格の取得要件として、学歴では大学または短期大学（国内外不問）を卒業（予定）者。専門学校の場合は日本国内の専門学校である必要があります。学歴が高卒以下の場合は、3年または10年以上の実務経験が必要となります。在留期間は、申請した在留資格と申請者の状況に応じて、5年、3年、1年、3ヶ月のうちのいずれかを入管が決定します。</p>
           </PlainText>
         </Stacked>
+
+        <div id="service_02"></div>
 
         <Stacked paddingSize="narrow" color={color.whitePurple} wrap>
           <PlainText baseMargin="1rem 2rem">
@@ -89,6 +94,8 @@ const AboutDescriptionPage: NextPage = ({}: Props) => {
           </PlainText>
         </Stacked>
 
+        <div id="service_03"></div>
+
         <Stacked paddingSize="narrow" color={color.whitePurple} wrap>
           <PlainText baseMargin="1rem 2rem">
             <p>「特定技能」の雇用では、「特定技能所属機関」としての支援や入管への定期的な報告義務があります。登録支援機関の当社が企業さまに代わって、支援の全てを受託して特定技能外国人をサポートいたします。</p>
@@ -100,6 +107,8 @@ const AboutDescriptionPage: NextPage = ({}: Props) => {
         <Stacked paddingPos="none" wrap>
           <Title03 name="インターンシップ" icon={view.url('images/icon_people.png')} tag="h4" color={color.purple} />
         </Stacked>
+
+        <div id="service_04"></div>
 
         <Stacked paddingPos="top" paddingSize="narrow" wrap>
           <PlainText>
@@ -118,6 +127,8 @@ const AboutDescriptionPage: NextPage = ({}: Props) => {
             <p>技能実習制度は、実習生に技術や知識を修得させ、帰国後、母国の経済発展を担う「人づくり」に寄与することを目的としています。受入企業の97％以上が事業協同組合などの「監理団体」を通して実習生を受け入れています。従事する業務内容が移行対象職種・作業の「審査基準」に該当しなければなりません。「技能実習」には段階的に第1号・第2号・第3号があり第1号から第2号・3号に次段階の技能実習に進むには、技能検定または技能実習評価試験に合格する必要があります。尚、在留期間中に実習生の都合で受入企業（実習実施者）を変わることは出来ません。在留期間は、第1号は1年間。第2号・第3号はそれぞれ2年間で合計５年間の就労が可能です。</p>
           </PlainText>
         </Stacked>
+
+        <div id="service_05"></div>
 
         <Stacked paddingSize="narrow" color={color.whitePurple} wrap>
           <PlainText baseMargin="1rem 2rem">
@@ -150,14 +161,14 @@ const AboutDescriptionPage: NextPage = ({}: Props) => {
         </Stacked>
 
         <Stacked paddingPos="top" paddingSize="narrow">
-          <PlainText h4Align="center" h4Weight="400" h4Color={color.gold} h4SizeXL="1.5rem">
+          <PlainText h4Align="center" h4Weight="400" h4Color={color.gold} h4SizeXL="1.5rem" h4SizeM="1.25rem">
             <h4>優秀な理工系学生・グローバル人材がイノベーション戦略の成功に貢献いたします。</h4>
           </PlainText>
         </Stacked>
 
         <Stacked paddingPos="top" paddingSize="narrow" wrap>
-          <Columns wrapXL="nowrap" gap="normal" align="center">
-            <Block width="25%">
+          <Columns wrapXL="nowrap" wrapS="wrap" gap="normal" align="center">
+            <Block width="25%" widthS="100%">
               <Figure src={view.url('images/description_01.jpg')} name="外国人材" width="100%" />
             </Block>
 
@@ -176,14 +187,14 @@ const AboutDescriptionPage: NextPage = ({}: Props) => {
         </Stacked>
 
         <Stacked paddingPos="top" paddingSize="narrow">
-          <PlainText h4Align="center" h4Weight="400" h4Color={color.gold} h4SizeXL="1.5rem">
+          <PlainText h4Align="center" h4Weight="400" h4Color={color.gold} h4SizeXL="1.5rem" h4SizeM="1.25rem">
             <h4>留学生（技・人・国）、就労制限のない定住者雇用が人材課題を解決いたします。</h4>
           </PlainText>
         </Stacked>
 
         <Stacked paddingPos="top" paddingSize="narrow" wrap>
-          <Columns wrapXL="nowrap" gap="normal" align="center">
-            <Block width="25%">
+          <Columns wrapXL="nowrap" wrapS="wrap" gap="normal" align="center">
+            <Block width="25%" widthS="100%">
               <Figure src={view.url('images/description_02.jpg')} name="外国人材" width="100%" />
             </Block>
 
@@ -202,14 +213,14 @@ const AboutDescriptionPage: NextPage = ({}: Props) => {
         </Stacked>
 
         <Stacked paddingPos="top" paddingSize="narrow">
-          <PlainText h4Align="center" h4Weight="400" h4Color={color.gold} h4SizeXL="1.5rem">
+          <PlainText h4Align="center" h4Weight="400" h4Color={color.gold} h4SizeXL="1.5rem" h4SizeM="1.25rem">
             <h4>人材を確保することが困難な現場作業の人材不足を解決いたします。</h4>
           </PlainText>
         </Stacked>
 
         <Stacked paddingPos="top" paddingSize="narrow" wrap>
-          <Columns wrapXL="nowrap" gap="normal" align="center">
-            <Block width="25%">
+          <Columns wrapXL="nowrap" wrapS="wrap" gap="normal" align="center">
+            <Block width="25%" widthS="100%">
               <Figure src={view.url('images/description_03.jpg')} name="外国人材" width="100%" />
             </Block>
 
@@ -228,14 +239,14 @@ const AboutDescriptionPage: NextPage = ({}: Props) => {
         </Stacked>
 
         <Stacked paddingPos="top" paddingSize="narrow">
-          <PlainText h4Align="center" h4Weight="400" h4Color={color.gold} h4SizeXL="1.5rem">
+          <PlainText h4Align="center" h4Weight="400" h4Color={color.gold} h4SizeXL="1.5rem" h4SizeM="1.25rem">
             <h4>計画的、継続的な業務の配分で生産現場の課題を解決いたします。</h4>
           </PlainText>
         </Stacked>
 
         <Stacked paddingPos="top" paddingSize="narrow" wrap>
-          <Columns wrapXL="nowrap" gap="normal" align="center">
-            <Block width="25%">
+          <Columns wrapXL="nowrap" wrapS="wrap" gap="normal" align="center">
+            <Block width="25%" widthS="100%">
               <Figure src={view.url('images/description_04.jpg')} name="外国人材" width="100%" />
             </Block>
 

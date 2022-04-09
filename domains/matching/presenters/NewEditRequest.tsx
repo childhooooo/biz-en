@@ -1,52 +1,75 @@
-import { FormTable } from 'components/container';
+import { FormTable } from 'components/block';
 
 import styled from 'styled-components';
 import { darken } from 'polished';
+import { useRouter } from 'next/router';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useSeekerAuthState } from '../presenters/SeekerAuthState';
 import { view } from 'unflexible-ui-legacy';
-import { color } from 'lib/config';
-import { EditType } from '../entities/editRequest';
-
-export class Fields {
-  constructor(
-    public readonly useId: string,
-    public readonly editType: EditType,
-    public readonly content: string
-  ) {}
-}
+import { color, screen } from 'lib/config';
+import { InputEditRequest, EditType } from '../entities/editRequest';
+import { Seeker } from '../entities/seeker';
 
 interface Props {
+  seeker: Seeker;
 }
 
-const EditUser = ({}: Props) => {
-  const seekerAuthState = useSeekerAuthState();
+const NewEditRequestForm = ({ seeker }: Props) => {
+  const router = useRouter();
 
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors }
-  } = useForm<Fields>();
+  } = useForm<InputEditRequest>({
+    defaultValues: {
+      seekerId: seeker.id,
+      title: `${seeker.name}さんからの編集依頼`
+    }
+  });
 
-  const onSubmit: SubmitHandler<Fields> = async (input: any) => {
-  }
+  const onSubmit: SubmitHandler<InputEditRequest> = async (input) => {
+    try {
+      const res = await fetch('/api/matching/edit-request/', {
+        method: 'POST',
+        body: JSON.stringify(input),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (!res.ok) {
+        throw new Error(`${res.status}: ${res.statusText}`);
+      }
+    } catch (e: any) {
+      console.error(e);
+      alert('何か問題が発生しました。もう一度お試しください。');
+      reset();
+      return;
+    }
+
+    router.push(view.url(`service/matching/seeker/edit-request/complete?type=${input.editType}`));
+  };
 
   return (
     <Component onSubmit={handleSubmit(onSubmit)}>
+      <input type="number" hidden {...register('seekerId', { required: true })} />
+      <input type="text" hidden {...register('title', { required: true })} />
       <FormTable>
         <tr className="required">
           <th>申請内容</th>
           <td>
-            <ul className="radio-group">
-              {EditType.all().map((e: EditType) => {
+            <ul className="radio">
+              {EditType.all().map((e: EditType, index: number) => {
                 return (
-                  <li>
-                    <input id={`edit-${e.kind}`} type="radio" value={e.kind} {...register('editType')} />
+                  <li key={index}>
+                    <input id={`edit-${e.kind}`} type="radio" value={e.kind} {...register('editType', { required: true })} />
                     <label htmlFor={`edit-${e.kind}`}>{e.toString()}</label>
                   </li>
                 );
               })}
             </ul>
+            {errors.editType && <p className="error">選択してください</p>}
           </td>
         </tr>
 
@@ -63,7 +86,7 @@ const EditUser = ({}: Props) => {
 
         <tr>
           <td colSpan={2}>
-            <Submit>
+            <Submit type="submit">
               <img src={view.url('images/icon_mail_white.png')} alt="アイコン" />
               <span>送信する</span>
             </Submit>
@@ -102,6 +125,10 @@ const Submit = styled.button`
     font-size: 1rem;
     color: ${color.white};
   }
+
+  @media only screen and (max-width: ${screen.xs}px) {
+    width: 100%;
+  }
 `;
 
-export default EditUser;
+export default NewEditRequestForm;

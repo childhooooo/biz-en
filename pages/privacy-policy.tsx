@@ -3,7 +3,7 @@ import { Page, Stacked, Block, Figure, PlainText } from 'unflexible-ui-legacy';
 import { Header, Footer } from 'components/layout';
 import { PageTitle } from 'components/block';
 import { Title03 } from 'components/element';
-import { color } from 'lib/config';
+import { color, font } from 'lib/config';
 
 import { view } from 'unflexible-ui-legacy';
 
@@ -17,13 +17,13 @@ const ServicePage: NextPage = ({ }: Props) => {
 
   return (
     <Page
-      title="プライバシーポリシー | 株式会社ビズソリューションズ"
+      title="プライバシーポリシー | 外国人材採用支援事業（株式会社ビズソリューションズ）"
       description=""
       path="/service/lesson"
       ogType="article"
       header={(
         <Header
-          title="プライバシーポリシー | 外国人材採用支援サービス（株式会社ビズソリューションズ）"
+          title="プライバシーポリシー | 外国人材採用支援事業（株式会社ビズソリューションズ）"
           language="ja"
         />
       )}
@@ -41,7 +41,7 @@ const ServicePage: NextPage = ({ }: Props) => {
       </Stacked>
 
       <Stacked wrap>
-        <PlainText h2SizeXL="1rem" h2Weight="400">
+        <PlainText h2SizeXL="1rem" h2Weight="400" h2Family={font.sansSerif} baseFamily={font.sansSerif}>
           <p>当社は，個人情報保護法をはじめとする個人情報保護に関する関係諸法令等を厳正に遵守することを誓約し，個人情報の取扱いについて，以下のとおりプライバシーポリシー（個人情報保護宣言）を定めます。</p>
 
           <h2>1．個人情報の定義</h2>

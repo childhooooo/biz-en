@@ -20,3 +20,4 @@ export { default as Border } from './Border';
 export { default as CloseButton } from './CloseButton';
 export { default as IconText } from './IconText';
 export { default as FukidashiText } from './FukidashiText';
+export { default as Pdf } from './Pdf';

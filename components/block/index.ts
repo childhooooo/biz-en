@@ -9,3 +9,4 @@ export { default as Table01 } from './Table01';
 export { default as FormTable } from './FormTable';
 export { default as StaffAgencyTitle } from './StaffAgencyTitle';
 export { default as PriceTable } from './PriceTable';
+export { default as CTA } from './CTA';

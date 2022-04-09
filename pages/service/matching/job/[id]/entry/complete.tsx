@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 import { Page, Stacked, PlainText } from 'unflexible-ui-legacy';
-import { Header, Footer } from 'components/layout';
+import { EnHeader, Footer } from 'components/layout';
 import { EnPageTitle } from 'components/block';
 import { Title04, CloseButton, Border } from 'components/element';
 
@@ -21,21 +21,22 @@ const ServiceMatchingMatchingEntryCompletePage: NextPage = () => {
 
   return (
     <Page
-      title={`求人へのマッチングエントリーを受付しました | 縁 -en- | 群馬県内に就職を希望する外国人材就職応援サイト`}
+      title={`エントリー完了 | 縁 -en- | 群馬県内に就職を希望する外国人材就職応援サイト`}
       description=""
       path={`/service/matching/${id}/entry/complete`}
       ogType="article"
       header={(
-        <Header
-          title={'求人へのマッチングエントリーを受付しました | 縁 -en- | 群馬県内に就職を希望する外国人材就職応援サイト'}
+        <EnHeader
+          title={'エントリー完了 | 縁 -en- | 群馬県内に就職を希望する外国人材就職応援サイト'}
           language="ja"
+          routes={routes}
         />
       )}
       footer={<Footer/>}
       fixHeader
     >
       <Stacked paddingPos="none" color={color.lightGray}>
-        <EnPageTitle routes={routes} />
+        <EnPageTitle />
       </Stacked>
 
       <Stacked isSection wrap>
@@ -54,7 +55,7 @@ const ServiceMatchingMatchingEntryCompletePage: NextPage = () => {
         </Stacked>
 
         <Stacked paddingPos="top" paddingSize="narrow">
-          <CloseButton redirect={view.url('service/matching/account/signin')} />
+          <CloseButton redirect={view.url('service/matching')} />
         </Stacked>
       </Stacked>
     </Page>

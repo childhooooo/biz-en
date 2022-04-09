@@ -1,7 +1,7 @@
 import { Job } from './entities/job';
 import { JobListState, Order } from './presenters/JobListState';
 import { SeekerAuthState } from './presenters/SeekerAuthState';
-import { getDummyJobList } from './repository';
+import { getJobs } from './repository';
 
 interface FetchOptions {
   perPage?: number;
@@ -10,16 +10,40 @@ interface FetchOptions {
   order?: string;
 }
 
-export function fetchJobList(state: JobListState) {
-  const jobList = getDummyJobList();
-  state.list.setValue(jobList);
+export async function fetchJobList(state: JobListState) {
+  try {
+    const jobList = await getJobs({
+      perPage: state.perPage.value,
+      page: state.page.value,
+      orderBy: state.orderBy.value,
+      order: state.order.value.toString()
+    });
+    if(jobList) {
+      state.list.setValue(jobList.jobs);
+      state.size.setValue(jobList.total);
+    }
+  } catch(e) {
+    console.error(e);
+  }
 }
 
-export function fetchJobListOfPage(state: JobListState, page: number) {
+export async function fetchJobListOfPage(state: JobListState, page: number) {
   state.page.setValue(page);
-  // Get options from state and the value of 'page'
-  const jobList = getDummyJobList();
-  state.list.setValue(jobList);
+
+  try {
+    const jobList = await getJobs({
+      perPage: state.perPage.value,
+      page,
+      orderBy: state.orderBy.value,
+      order: state.order.value.toString()
+    });
+    if(jobList) {
+      state.list.setValue(jobList.jobs);
+      state.size.setValue(jobList.total);
+    }
+  } catch(e) {
+    console.error(e);
+  }
 }
 
 export function setPage(state: JobListState, page: number) {

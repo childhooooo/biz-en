@@ -1,8 +1,8 @@
 import type { NextPage } from 'next';
 import { Page, Stacked, Columns, Block, PlainText, Figure } from 'unflexible-ui-legacy';
-import { Header, Footer } from 'components/layout';
+import { EnHeader, Footer } from 'components/layout';
 import { Inset } from 'components/container';
-import { PageTitle, List02 } from 'components/block';
+import { EnPageTitle, List02 } from 'components/block';
 import { Button02 } from 'components/element';
 import { color, font } from 'lib/config';
 
@@ -24,37 +24,35 @@ const ServiceEmployerPage: NextPage = ({}: Props) => {
       path="/service/employ"
       ogType="article"
       header={(
-        <Header
-          title="求人企業登録でできること | 外国人材群馬支援事業（株式会社ビズソリューションズ）"
+        <EnHeader
+          title="求人企業登録でできること | 縁 -en-"
           language="ja"
+          routes={routes}
         />
       )}
       footer={<Footer/>}
       fixHeader
     >
       <Stacked paddingPos="none" color={color.lightGray} isSection>
-        <PageTitle
-          name="求人企業登録でできること"
-          routes={routes}
-        />
+        <EnPageTitle />
       </Stacked>
 
       <Stacked paddingPos="top" wrap>
-        <Columns justify="center" gap="normal" wrapXL="nowrap">
-          <Block>
-            <Figure src={view.url('images/resume_thumb.jpg')} name="履歴書" width="400px" />
+        <Columns justify="center" gap="normal" wrapXL="nowrap" wrapS="wrap">
+          <Block width="400px" widthM="300px" widthS="240px">
+            <Figure src={view.url('images/resume_thumb.jpg')} name="履歴書" />
           </Block>
 
           <Block shrink={2} widthXL="600px">
-            <Stacked paddingPos="none">
-              <Figure src={view.url('images/logo_en.png')} name="縁 -en-" width="200px" />
+            <Stacked paddingPos="top" paddingSize="narrow">
+              <Figure src={view.url('images/logo_en.png')} name="縁 -en-" width="200px" widthM="150px" widthS="100px" />
               <PlainText>
                 <p>群馬県内に就職を希望する外国人材就職応援サイト</p>
               </PlainText>
             </Stacked>
 
             <Stacked paddingPos="top" paddingSize="narrow">
-              <PlainText baseSizeXL="1.5rem" baseColor={color.textBlue} baseLineHeight="1.5" baseFamily={font.sansSerif}>
+              <PlainText baseSizeXL="1.5rem" baseSizeM="1.2rem" baseSizeS="1rem" baseSizeXS=".9rem" baseColor={color.textBlue} baseLineHeight="1.5" baseFamily={font.sansSerif}>
                 <p>採用が決まるまで費用が発生しない外国人材紹介サービスです。初期費用0円の完全成功報酬型！のご利用を検討してみてはいかがですか。</p>
               </PlainText>
             </Stacked>
@@ -167,7 +165,7 @@ const ServiceEmployerPage: NextPage = ({}: Props) => {
 
       <Stacked wrap>
         <Columns justify="center">
-          <Button02 name="求人企業登録はこちら" kind="link" href={view.url('service/employer/new')} />
+          <Button02 name="求人企業登録はこちら" kind="link" href={view.url('service/matching/employer/new')} />
         </Columns>
       </Stacked>
     </Page>

@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import styled from 'styled-components';
-import { color } from 'lib/config';
+import { color, screen } from 'lib/config';
 
 interface Props {
   children: ReactNode;
@@ -38,6 +38,23 @@ const Component = styled.table`
 
   td ul {
     list-style: none;
+  }
+
+  @media only screen and (max-width: ${screen.xs}px) {
+    tr {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 1.5rem;
+    }
+
+    th, td {
+      padding: 0;
+    }
+
+    td {
+      margin-top: .5rem;
+    }
   }
 `
 

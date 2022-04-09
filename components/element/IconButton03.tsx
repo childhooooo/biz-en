@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { darken } from 'polished';
 import { ButtonKind } from './buttonKind';
-import { color, font } from 'lib/config';
+import { color, font, screen } from 'lib/config';
 
 interface Props {
   name: string;
@@ -9,10 +9,11 @@ interface Props {
   color: string;
   kind?: ButtonKind;
   href?: string;
+  download?: string | boolean;
   onClick?: (event: any) => void;
 }
 
-const IconButton01 = ({ name, icon, color, kind, href, onClick }: Props) => {
+const IconButton01 = ({ name, icon, color, kind, href, download, onClick }: Props) => {
   if(kind === 'submit') {
     return (
       <Button type="submit">
@@ -37,7 +38,7 @@ const IconButton01 = ({ name, icon, color, kind, href, onClick }: Props) => {
     );
   } else {
     return (
-      <Link href={href || '#'}>
+      <Link href={href || '#'} download={download}>
         <Inner color={color}>
           <Icon>
             <img src={icon} alt="アイコン" />
@@ -67,6 +68,11 @@ const Name = styled.span`
   font-size: 1.25rem;
   font-weight: 400;
   font-family: ${font.sansSerif};
+
+  @media only screen and (max-width: ${screen.s}px) {
+    font-size: 1rem;
+    margin-left: .75rem;
+  }
 `;
 
 interface InnerProps {
@@ -102,6 +108,13 @@ const Inner = styled.div<InnerProps>`
 
   ${Name} {
     color: ${color.white};
+  }
+
+  @media only screen and (max-width: ${screen.s}px) {
+    ${Icon} {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
   }
 `
 

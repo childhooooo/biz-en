@@ -1,19 +1,16 @@
 export class JobCategory {
   constructor(
+    public readonly id: number,
     public readonly name: string,
     public readonly slug: string,
     public readonly color: string | null
-  ) {
-    this.name = name;
-    this.slug = slug;
-    this.color = color;
-  }
+  ) {}
 
-  static fromJsonObject(json: any): JobCategory {
-    if(!json.name || !json.slug) {
+  static fromObject(json: any): JobCategory {
+    if(json.id === undefined || json.id === null || !json.name || !json.slug) {
       throw new Error('Some required fields are not found');
     }
 
-    return new JobCategory(json.name, json.slug, json.color || null);
+    return new JobCategory(json.id, json.name, json.slug, json.color || null);
   }
 }

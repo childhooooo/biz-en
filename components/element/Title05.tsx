@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { font } from 'lib/config';
+import { font, screen } from 'lib/config';
 
 const tags: { [key: string]: any } = {
   'h1': styled.h1``,
@@ -39,6 +39,10 @@ const Inner = styled.span<InnerProps>`
   font-family: ${font.sansSerif};
   color: ${p => p.color};
   text-align: center;
+
+  @media only screen and (max-width: ${screen.xs}px) {
+    font-size: 1.25rem;
+  }
 `;
 
 export default Title05;

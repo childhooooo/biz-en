@@ -17,14 +17,15 @@ const AboutPage: NextPage = ({}: Props) => {
 
   return (
     <Page
-      title="外国人材群馬就職支援事業について | 縁 -en-"
+      title="外国人材群馬就職支援事業について | 株式会社ビズソリューションズ"
       description=""
       path="/about"
       ogType="article"
       header={(
         <Header
-          title="外国人材群馬就職支援事業ついて | 外国人材群馬支援事業（株式会社ビズソリューションズ）"
+          title="外国人材群馬就職支援事業ついて | 株式会社ビズソリューションズ"
           language="ja"
+          selected="about"
         />
       )}
       footer={<Footer/>}
@@ -38,7 +39,7 @@ const AboutPage: NextPage = ({}: Props) => {
       </Stacked>
 
       <Stacked paddingSize="narrow" color={color.lightGray} isSection wrap>
-        <Columns repeat={3} gap="normal">
+        <Columns repeat={3} repeatM={2} repeatXS={1} gap="normal">
           <Block height="100%">
             <MenuLink
               name="外国人材群馬就職支援事業とは"
@@ -60,7 +61,7 @@ const AboutPage: NextPage = ({}: Props) => {
           <Block height="100%">
             <MenuLink
               name="外国人材就職応援サービス"
-              href={view.url('about/support')}
+              href={view.url('about/matching')}
               image={view.url('images/about_link_support.png')}
               overview="株式会社ビズソリューションズが運営するサイトで、あなたと外国人を採用したい群馬の企業をつなぎます。"
             />
@@ -70,10 +71,14 @@ const AboutPage: NextPage = ({}: Props) => {
             <MenuLink
               name="会社概要"
               href={view.url('about/company')}
+              icon={view.url('images/icon_document.png')}
               overview="当社の概要やアクセスマップについてご確認いただけます。"
             />
           </Block>
         </Columns>
+      </Stacked>
+
+      <Stacked paddingPos="top" paddingSize="normal" color={color.lightGray}>
       </Stacked>
     </Page>
   );

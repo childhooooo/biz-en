@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { view } from 'unflexible-ui-legacy';
+import { font, screen } from 'lib/config';
 
 interface Props {
   target01: string;
@@ -22,15 +23,34 @@ const Component = styled.div`
   align-items: center;
   justify-content: center;
 
-p {
-  font-size: 1.75rem;
-  text-align: center;
-}
+  p {
+    font-family: ${font.sansSerif};
+    font-size: 1.75rem;
+    text-align: center;
+  }
 
-img {
-  width: 100px;
-  margin: 0 1rem;
-}
+  img {
+    width: 100px;
+    margin: 0 1rem;
+  }
+
+  @media only screen and (max-width: ${screen.m}px) {
+    p {
+      font-size: 1.25rem;
+    }
+
+    img {
+      width: 60px;
+    }
+  }
+
+  @media only screen and (max-width: ${screen.s}px) {
+    flex-direction: column;
+
+    img {
+      margin: 1rem 0;
+    }
+  }
 `
 
 export default Match;

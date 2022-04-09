@@ -25,6 +25,7 @@ const AboutCompanyPage: NextPage = ({}: Props) => {
         <Header
           title="会社概要 | 外国人材群馬支援事業（株式会社ビズソリューションズ）"
           language="ja"
+          selected="about"
         />
       )}
       footer={<Footer/>}

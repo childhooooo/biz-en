@@ -7,9 +7,10 @@ import { color, font } from 'lib/config';
 
 interface Props {
   job: Job;
+  categories: JobCategory[];
 }
 
-const JobLink = ({job}: Props) => {
+const JobLink = ({ job, categories }: Props) => {
   return (
     <Component>
       <Contents>
@@ -19,9 +20,10 @@ const JobLink = ({job}: Props) => {
 
         <Body>
           <Categories>
-            {job.categories.map((c: JobCateogry, index: number) => {
+            {job.categories.map((key: number, index: number) => {
+              const cat = categories.filter((c: JobCategory) => c.id === key)[0];
               return (
-                <Category color={c.color}>{c.name}</Category>
+                cat && <Category key={index} color={cat.color || color.theme}>{cat.name || ''}</Category>
               );
             })}
           </Categories>
@@ -56,7 +58,7 @@ const JobLink = ({job}: Props) => {
       </Contents>
 
       <Footer>
-        <Link href={view.url(`service/matching/${job.id}`)}>
+        <Link href={view.url(`service/matching/job/${job.id}`)}>
           詳細を見る
         </Link>
       </Footer>
@@ -95,6 +97,7 @@ const Body = styled.div`
 
 const Categories = styled.ul`
   display: flex;
+  flex-wrap: wrap;
   list-style: none;
 `;
 
@@ -106,6 +109,10 @@ const Category = styled.li<CategoryProps>`
   padding: .25rem .75rem;
   color: ${color.white};
   background-color: ${props => props.color};
+
+  &:not(:first-child) {
+    margin-left: .5rem;
+  }
 `;
 
 const Details = styled.dl`

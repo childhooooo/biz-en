@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import styled from 'styled-components';
-import { color } from 'lib/config';
+import { color, font, screen } from 'lib/config';
 
 interface Props {
   name: string;
@@ -27,25 +27,27 @@ const Component = styled.div`
   background-color: ${color.whitePurple};
 
   h3 {
-  font-size: 1.25rem;
-  font-weight: 400;
-  color: ${color.gold};
-  text-align: center;
+    font-family: ${font.sansSerif};
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: ${color.gold};
+    text-align: center;
 
-  &:before {
-    content: '＜';
-  }
+    &:before {
+      content: '＜';
+    }
 
-  &:after {
-  content: '＞';
-  }
+    &:after {
+    content: '＞';
+    }
   }
 
   p {
-  font-size: 2.5rem;
-  font-weight: 300;
-  color: ${color.gold};
-  text-align: center;
+    font-family: ${font.sansSerif};
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: ${color.gold};
+    text-align: center;
   }
 
   > div {
@@ -53,12 +55,35 @@ const Component = styled.div`
   }
 
   ul {
-  width: 50%;
-  padding-left: 1.5rem;
+    width: 50%;
+    padding-left: 1.5rem;
   }
 
   li {
-  margin: .5rem 0;
+    margin: .5rem 0;
+  }
+
+  @media only screen and (max-width: ${screen.l}px) {
+    h3 {
+      font-size: 1rem;
+    }
+
+    p {
+      font-size: 1.75rem;
+    }
+  }
+
+  @media only screen and (max-width: ${screen.m}px) {
+    flex-direction: column;
+
+    > div {
+      width: 100%;
+    }
+
+    ul {
+      width: 100%;
+      margin-top: .75rem;
+    }
   }
 `
 

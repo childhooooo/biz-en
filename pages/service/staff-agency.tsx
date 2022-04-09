@@ -7,7 +7,7 @@ import { Features } from 'components/staff-agency';
 
 import styled from 'styled-components';
 import { rgba } from 'polished';
-import { color } from 'lib/config';
+import { color, font, screen } from 'lib/config';
 import { view } from 'unflexible-ui-legacy';
 
 interface Props { }
@@ -29,6 +29,7 @@ const ServicePage: NextPage = ({ }: Props) => {
         <Header
           title="外国人材紹介サービス | 外国人材採用支援サービス（株式会社ビズソリューションズ）"
           language="ja"
+          selected="service"
         />
       )}
       footer={<Footer />}
@@ -46,7 +47,7 @@ const ServicePage: NextPage = ({ }: Props) => {
 
       <Stacked isSection wrap>
         <Stacked paddingPos="none">
-          <Columns repeat={2} gap="normal" align="flex-start">
+          <Columns repeat={2} repeatS={1} gap="normal" align="flex-start">
             <Block height="50%" fixRatio>
               <Figure
                 name="技術・人文知識・国際業務"
@@ -59,10 +60,12 @@ const ServicePage: NextPage = ({ }: Props) => {
             <Block>
               <Stacked paddingPos="none">
                 <Columns align="center" gap="narrow">
-                  <Figure src={view.url('images/icon_profile.png')} name="アイコン" width="120px" />
+                  <Block width="120px" widthL="90px" widthM="60px" widthS="50px">
+                    <Figure src={view.url('images/icon_profile.png')} name="アイコン" />
+                  </Block>
 
                   <Block>
-                    <PlainText baseSizeXL="1.5rem" baseColor={color.gold}>
+                    <PlainText baseSizeXL="1.5rem" baseSizeM="1.25rem" baseColor={color.gold}>
                       <p>技術・人文知識・国際業務</p>
                     </PlainText>
                   </Block>
@@ -101,33 +104,35 @@ const ServicePage: NextPage = ({ }: Props) => {
         </Stacked>
 
         <Stacked paddingPos="top" paddingSize="narrow">
+          <WithDot>雇用契約を結んでいる限り日本で働き続けることができます。</WithDot>
+        </Stacked>
+        <Stacked paddingPos="top" paddingSize="thin">
           <PlainText>
-            <p>
-              <span style={{ color: color.gold, fontSize: '2rem', lineHeight: '1.5', verticalAlign: 'middle' }}>●</span><b style={{ fontWeight: '700', lineHeight: '1.5', verticalAlign: 'middle' }}>雇用契約を結んでいる限り日本で働き続けることができます。</b><br />
-              在留期間の更新手続きは、特に回数制限は設けられていません。回数を重ねて、日本での就業期間が長くなると、在留期間の長いビザが許可される傾向にあります。10年以上日本に在留していて今後も日本で生活していくのに十分な経済的基盤がある場合は、永住許可申請をして「永住権」を取得することができます。永住許可（永住権）を得ると在留期間の制限がなくなります。職種も制限されずに働くことができます。
-            </p>
+            <p>在留期間の更新手続きは、特に回数制限は設けられていません。回数を重ねて、日本での就業期間が長くなると、在留期間の長いビザが許可される傾向にあります。10年以上日本に在留していて今後も日本で生活していくのに十分な経済的基盤がある場合は、永住許可申請をして「永住権」を取得することができます。永住許可（永住権）を得ると在留期間の制限がなくなります。職種も制限されずに働くことができます。</p>
           </PlainText>
         </Stacked>
 
         <Stacked paddingPos="top" paddingSize="narrow">
           <Columns justify="center">
-            <Block maxWidth="1000px">
+            <Block width="1000px" maxWidth="100%">
               <Figure name="流れ" src={view.url('images/flow_staff-agency_0103.png')} width="100%" />
             </Block>
           </Columns>
         </Stacked>
 
-        <Stacked paddingPos="top" paddingSize="narrow">
+        <Stacked paddingPos="top" paddingSize="normal">
+          <WithDot>優秀な外国人材の快適な職業生活・社会生活をサポートする定着支援サービス。</WithDot>
+        </Stacked>
+        <Stacked paddingPos="top" paddingSize="thin">
           <PlainText>
             <p>
-              <span style={{ color: color.gold, fontSize: '2rem', lineHeight: '1.5', verticalAlign: 'middle' }}>●</span><b style={{ fontWeight: '700', lineHeight: '1.5', verticalAlign: 'middle' }}>優秀な外国人材の快適な職業生活・社会生活をサポートする定着支援サービス。</b><br />
               在留資格認定証明書交付申請から住居の確保や空港出迎え、また入国後すぐの対応が求められる銀行口座の開設や公的手続きの同行、書類作成補助など。スムーズな就業を実現できるよう、入社後も定期的なフォローアップを行い、貴重な外国人材の定着をサポートします。
             </p>
           </PlainText>
         </Stacked>
 
-        <Stacked paddingPos="top" paddingSize="narrow" wrap>
-          <Columns repeat={5} gap="normal">
+        <Stacked paddingPos="top" paddingSize="narrow">
+          <Columns repeat={5} repeatS={3} justify="center" gap="normal">
             <IconText icon={view.url('images/icon_passport.png')} text="入管・公的手続等同行" />
             <IconText icon={view.url('images/icon_japanese.png')} text="日本語レッスン" />
             <IconText icon={view.url('images/icon_tel.png')} text="相談対応" />
@@ -143,7 +148,7 @@ const ServicePage: NextPage = ({ }: Props) => {
 
       <Stacked isSection wrap>
         <Stacked paddingPos="none">
-          <Columns repeat={2} gap="normal" align="flex-start">
+          <Columns repeat={2} repeatS={1} gap="normal" align="flex-start">
             <Block height="50%" fixRatio>
               <Figure
                 name="特定技能"
@@ -156,10 +161,12 @@ const ServicePage: NextPage = ({ }: Props) => {
             <Block>
               <Stacked paddingPos="none">
                 <Columns align="center" gap="narrow">
-                  <Figure src={view.url('images/icon_profile.png')} name="アイコン" width="120px" />
+                  <Block width="120px" widthL="90px" widthM="60px" widthS="50px">
+                    <Figure src={view.url('images/icon_profile.png')} name="アイコン" />
+                  </Block>
 
                   <Block>
-                    <PlainText baseSizeXL="1.5rem" baseColor={color.gold}>
+                    <PlainText baseSizeXL="1.5rem" baseSizeM="1.25rem" baseColor={color.gold}>
                       <p>特定技能</p>
                     </PlainText>
                   </Block>
@@ -198,9 +205,11 @@ const ServicePage: NextPage = ({ }: Props) => {
         </Stacked>
 
         <Stacked paddingPos="top" paddingSize="narrow">
+          <WithDot>特定技能1号・2号合わせて10年間継続雇用が可能です。</WithDot>
+        </Stacked>
+        <Stacked paddingPos="top" paddingSize="thin">
           <PlainText>
             <p>
-              <span style={{ color: color.gold, fontSize: '2rem', lineHeight: '1.5', verticalAlign: 'middle' }}>●</span><b style={{ fontWeight: '700', lineHeight: '1.5', verticalAlign: 'middle' }}>特定技能1号・2号合わせて10年間継続雇用が可能です。</b><br />
               受け入れ可能な業種は「特定産業分野」14業種（介護、産業機械製造業、電気・電子情報関連産業、建設業、自動車整備業、宿泊業、農業、飲食料品製造業、外食業、ビルクリーニング、素形材産業など）に制限されています。特定技能2号が修了した後は、今後も日本で生活していくのに十分な経済的基盤がある場合は、永住許可申請をして「永住権」を取得することができます。永住許可（永住権）を得ると在留期間の制限がなくなります。職種も制限されずに働くことができます。
             </p>
           </PlainText>
@@ -208,23 +217,25 @@ const ServicePage: NextPage = ({ }: Props) => {
 
         <Stacked paddingPos="top" paddingSize="narrow">
           <Columns justify="center">
-            <Block maxWidth="1000px">
+            <Block width="1000px" maxWidth="100%">
               <Figure name="流れ" src={view.url('images/flow_staff-agency_0203.png')} width="100%" />
             </Block>
           </Columns>
         </Stacked>
 
-        <Stacked paddingPos="top" paddingSize="narrow">
+        <Stacked paddingPos="top" paddingSize="normal">
+          <WithDot>登録支援機関として在留資格申請手続きおよび支援業務の委託・定着支援サービスを行います。</WithDot>
+        </Stacked>
+        <Stacked paddingPos="top" paddingSize="thin">
           <PlainText>
             <p>
-              <span style={{ color: color.gold, fontSize: '2rem', lineHeight: '1.5', verticalAlign: 'middle' }}>●</span><b style={{ fontWeight: '700', lineHeight: '1.5', verticalAlign: 'middle' }}>登録支援機関として在留資格申請手続きおよび支援業務の委託・定着支援サービスを行います。</b><br />
               職業生活・日常生活・社会生活上の支援計画の作成サポートから、支援業務委託契約に基づく支援計画の実施まで対応します。
             </p>
           </PlainText>
         </Stacked>
 
         <Stacked paddingPos="top" paddingSize="narrow" wrap>
-          <Columns repeat={5} gap="normal">
+          <Columns repeat={5} repeatS={3} gap="normal">
             <IconText icon={view.url('images/icon_guidance.png')} text="事前ガイダンス" />
             <IconText icon={view.url('images/icon_door.png')} text="出入国する際の送迎" />
             <IconText icon={view.url('images/icon_tel.png')} text="住居確保・各種契約支援" />
@@ -245,7 +256,7 @@ const ServicePage: NextPage = ({ }: Props) => {
 
       <Stacked isSection wrap>
         <Stacked paddingPos="none">
-          <Columns repeat={2} gap="normal" align="flex-start">
+          <Columns repeat={2} repeatS={1} gap="normal" align="flex-start">
             <Block height="50%" fixRatio>
               <Figure
                 name="特定技能"
@@ -258,10 +269,12 @@ const ServicePage: NextPage = ({ }: Props) => {
             <Block>
               <Stacked paddingPos="none">
                 <Columns align="center" gap="narrow">
-                  <Figure src={view.url('images/icon_profile.png')} name="アイコン" width="120px" />
+                  <Block width="120px" widthL="90px" widthM="60px" widthS="50px">
+                    <Figure src={view.url('images/icon_profile.png')} name="アイコン" />
+                  </Block>
 
                   <Block>
-                    <PlainText baseSizeXL="1.5rem" baseColor={color.gold}>
+                    <PlainText baseSizeXL="1.5rem" baseSizeM="1.25rem" baseColor={color.gold}>
                       <p>技能実習</p>
                     </PlainText>
                   </Block>
@@ -300,9 +313,11 @@ const ServicePage: NextPage = ({ }: Props) => {
         </Stacked>
 
         <Stacked paddingPos="top" paddingSize="narrow">
+          <WithDot>国際共生事業協同組合（監理団体）が技能実習生の受入をサポートします。</WithDot>
+        </Stacked>
+        <Stacked paddingPos="top" paddingSize="thin">
           <PlainText>
             <p>
-              <span style={{ color: color.gold, fontSize: '2rem', lineHeight: '1.5', verticalAlign: 'middle' }}>●</span><b style={{ fontWeight: '700', lineHeight: '1.5', verticalAlign: 'middle' }}>国際共生事業協同組合（監理団体）が技能実習生の受入をサポートします。</b><br />
               提携するベトナム・フィリピンの送出し機関で企業さまのご要望にマッチするす外国人材を現地で募集し、提携する国際共生事業協同組合（監理団体）を通して、候補者としてご紹介いたします。提携する送出し機関と連携して求人票の作成から、母国での日本語教育、職種に合わせた技術的な教育も実施いたします。また、企業の受入準備から実習生の生活サポートまで、円滑な技能実習を支援いたします。
             </p>
           </PlainText>
@@ -310,49 +325,48 @@ const ServicePage: NextPage = ({ }: Props) => {
 
         <Stacked paddingPos="top" paddingSize="narrow">
           <Columns justify="center">
-            <Block maxWidth="1000px">
+            <Block width="1000px" maxWidth="100%">
               <Figure name="流れ" src={view.url('images/flow_staff-agency_0303.png')} width="100%" />
             </Block>
           </Columns>
         </Stacked>
 
         <Stacked paddingPos="top" paddingSize="narrow">
+          <WithDot>受入企業の常勤職員総数によって、受入可能人数が決められています。</WithDot>
+        </Stacked>
+        <Stacked paddingPos="top" paddingSize="thin">
           <PlainText>
-            <p>
-              <span style={{ color: color.gold, fontSize: '2rem', lineHeight: '1.5', verticalAlign: 'middle' }}>●</span><b style={{ fontWeight: '700', lineHeight: '1.5', verticalAlign: 'middle' }}>受入企業の常勤職員総数によって、受入可能人数が決められています。</b><br />
-            </p>
-
             <Limitation>
-              <tr>
-                <th>受入企業常勤職員総数</th>
-                <th>30人以下</th>
-                <th>31〜40人</th>
-                <th>41〜50人</th>
-                <th>51〜100人</th>
-                <th>101〜200人</th>
-                <th>201〜300人</th>
-                <th>300人以上</th>
-              </tr>
-              <tr>
-                <th>技能実習１号基本人数枠</th>
-                <td>3人まで</td>
-                <td>4人まで</td>
-                <td>5人まで</td>
-                <td>6人まで</td>
-                <td>10人まで</td>
-                <td>15人まで</td>
-                <td>職員数の20分の1</td>
-              </tr>
+              <table>
+                <tbody>
+                  <tr>
+                    <th>受入企業常勤職員総数</th>
+                    <th>30人以下</th>
+                    <th>31〜40人</th>
+                    <th>41〜50人</th>
+                    <th>51〜100人</th>
+                    <th>101〜200人</th>
+                    <th>201〜300人</th>
+                    <th>300人以上</th>
+                  </tr>
+                  <tr>
+                    <th>技能実習１号基本人数枠</th>
+                    <td>3人まで</td>
+                    <td>4人まで</td>
+                    <td>5人まで</td>
+                    <td>6人まで</td>
+                    <td>10人まで</td>
+                    <td>15人まで</td>
+                    <td>職員数の20分の1</td>
+                  </tr>
+                </tbody>
+              </table>
             </Limitation>
           </PlainText>
         </Stacked>
 
         <Stacked paddingPos="top" paddingSize="narrow">
-          <PlainText>
-            <p>
-              <span style={{ color: color.gold, fontSize: '2rem', lineHeight: '1.5', verticalAlign: 'middle' }}>●</span><b style={{ fontWeight: '700', lineHeight: '1.5', verticalAlign: 'middle' }}>受入企業と管理団体が有料基準合格者と認定された場合、技能実習1号基本人数枠の2倍まで受入可能となります。</b><br />
-            </p>
-          </PlainText>
+          <WithDot>受入企業と管理団体が有料基準合格者と認定された場合、技能実習1号基本人数枠の2倍まで受入可能となります。</WithDot>
         </Stacked>
       </Stacked>
 
@@ -404,7 +418,7 @@ const ServicePage: NextPage = ({ }: Props) => {
         </Stacked>
 
         <Stacked paddingPos="top" paddingSize="thin">
-          <PlainText>
+          <PlainText baseFamily={font.sansSerif} baseSizeXS=".9rem">
             <p>
               ※想定年収は月額給与×12ヶ月とする。（賞与含まず）<br />
               ※月額給与=基本給＋職務手当＋みなし残業手当＋住宅手当＋その他固定的に毎月支給される手当<br />（但し、交通費は除く）
@@ -470,9 +484,15 @@ const ServicePage: NextPage = ({ }: Props) => {
   );
 };
 
-const Limitation = styled.table`
-width: 100%;
-border-collapse: collapse;
+const Limitation = styled.div`
+  position: relative;
+  width: 100%;
+  overflow: scroll;
+
+table {
+  min-width: 680px;
+  border-collapse: collapse;
+}
 
 tr {
   border-top: 1px solid ${color.gold};
@@ -493,14 +513,51 @@ th {
 }
 
 th, td {
-  padding: .25rem;
+  padding: .5rem;
   text-align: center;
   border-left: 1px solid ${color.gold};
+  line-height: 1.5;
 
   &:last-child {
     border-right: 1px solid ${color.gold};
   }
 }
+
+@media only screen and (max-width: ${screen.m}px) {
+  table {
+    min-width: 900px;
+    border-collapse: collapse;
+  }
+
+  th, td {
+    font-size: .9rem;
+  }
+}
+
+@media only screen and (max-width: ${screen.s}px) {
+  table {
+    min-width: 680px;
+    border-collapse: collapse;
+  }
+
+  th, td {
+    font-size: .8rem;
+  }
+}
+`;
+
+const WithDot = styled.p`
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  font-family: ${font.sansSerif};
+
+  &::before {
+    content: '●';
+    margin-right: .25rem;
+    color: ${color.gold};
+    font-size: 2rem;
+  }
 `;
 
 export default ServicePage;

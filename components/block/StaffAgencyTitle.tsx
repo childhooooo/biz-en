@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { view } from 'unflexible-ui-legacy';
-import { color, font } from 'lib/config';
+import { color, font, screen } from 'lib/config';
 
 interface Props {
 }
@@ -52,6 +52,12 @@ const Background = styled.div`
     width: 100%;
     height: 100%;
   }
+
+  @media only screen and (max-width: ${screen.s}px) {
+    &::before {
+      padding-top: 40%;
+    }
+  }
 `;
 
 const Foreground = styled.div`
@@ -76,7 +82,7 @@ const Foreground = styled.div`
   h2 {
     color: ${color.gold};
     font-family: ${font.sansSerif};
-    font-size: 2.5rem;
+    font-size: 2.4rem;
     font-weight: 400;
   }
 
@@ -84,6 +90,49 @@ const Foreground = styled.div`
     font-family: ${font.sansSerif};
     font-size: 1.5rem;
     line-height: 1.75;
+  }
+
+  @media only screen and (max-width: ${screen.l}px) {
+    h2 {
+      font-size: 1.75rem;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+  }
+
+  @media only screen and (max-width: ${screen.m}px) {
+    position: relative;
+    padding: 3rem 1.5rem;
+
+    > div {
+      width: 100%;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      text-align: center;
+    }
+
+    p {
+      margin-top: .75rem;
+      font-size: 1rem;
+      text-align: center;
+    }
+  }
+
+  @media only screen and (max-width: ${screen.s}px) {
+    padding: 1.5rem 1rem;
+
+    h2 {
+      font-size: 1.25rem;
+      text-align: center;
+    }
+
+    p {
+      font-size: .9rem;
+    }
   }
 `;
 

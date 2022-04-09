@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { color } from 'lib/config';
+import { color, screen } from 'lib/config';
 
 interface Props {
   fukidashi: string;
@@ -35,6 +35,17 @@ align-items: center;
   height: 100%;
   background-color: ${color.whiteBlue};
 }
+
+@media only screen and (max-width: ${screen.xs}px) {
+  flex-direction: column;
+
+  &:before {
+    top: auto;
+    bottom: 0;
+    width: 100%;
+    height: 80%;
+  }
+}
 `
 
 const Fukidashi = styled.div`
@@ -46,13 +57,26 @@ img {
 width: 200px;
 height: auto;
 }
+
+@media only screen and (max-width: ${screen.m}px) {
+  img {
+    width: 140px;
+  }
+}
+
+@media only screen and (max-width: ${screen.xs}px) {
+  transform: translateY(0);
+}
 `;
 
 const Text = styled.div`
 position: relative;
 z-index: 2;
-margin-left: 1.5rem;
 padding: 1.5rem;
+
+@media only screen and (max-width: ${screen.xs}px) {
+  padding-top: .5rem;
+}
 `;
 
 export default FukidashiText;

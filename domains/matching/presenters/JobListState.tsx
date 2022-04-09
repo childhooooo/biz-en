@@ -16,18 +16,18 @@ export class Order {
     this.kind = kind;
   }
 
-  toString(): string | null {
+  toString(): string {
     return Order.toString(this.kind);
   }
 
-  static toString(kind: OrderKind): string | null {
+  static toString(kind: OrderKind): string {
     switch(kind) {
       case OrderKind.ASC:
-        return '昇順';
+        return 'asc';
       case OrderKind.DESC:
-        return '降順';
+        return 'desc';
       default:
-        return '不明';
+        return 'asc';
     }
   }
 
@@ -89,7 +89,7 @@ export const JobListStateProvider = ({ initialJobList, children }: Props) => {
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(9);
   const [order, setOrder] = useState(Order.fromNumber(0));
-  const [orderBy, setOrderBy] = useState('createdAt');
+  const [orderBy, setOrderBy] = useState('date');
   const [size, setSize] = useState<number>(initialJobList.size);
 
   return (

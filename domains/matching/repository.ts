@@ -1,118 +1,44 @@
 import { Job } from './entities/job';
+import { JobCategory } from './entities/jobCategory';
+import { Employer, InputEmployer } from './entities/employer';
+import { Seeker, InputSeekerHashed } from './entities/seeker';
+import { Entry, NewEntry } from './entities/entry';
+import { EditRequest, InputEditRequest } from './entities/editRequest';
+import * as WordPress from './adapters/wordpress';
 
-export function getJobListSize(): number {
-  return 4;
+export async function createEmployer(input: InputEmployer): Promise<Employer> {
+  return WordPress.createEmployer(input);
 }
 
-export function getDummyJob(id: string): Job {
-  return Job.fromJsonObject({
-    id: '1',
-    name: '機械設計エンジニア',
-    position: '機械設計エンジニア',
-    categories: [{
-      id: '1',
-      slug: 'full-time',
-      name: '正社員',
-      color: '#0096ff'
-    }],
-    description: '各分野の製造装置、プラント、自動車関連部品の機械設計エンジニア・自動車分野設備機械などの機械設備設計業務を担当',
-    workAt: '群馬県太田市',
-    salary: '月給250,000円〜',
-    officeHours: '8:00〜17:00（実働8時間）',
-    holiday: '完全週休2日制（土日祝）',
-    qualifications: '・日本語：ビジネスレベル<br/>・ベトナム語：ネイティブに近いレベル<br/>・基本的なPCスキル（日本語でのデータ入力があります）<br/>・長期勤務ができる方<br/>・土日祝日もシフトに入れる方',
-    employmentStatus: '正社員',
-    stateOfResidence: '技術・人文知識・国際業務または特定技能1号<br/>留学または特別活動（就職活動のため・ワーキングホリデー）',
-    welfare: '社会保険完備、社員食堂',
-    flow: '書類選考 ⇒ 職場見学'
-  });
+export async function getEmployerByEmail(email: string): Promise<Employer | null> {
+  return WordPress.getEmployerByEmail(email);
 }
 
-export function getDummyJobList(): Job[] {
-  return [
-    Job.fromJsonObject({
-      id: '1',
-      name: '機械設計エンジニア',
-      position: '機械設計エンジニア',
-      categories: [{
-        id: '1',
-        slug: 'full-time',
-        name: '正社員',
-        color: '#0096ff'
-      }],
-      description: '各分野の製造装置、プラント、自動車関連部品の機械設計エンジニア・自動車分野設備機械などの機械設備設計業務を担当',
-      workAt: '群馬県太田市',
-      salary: '月給250,000円〜',
-      officeHours: '8:00〜17:00（実働8時間）',
-      holiday: '完全週休2日制（土日祝）',
-      qualifications: '・日本語：ビジネスレベル<br/>・ベトナム語：ネイティブに近いレベル<br/>・基本的なPCスキル（日本語でのデータ入力があります）<br/>・長期勤務ができる方<br/>・土日祝日もシフトに入れる方',
-      employmentStatus: '正社員',
-      stateOfResidence: '技術・人文知識・国際業務または特定技能1号<br/>留学または特別活動（就職活動のため・ワーキングホリデー）',
-      welfare: '社会保険完備、社員食堂',
-      flow: '書類選考 ⇒ 職場見学'
-    }),
-    Job.fromJsonObject({
-      id: '1',
-      name: '機械設計エンジニア',
-      position: '機械設計エンジニア',
-      categories: [{
-        id: '1',
-        slug: 'full-time',
-        name: '正社員',
-        color: '#0096ff'
-      }],
-      description: '各分野の製造装置、プラント、自動車関連部品の機械設計エンジニア・自動車分野設備機械などの機械設備設計業務を担当',
-      workAt: '群馬県太田市',
-      salary: '月給250,000円〜',
-      officeHours: '週単位の変形労働時間制<br/>①6:00〜15:00 ②14:00〜23:00<br/>③22:00〜翌7:00',
-      holiday: '完全週休2日制（土日祝）',
-      qualifications: '・日本語：ビジネスレベル<br/>・ベトナム語：ネイティブに近いレベル<br/>・基本的なPCスキル（日本語でのデータ入力があります）<br/>・長期勤務ができる方<br/>・土日祝日もシフトに入れる方',
-      employmentStatus: '正社員',
-      stateOfResidence: '技術・人文知識・国際業務または特定技能1号<br/>留学または特別活動（就職活動のため・ワーキングホリデー）',
-      welfare: '社会保険完備、社員食堂',
-      flow: '書類選考 ⇒ 職場見学'
-    }),
-    Job.fromJsonObject({
-      id: '1',
-      name: '機械設計エンジニア',
-      position: '機械設計エンジニア',
-      categories: [{
-        id: '1',
-        slug: 'full-time',
-        name: '正社員',
-        color: '#0096ff'
-      }],
-      description: '各分野の製造装置、プラント、自動車関連部品の機械設計エンジニア・自動車分野設備機械などの機械設備設計業務を担当',
-      workAt: '群馬県太田市',
-      salary: '月給250,000円〜',
-      officeHours: '8:00〜17:00（実働8時間）',
-      holiday: '完全週休2日制（土日祝）',
-      qualifications: '・日本語：ビジネスレベル<br/>・ベトナム語：ネイティブに近いレベル<br/>・基本的なPCスキル（日本語でのデータ入力があります）<br/>・長期勤務ができる方<br/>・土日祝日もシフトに入れる方',
-      employmentStatus: '正社員',
-      stateOfResidence: '技術・人文知識・国際業務または特定技能1号<br/>留学または特別活動（就職活動のため・ワーキングホリデー）',
-      welfare: '社会保険完備、社員食堂',
-      flow: '書類選考 ⇒ 職場見学'
-    }),
-    Job.fromJsonObject({
-      id: '1',
-      name: '機械設計エンジニア',
-      position: '機械設計エンジニア',
-      categories: [{
-        id: '1',
-        slug: 'full-time',
-        name: '正社員',
-        color: '#0096ff'
-      }],
-      description: '各分野の製造装置、プラント、自動車関連部品の機械設計エンジニア・自動車分野設備機械などの機械設備設計業務を担当',
-      workAt: '群馬県太田市',
-      salary: '月給250,000円〜',
-      officeHours: '8:00〜17:00（実働8時間）',
-      holiday: '完全週休2日制（土日祝）',
-      qualifications: '・日本語：ビジネスレベル<br/>・ベトナム語：ネイティブに近いレベル<br/>・基本的なPCスキル（日本語でのデータ入力があります）<br/>・長期勤務ができる方<br/>・土日祝日もシフトに入れる方',
-      employmentStatus: '正社員',
-      stateOfResidence: '技術・人文知識・国際業務または特定技能1号<br/>留学または特別活動（就職活動のため・ワーキングホリデー）',
-      welfare: '社会保険完備、社員食堂',
-      flow: '書類選考 ⇒ 職場見学'
-    }),
-  ];
+export async function createSeeker(input: InputSeekerHashed): Promise<Seeker> {
+  return WordPress.createSeeker(input);
+}
+
+export async function getSeekerByEmail(email: string): Promise<Seeker | null> {
+  return WordPress.getSeekerByEmail(email);
+}
+
+export async function getJobs(params: any): Promise<{ jobs: Job[], total: number }> {
+  const wpParams = WordPress.WPParams.fromObject(params);
+  return WordPress.getJobs(wpParams);
+}
+
+export async function getJob(id: number): Promise<Job> {
+  return WordPress.getJob(id);
+}
+
+export async function getJobCategories(): Promise<JobCategory[]> {
+  return WordPress.getJobCategories();
+}
+
+export async function createEntry(params: NewEntry): Promise<Entry> {
+  return WordPress.createEntry(params);
+}
+
+export async function createEditRequest(params: InputEditRequest): Promise<EditRequest> {
+  return WordPress.createEditRequest(params);
 }

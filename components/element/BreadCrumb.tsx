@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { color, font } from 'lib/config';
+import { color, font, screen } from 'lib/config';
 
 export interface Route {
   name: string;
@@ -33,6 +33,7 @@ const Component = styled.ul`
     font-family: ${font.sansSerif};
     text-decoration: none;
     color: ${color.black};
+    white-space: nowrap;
 
     &:hover {
       text-decoration: underline;
@@ -54,6 +55,18 @@ const Component = styled.ul`
   li:last-child {
     a {
       color: ${color.gray};
+    }
+  }
+
+  @media only screen and (max-width: ${screen.s}px) {
+    a {
+      font-size: .9rem;
+    }
+  }
+
+  @media only screen and (max-width: ${screen.xs}px) {
+    a {
+      font-size: .7rem;
     }
   }
 `

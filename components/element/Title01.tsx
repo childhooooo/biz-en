@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Stacked } from 'unflexible-ui-legacy';
 
-import { color } from 'lib/config';
+import { color, screen } from 'lib/config';
 
 const tags: { [key: string]: any } = {
   'h1': styled.h1``,

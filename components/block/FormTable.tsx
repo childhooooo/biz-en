@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import styled from 'styled-components';
 import { view } from 'unflexible-ui-legacy';
-import { color, font } from 'lib/config';
+import { color, font, screen } from 'lib/config';
 
 interface Props {
   children: ReactNode;
@@ -9,14 +9,15 @@ interface Props {
 
 const FormTable = ({ children }: Props) => {
   return (
-  <Component>
-    {children}
-  </Component>
+    <Component>
+      {children}
+    </Component>
   );
 };
 
 const Component = styled.table`
   width: 100%;
+  max-width: 100%;
   border-collapse: collapse;
   border: 1px solid ${color.black};
   border-top: 3px solid ${color.semiSkyBlue};
@@ -71,8 +72,18 @@ const Component = styled.table`
     flex-grow: 1;
     flex-shrink: 1;
 
-    p:not(:first-child), ul:not(:first-child) {
+    > div:not(:first-child), ul:not(:first-child) {
       margin-top: 1rem;
+    }
+
+    p.error {
+      margin-top: .5rem;
+      font-size: .9rem;
+      color: ${color.orange};
+
+      &:before {
+        content: '！';
+      }
     }
   }
 
@@ -111,15 +122,16 @@ const Component = styled.table`
   }
 
   input, textarea {
+    max-width: 100%;
     padding: .5rem;
     color: ${color.black};
     outline: none;
     border: 1px solid ${color.black};
+    font-size: 16px !important;
   }
 
-  input[type="text"], input[type="email"], input[type="tel"], input[type="password"], textarea {
+  input[type="text"], input[type="email"], input[type="tel"], input[type="password"], input[type="date"], textarea {
     width: 500px;
-    max-width: 100%;
 
     &.full {
       width: 100%;
@@ -130,7 +142,7 @@ const Component = styled.table`
     }
 
     &.short {
-      width: 160px;
+      width: 200px;
     }
   }
 
@@ -155,8 +167,61 @@ const Component = styled.table`
   }
 
   select {
-    width: 100%;
     padding: .5rem;
+  }
+}
+
+@media only screen and (max-width: ${screen.m}px) {
+  tr {
+    flex-direction: column;
+  }
+
+  th {
+    width: 100%;
+  }
+
+  td {
+    white-space: nowrap;
+  }
+
+  th, td {
+    padding: 1rem;
+  }
+}
+
+@media only screen and (max-width: ${screen.s}px) {
+  ul:not(.radio) {
+    flex-direction: column;
+    align-items: flex-start;
+
+    > li:not(:first-child) {
+      margin-left: 0;
+      margin-top: 1rem;
+    }
+  }
+
+  textarea {
+    width: 100%;
+  }
+
+  input:not(input[type="radio"]) {
+    width: 280px;
+
+    &.full {
+      width: 280px;
+    }
+
+    &.semishort {
+      width: 240px;
+    }
+
+    &.shot {
+      width: 200px;
+    }
+  }
+
+  .select {
+    width: 240px;
   }
 }
 `

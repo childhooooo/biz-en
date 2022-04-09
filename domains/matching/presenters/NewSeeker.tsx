@@ -2,35 +2,49 @@ import styled from 'styled-components';
 import { useForm, SubmitHandler } from "react-hook-form";
 import { FormTable } from 'components/block';
 
+import { useRouter } from 'next/router';
 import { view } from 'unflexible-ui-legacy';
-import { color } from 'lib/config';
-import { Education, EducationKindValues, Qualification, QualificationKindValues, JLPT, JLPTKindValues } from 'domains/matching';
+import { color, screen } from 'lib/config';
+import {
+  Education, EducationKindValues, Qualification, QualificationKindValues, JLPT, JLPTKindValues, InputSeeker,
+  getSeekerByEmail
+} from 'domains/matching';
 
 interface Props {
 }
 
-interface InputSeeker {
-  name: string;
-  kana: string;
-  birthday: string;
-  sex: number;
-  postalcode: string;
-  address: string;
-  email: string;
-  reEmail: string;
-  nationality: string;
-  education: number;
-  educationKind: number;
-  educationSchool: string;
-  qualification: number;
-  jlpt: number;
-  acceptEmail: number;
-  password: string;
-}
+const NewSeeker = ({ }: Props) => {
+  const router = useRouter();
+  const { register, handleSubmit, getValues, reset, formState: { errors } } = useForm<InputSeeker>({
+    defaultValues: {
+      sex: 1,
+      educationState: 1,
+      acceptEmail: "yes"
+    }
+  });
+  const onSubmit: SubmitHandler<InputSeeker> = async data => {
+    let res;
+    try {
+      res = await fetch('/api/matching/seeker/', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
 
-const NewSeeker = ({}: Props) => {
-  const { register, handleSubmit, formState: { errors } } = useForm<InputSeeker>();
-  const onSubmit: SubmitHandler<InputSeeker> = data => console.log(data);
+      if (!res.ok) {
+        throw new Error(`${res.status}: ${res.statusText}`);
+      }
+    } catch (e: any) {
+      console.error(e);
+      alert('何か問題が発生しました。もう一度お試しください。');
+      reset();
+      return;
+    }
+
+    router.push(view.url('service/matching/seeker/registered'));
+  };
 
   return (
     <Component>
@@ -46,6 +60,7 @@ const NewSeeker = ({}: Props) => {
               <th className="required">氏名</th>
               <td>
                 <input type="text" {...register("name", { required: true })} />
+                {errors.name && <p className="error">正しく入力してください</p>}
               </td>
             </tr>
 
@@ -53,13 +68,15 @@ const NewSeeker = ({}: Props) => {
               <th className="required">氏名（カタカナ）</th>
               <td>
                 <input type="text" placeholder="カタカナを入力" {...register("kana", { required: true })} />
+                {errors.kana && <p className="error">正しく入力してください</p>}
               </td>
             </tr>
 
             <tr>
               <th className="required">生年月日</th>
               <td>
-                <input defaultValue="2000-01-01" {...register("birthday", { required: true })} type="date" />
+                <input className="short" defaultValue="2000-01-01" {...register("birthday", { required: true })} type="date" />
+                {errors.birthday && <p className="error">正しく入力してください</p>}
               </td>
             </tr>
 
@@ -72,7 +89,8 @@ const NewSeeker = ({}: Props) => {
                       {...register("sex", { required: true })}
                       id="sex-male"
                       type="radio"
-                      checked
+                      value={1}
+                      defaultChecked
                     />
                     <label htmlFor="sex-male">男性</label>
                   </li>
@@ -82,6 +100,7 @@ const NewSeeker = ({}: Props) => {
                       {...register("sex", { required: true })}
                       id="sex-female"
                       type="radio"
+                      value={2}
                     />
                     <label htmlFor="sex-female">女性</label>
                   </li>
@@ -91,92 +110,112 @@ const NewSeeker = ({}: Props) => {
                       {...register("sex", { required: true })}
                       id="sex-others"
                       type="radio"
+                      value={9}
                     />
                     <label htmlFor="sex-others">その他</label>
                   </li>
                 </ul>
+                {errors.sex && <p className="error">正しく入力してください</p>}
               </td>
             </tr>
 
             <tr>
               <th className="required">現住所</th>
               <td>
-                <p>
+                <div>
                   <span className="inline-label">〒</span>
-                  <input type="text" className="short" {...register("postalcode", { required: true })} /><br/>
-                </p>
-                <p>
+                  <input type="text" className="short" {...register("postalcode", { required: true })} /><br />
+                </div>
+                <div>
                   <input type="text" className="full" {...register("address", { required: true })} />
-                </p>
+                </div>
+                {(errors.postalcode || errors.address) && <p className="error">正しく入力してください</p>}
               </td>
             </tr>
 
             <tr>
               <th className="required">メールアドレス</th>
               <td>
-                <p>
-                  <input type="email" {...register("email", { required: true })} />
-                </p>
-                <p>
-                  <input type="email" placeholder="もう一度入力してください" {...register("reEmail", { required: true })} />
-                </p>
+                <div>
+                  <input type="email" autoComplete="email" {...register("email", {
+                    required: true, validate: async (v: string) => {
+                      const seeker = await getSeekerByEmail(v);
+                      return seeker === null;
+                    }
+                  })} />
+                  {errors.email?.type === 'required' && <p className="error">正しく入力してください</p>}
+                  {errors.email && errors.email?.type !== 'required' && <p className="error">既に使用されています</p>}
+                </div>
+                <div>
+                  <input type="email" placeholder="もう一度入力してください" autoComplete="email" {...register("reEmail", { required: true, validate: (v: string) => v === getValues('email') })} />
+                  {errors.reEmail && <p className="error">正しく入力してください</p>}
+                </div>
               </td>
             </tr>
 
             <tr>
               <th className="required">ご希望のパスワード</th>
               <td>
-                <input type="password" placeholder="6〜32文字で半角英数字と記号が使用可" {...register("password", { required: true })} />
+                <input type="password" placeholder="6〜32文字で半角英数字と記号が使用可" autoComplete="new-password" {...register("password", { required: true, minLength: 6, maxLength: 32, pattern: /^[a-zA-Z0-9!-/:-@¥[-`{-~]+$/ })} />
+                {errors.password?.type === 'required' && <p className="error">正しく入力してください</p>}
+                {errors.password?.type === 'minLength' && <p className="error">6文字以上で入力してください</p>}
+                {errors.password?.type === 'maxLength' && <p className="error">32文字以下で入力してください</p>}
+                {errors.password?.type === 'pattern' && <p className="error">使えない文字が含まれています</p>}
               </td>
             </tr>
 
             <tr>
               <th className="required">国籍・学歴</th>
               <td>
-                <p>
+                <div>
                   <span className="inline-label">国籍</span>
-                  <input type="text" className="semishort" placeholder="日本" {...register("nationality", { required: true })}/>
-                </p>
+                  <input type="text" className="semishort" placeholder="日本" {...register("nationality", { required: true })} />
+                  {errors.nationality && <p className="error">正しく入力してください</p>}
+                </div>
                 <ul>
                   <li className="nowrap">
                     <span className="inline-label">学歴</span>
                     <div className="select">
                       <select id="education" defaultValue="" {...register("education", { required: true })}>
-                        <option value="" selected disabled>選択してください</option>
-                          {EducationKindValues.map(v => {
-                            const label = Education.fromNumber(v)?.toString() || null;
-                            if(label !== null) {
-                              return <option value={v}>{label}</option>;
-                            }
-                          })}
+                        <option value="" disabled>選択してください</option>
+                        {EducationKindValues.map((v: number, index: number) => {
+                          const label = Education.fromNumber(v)?.toString() || null;
+                          if (label !== null) {
+                            return <option value={v} key={index}>{label}</option>;
+                          }
+                        })}
                       </select>
                     </div>
+                    {errors.education && <p className="error">正しく入力してください</p>}
                   </li>
                   <li>
                     <ul className="radio">
                       <li>
                         <input
-                          {...register("educationKind", { required: true })}
-                          id="education-kind-guraduated"
+                          {...register("educationState", { required: true })}
+                          id="education-state-guraduated"
                           type="radio"
-                          checked
+                          value={0}
+                          defaultChecked
                         />
-                        <label htmlFor="education-kind-guraduated">既卒</label>
+                        <label htmlFor="education-state-guraduated">既卒</label>
                       </li>
                       <li>
                         <input
-                          {...register("educationKind", { required: true })}
-                          id="education-kind-larning"
+                          {...register("educationState", { required: true })}
+                          id="education-state-larning"
                           type="radio"
+                          value={1}
                         />
-                        <label htmlFor="education-kind-larning">在学中</label>
+                        <label htmlFor="education-state-larning">在学中</label>
                       </li>
                     </ul>
                   </li>
                 </ul>
-                <p>
+                <div>
                   <input type="text" placeholder="学校名を記入してください" {...register("educationSchool", { required: true })} />
-                </p>
+                  {errors.educationSchool && <p className="error">正しく入力してください</p>}
+                </div>
               </td>
             </tr>
 
@@ -187,15 +226,16 @@ const NewSeeker = ({}: Props) => {
               <td>
                 <div className="select">
                   <select id="qualification" defaultValue="" {...register("qualification", { required: true })}>
-                    <option value="">選択してください</option>
-                    {QualificationKindValues.map(v => {
+                    <option value="" disabled>選択してください</option>
+                    {QualificationKindValues.map((v: number, index: number) => {
                       const label = Qualification.fromNumber(v)?.toString() || null;
-                      if(label !== null) {
-                        return <option value={v}>{label}</option>
+                      if (label !== null) {
+                        return <option value={v} key={index}>{label}</option>
                       }
                     })}
                   </select>
                 </div>
+                {errors.qualification && <p className="error">正しく入力してください</p>}
               </td>
             </tr>
 
@@ -207,10 +247,10 @@ const NewSeeker = ({}: Props) => {
                 <div className="select">
                   <select id="jlpt" defaultValue="" {...register("jlpt")}>
                     <option value="">選択してください</option>
-                    {JLPTKindValues.map(v => {
+                    {JLPTKindValues.map((v: number, index: number) => {
                       const label = JLPT.fromNumber(v)?.toString() || null;
-                      if(label !== null) {
-                        return <option value={v}>{label}</option>
+                      if (label !== null) {
+                        return <option value={v} key={index}>{label}</option>
                       }
                     })}
                   </select>
@@ -223,12 +263,12 @@ const NewSeeker = ({}: Props) => {
               <td>
                 <ul className="radio">
                   <li>
-                    <input id="accept-email-yes" type="radio" {...register("acceptEmail")} />
+                    <input id="accept-email-yes" type="radio" value="yes" defaultChecked {...register("acceptEmail")} />
                     <label htmlFor="accept-email-yes">利用する</label>
                   </li>
 
                   <li>
-                    <input id="accept-email-no" type="radio" {...register("acceptEmail")} />
+                    <input id="accept-email-no" type="radio" value="no" {...register("acceptEmail")} />
                     <label htmlFor="accept-email-no">利用しない</label>
                   </li>
                 </ul>
@@ -240,7 +280,7 @@ const NewSeeker = ({}: Props) => {
         <p className="note">携帯キャリアのメールアドレスをご利用の場合は、「@shuushoku-shien.co.jp」からのメール受信許可に設定してください。</p>
 
         <p className="confirmation">
-          <a href={view.url('')}>会員規約と個人情報の取り扱い</a>に同意した上で会員登録をしてください。
+          <a href={view.url('privacy-policy')} target="_blank">会員規約と個人情報の取り扱い</a>に同意した上で会員登録をしてください。
         </p>
 
         <input type="submit" value="同意して会員登録" />
@@ -276,6 +316,7 @@ const Component = styled.div`
 input[type="submit"] {
   display: block;
   width: 400px;
+  max-width: 100%;
   margin: 1.5rem auto 0 auto;
   padding: .5rem;
   font-size: 1.25rem;
@@ -283,6 +324,10 @@ input[type="submit"] {
   background-color: ${color.marineBlue};
   text-align: center;
   border-radius: 15px;
+
+  @media only screen and (max-width: ${screen.xs}px) {
+    font-size: 1rem;
+  }
 }
 `
 

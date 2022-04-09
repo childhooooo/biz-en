@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { font } from 'lib/config';
+import { font, screen } from 'lib/config';
 
 interface Props {
   icon: string;
@@ -30,6 +30,12 @@ p {
   margin-top: .5rem;
   text-align: center;
   font-family: ${font.sansSerif};
+}
+
+@media only screen and (max-width: ${screen.s}px) {
+  p {
+    font-size: .9rem;
+  }
 }
 `
 

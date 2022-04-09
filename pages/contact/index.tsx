@@ -5,14 +5,16 @@ import { ContactForm } from 'components/container';
 import { PageTitle } from 'components/block';
 import { Title03, IconButton03 } from 'components/element';
 
+import { useRouter } from 'next/router';
 import { useForm, SubmitHandler } from "react-hook-form";
 import styled from 'styled-components';
 import { view } from 'unflexible-ui-legacy';
-import { color } from 'lib/config';
+import { color, font } from 'lib/config';
+import { InputContact, createContact } from 'domains/contact';
 
 interface Props { }
 
-interface InputContact {
+interface Fields {
   kind: string;
   name: string;
   company: string;
@@ -23,24 +25,36 @@ interface InputContact {
 }
 
 const ContactPage: NextPage = ({ }: Props) => {
+  const router = useRouter();
+
   const routes = [
     { name: 'TOP', href: view.url('') },
     { name: 'お問い合わせ', href: view.url('contact') },
   ];
 
-  const { register, handleSubmit, formState: { errors } } = useForm<InputContact>();
-  const onSubmit: SubmitHandler<InputContact> = data => console.log(data);
+  const { register, handleSubmit, getValues, formState: { errors } } = useForm<Fields>();
+  const onSubmit: SubmitHandler<Fields> = async (data) => {
+    try {
+      const input = InputContact.fromObject(data);
+      await createContact(input);
+      router.push(view.url('contact/complete'));
+    } catch(e: any) {
+      console.log(e);
+      alert('何か問題が発生しました。もう一度お試しください。');
+    }
+  };
 
   return (
     <Page
-      title="お問い合わせ | 株式会社ビズソリューションズ"
+      title="お問い合わせ | 外国人材採用支援事業（株式会社ビズソリューションズ）"
       description=""
       path="/contact"
       ogType="article"
       header={(
         <Header
-          title="お問い合わせ | 外国人材採用支援サービス（株式会社ビズソリューションズ）"
+          title="お問い合わせ | 外国人材採用支援事業（株式会社ビズソリューションズ）"
           language="ja"
+          selected="contact"
         />
       )}
       footer={<Footer />}
@@ -57,7 +71,7 @@ const ContactPage: NextPage = ({ }: Props) => {
       </Stacked>
 
       <Stacked paddingPos="top" wrap isSection>
-        <PlainText>
+        <PlainText baseFamily={font.sansSerif}>
           <p>
             お問い合わせは、下記フォームにご記入の上送信してください。<br />
             <span style={{ color: color.orange }}>※</span>は必須項目です。電話番号またはメールアドレスに入力ミスがありますとご連絡ができません。<br />
@@ -67,7 +81,7 @@ const ContactPage: NextPage = ({ }: Props) => {
       </Stacked>
 
       <Stacked wrap isSection>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <Form onSubmit={handleSubmit(onSubmit)}>
           <Stacked paddingPos="none">
             <ContactForm>
               <div className="required">
@@ -77,15 +91,16 @@ const ContactPage: NextPage = ({ }: Props) => {
                 <dd>
                   <ul className="radio-group">
                     <li>
-                      <input id="kind-seek" type="radio" checked {...register("kind", { required: true })} />
+                      <input id="kind-seek" type="radio" value="お仕事に関するお問い合わせ" {...register("kind", { required: true })} />
                       <label htmlFor="kind-seek">お仕事探しに関するお問い合わせ</label>
                     </li>
 
                     <li>
-                      <input id="kind-recruit" type="radio" checked {...register("kind", { required: true })} />
+                      <input id="kind-recruit" type="radio" value="求人・人材募集に関するお問い合わせ" {...register("kind", { required: true })} />
                       <label htmlFor="kind-recruit">求人・人材募集に関するお問い合わせ（会社名・部署名をご記入ください）</label>
                     </li>
                   </ul>
+                  {errors.kind && <p className="error">選択してください</p>}
                 </dd>
               </div>
 
@@ -95,6 +110,7 @@ const ContactPage: NextPage = ({ }: Props) => {
                 </dt>
                 <dd>
                   <input id="name" type="text" {...register("name", { required: true })} />
+                  {errors.name && <p className="error">正しく入力してください</p>}
                 </dd>
               </div>
 
@@ -117,10 +133,12 @@ const ContactPage: NextPage = ({ }: Props) => {
               <div className="required">
                 <dt><label htmlFor="email">メールアドレス</label></dt>
                 <dd>
-                  <input id="email" type="email" {...register("email", { required: true })} />
+                  <input id="email" type="email" placeholder="半角で入力してください" {...register("email", { required: true })} />
+                  {errors.email && <p className="error">正しく入力してください</p>}
                 </dd>
                 <dd>
-                  <input id="re-mail" type="email" {...register("reEmail", { required: true })} />
+                  <input id="re-mail" type="email" placeholder="もう一度入力してください" {...register("reEmail", { required: true, validate: (v: string) => v === getValues('email') })} />
+                  {errors.reEmail && <p className="error">正しく入力してください</p>}
                 </dd>
               </div>
 
@@ -128,35 +146,46 @@ const ContactPage: NextPage = ({ }: Props) => {
                 <dt><label htmlFor="content">お問い合わせ内容</label></dt>
                 <dd>
                   <textarea id="content" rows={10} {...register("content", { required: true })} />
+                  {errors.content && <p className="error">正しく入力してください</p>}
                 </dd>
               </div>
             </ContactForm>
           </Stacked>
 
           <Stacked paddingPos="top">
-          <Confirmation>
-            <input type="checkbox" required />
-            <label><a href={view.url('privacy-policy')}>プライバシーポリシー</a>に同意した上で送信してください。</label>
-          </Confirmation>
+            <Confirmation>
+              <a href={view.url('privacy-policy')} target="_blank" rel="noreferrer">プライバシーポリシー</a>に同意した上で送信してください。
+            </Confirmation>
           </Stacked>
 
           <Stacked paddingPos="top" paddingSize="narrow">
             <Columns justify="center">
-            <Block width="500px">
-              <IconButton03
-                name="同意して送信する"
-                icon={view.url('images/icon_mail_white.png')}
-                color={color.blue}
-                kind="submit"
-              />
-            </Block>
+              <Block width="500px" widthS="100%">
+                <IconButton03
+                  name="同意して送信する"
+                  icon={view.url('images/icon_mail_white.png')}
+                  color={color.blue}
+                  kind="submit"
+                />
+              </Block>
             </Columns>
           </Stacked>
-        </form>
+        </Form>
       </Stacked>
     </Page>
   );
 };
+
+const Form = styled.form`
+.error {
+  margin-top: .5rem;
+  color: ${color.red};
+
+  &:before {
+    content: '！';
+  }
+}
+`;
 
 const Confirmation = styled.div`
 display: flex;

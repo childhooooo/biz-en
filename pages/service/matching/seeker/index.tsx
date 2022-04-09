@@ -1,16 +1,16 @@
 import type { NextPage } from 'next';
 import { Page, Stacked, Columns, Block, PlainText, Figure } from 'unflexible-ui-legacy';
-import { Header, Footer } from 'components/layout';
+import { EnHeader, Footer } from 'components/layout';
 import { Inset } from 'components/container';
-import { PageTitle, List02 } from 'components/block';
+import { EnPageTitle, List02 } from 'components/block';
 import { Button02 } from 'components/element';
 import { color, font } from 'lib/config';
 
 import { view } from 'unflexible-ui-legacy';
 
-interface Props {}
+interface Props { }
 
-const ServiceSeekerPage: NextPage = ({}: Props) => {
+const ServiceSeekerPage: NextPage = ({ }: Props) => {
   const routes = [
     { name: 'TOP', href: view.url('') },
     { name: 'Service', href: view.url('service') },
@@ -19,43 +19,41 @@ const ServiceSeekerPage: NextPage = ({}: Props) => {
 
   return (
     <Page
-      title="求職者登録でできること | 縁 -en-"
+      title="求職者登録でできること | 縁 -en- | 群馬県内に就職を希望する外国人材就職応援サイト"
       description=""
       path="/service/seeker"
       ogType="article"
       header={(
-        <Header
-          title="求職者登録でできること | 外国人材群馬支援事業（株式会社ビズソリューションズ）"
+        <EnHeader
+          title="求職者登録でできること | 縁 -en- | 群馬県内に就職を希望する外国人材就職応援サイト"
           language="ja"
+          routes={routes}
         />
       )}
-      footer={<Footer/>}
+      footer={<Footer />}
       fixHeader
     >
       <Stacked paddingPos="none" color={color.lightGray} isSection>
-        <PageTitle
-          name="求職者登録でできること"
-          routes={routes}
-        />
+        <EnPageTitle />
       </Stacked>
 
       <Stacked paddingPos="top" wrap>
-        <Columns justify="center" gap="normal" wrapXL="nowrap">
-          <Block>
-            <Figure src={view.url('images/contents_01.png')} name="マッチングサービス" width="300px" />
+        <Columns justify="center" gap="normal" wrapXL="nowrap" wrapS="wrap">
+          <Block width="300px" widthM="200px" widthS="180px">
+            <Figure src={view.url('images/contents_01.png')} name="マッチングサービス" />
           </Block>
 
           <Block shrink={2}>
-            <Stacked paddingPos="none">
-              <Figure src={view.url('images/logo_en.png')} name="縁 -en-" width="200px" />
+            <Stacked paddingPos="top" paddingSize="narrow">
+              <Figure src={view.url('images/logo_en.png')} name="縁 -en-" width="200px" widthM="150px" widthS="100px" />
               <PlainText>
                 <p>群馬県内に就職を希望する外国人材就職応援サイト</p>
               </PlainText>
             </Stacked>
 
             <Stacked paddingPos="top" paddingSize="narrow">
-              <PlainText baseSizeXL="1.5rem" baseColor={color.textBlue} baseLineHeight="1.5" baseFamily={font.sansSerif}>
-                <p>「求職者登録はこちら」より会員登録（無料）を行うと、<br/>求人企業とのマッチングサービスを無料で受けることが<br/>できます。今すぐ登録をしよう！</p>
+              <PlainText baseSizeXL="1.5rem" baseSizeM="1.2rem" baseSizeS="1rem" baseSizeXS=".9rem" baseColor={color.textBlue} baseLineHeight="1.5" baseFamily={font.sansSerif}>
+                <p>「求職者登録はこちら」より会員登録（無料）を行うと、<br />求人企業とのマッチングサービスを無料で受けることが<br />できます。今すぐ登録をしよう！</p>
               </PlainText>
             </Stacked>
           </Block>
@@ -151,7 +149,7 @@ const ServiceSeekerPage: NextPage = ({}: Props) => {
 
       <Stacked wrap>
         <Columns justify="center">
-          <Button02 name="求職者登録はこちら" kind="link" href={view.url('service/seeker/new')} />
+          <Button02 name="求職者登録はこちら" kind="link" href={view.url('service/matching/seeker/new')} />
         </Columns>
       </Stacked>
     </Page>

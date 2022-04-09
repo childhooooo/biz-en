@@ -9,22 +9,22 @@ import { view } from 'unflexible-ui-legacy';
 
 interface Props { }
 
-const ServicePage: NextPage = ({ }: Props) => {
+const AboutMatchigPage: NextPage = ({ }: Props) => {
   const routes = [
     { name: 'TOP', href: view.url('') },
-    { name: 'Service', href: view.url('service') },
-    { name: '外国人材就職応援サービス', href: view.url('service/support') }
+    { name: 'About', href: view.url('about') },
+    { name: '外国人材就職応援サービスについて', href: view.url('about/matchig') }
   ];
 
   return (
     <Page
-      title="外国人材就職応援サービス | 株式会社ビズソリューションズ"
+      title="外国人材就職応援サービスについて | 株式会社ビズソリューションズ"
       description=""
-      path="/service/support"
+      path="/about/matchig"
       ogType="article"
       header={(
         <Header
-          title="外国人材就職応援サービス | 株式会社ビズソリューションズ"
+          title="外国人材就職応援サービスについて | 株式会社ビズソリューションズ"
           language="ja"
         />
       )}
@@ -50,7 +50,7 @@ const ServicePage: NextPage = ({ }: Props) => {
       <Stacked isSection wrap>
         <Stacked paddingPos="none">
           <Columns justify="center">
-            <Figure src={view.url('images/logo_en.png')} width="200px" />
+            <Figure src={view.url('images/logo_en.png')} width="200px" widthS="160px" widthXS="120px" />
           </Columns>
         </Stacked>
 
@@ -68,12 +68,12 @@ const ServicePage: NextPage = ({ }: Props) => {
         </Stacked>
 
         <Stacked paddingPos="top" paddingSize="normal">
-          <PlainText baseColor={color.gold} baseSizeXL="1.25rem" baseAlign="center">
+          <PlainText baseColor={color.gold} baseSizeXL="1.25rem" baseSizeS="1rem" baseLineHeight="1.5" baseAlign="center">
             <p>求人企業とのマッチングサービスを無料で受けることができます。 今すぐ登録をしょう！</p>
           </PlainText>
         </Stacked>
 
-        <Stacked paddingPos="top" paddingSize="narrow">
+        <Stacked paddingPos="top" paddingSize="normal">
           <FukidashiText fukidashi={view.url('images/icon_matching_registration.png')} text="登録後、マイページから興味・関心のある求人にマッチングエントリーができます。サービス利用に関し、費用は一切発生しません（無料）。" />
         </Stacked>
 
@@ -117,16 +117,16 @@ const ServicePage: NextPage = ({ }: Props) => {
           <FukidashiText fukidashi={view.url('images/icon_matching_support.png')} text="就労スタートまで、新しい環境での生活づくりのサポートをします。" />
         </Stacked>
 
-        <Stacked paddingPos="top" paddingSize="narrow">
-        <Columns justify="center">
-        <Block width="400px">
-        <Button01 name="求職者登録はこちら" href={view.url('service/matching/seeker/new')}/>
-        </Block>
-        </Columns>
+        <Stacked paddingPos="top" paddingSize="normal">
+          <Columns justify="center">
+            <Block width="400px" widthS="100%">
+              <Button01 name="求職者登録はこちら" href={view.url('service/matching/seeker/new')} />
+            </Block>
+          </Columns>
         </Stacked>
       </Stacked>
     </Page>
   );
 };
 
-export default ServicePage;
+export default AboutMatchigPage;

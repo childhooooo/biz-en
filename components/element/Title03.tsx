@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { color as configColor, font } from 'lib/config';
+import { color as configColor, font, screen } from 'lib/config';
 
 const tags: { [key: string]: any } = {
   'h1': styled.h1``,
@@ -35,10 +35,10 @@ const Component = styled.div<ComponentProps>`
   display: flex;
   align-items: center;
 
-img {
-  width: auto;
-  height: 60px;
-}
+  img {
+    width: auto;
+    height: 60px;
+  }
 
   h1, h2, h3, h4 , h5 {
     margin-left: .75rem;
@@ -46,6 +46,22 @@ img {
     font-weight: 400;
     font-family: ${font.sansSerif};
     color: ${props => props.color};
+  }
+
+  @media only screen and (max-width: ${screen.m}px) {
+    img {
+      height: 45px;
+    }
+  }
+
+  @media only screen and (max-width: ${screen.s}px) {
+    img {
+      height: 30px;
+    }
+
+    h1, h2, h3, h4, h5 {
+      font-size: 1rem;
+    }
   }
 `
 

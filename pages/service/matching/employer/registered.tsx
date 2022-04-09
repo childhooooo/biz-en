@@ -1,15 +1,15 @@
 import type { NextPage } from 'next';
 import { Page, Stacked, PlainText, Columns, Block } from 'unflexible-ui-legacy';
-import { Header, Footer } from 'components/layout';
-import { PageTitle } from 'components/block';
+import { EnHeader, Footer } from 'components/layout';
+import { EnPageTitle } from 'components/block';
 import { Title04, Border, IconButton02 } from 'components/element';
 
 import { color } from 'lib/config';
 import { view } from 'unflexible-ui-legacy';
 
-interface Props {}
+interface Props { }
 
-const ServiceEmployerRegisteredPage: NextPage = ({}: Props) => {
+const ServiceEmployerRegisteredPage: NextPage = ({ }: Props) => {
   const routes = [
     { name: 'TOP', href: view.url('') },
     { name: 'Service', href: view.url('service') },
@@ -23,29 +23,27 @@ const ServiceEmployerRegisteredPage: NextPage = ({}: Props) => {
       path="/service/employer/registered"
       ogType="article"
       header={(
-        <Header
+        <EnHeader
           title="求人企業登録完了 | 外国人材群馬支援事業（株式会社ビズソリューションズ）"
           language="ja"
+          routes={routes}
         />
       )}
-      footer={<Footer/>}
+      footer={<Footer />}
       fixHeader
     >
       <Stacked paddingPos="none" color={color.lightGray} isSection>
-        <PageTitle
-          name="求人企業登録"
-          routes={routes}
-        />
+        <EnPageTitle />
       </Stacked>
 
       <Stacked paddingPos="top" paddingSize="narrow" wrap>
-        <Title04 name="求人企業（基本情報）登録が完了しました" tag="h2" />
+        <Title04 name="求人企業（基本情報）登録が完了しました" tag="h2" color={color.semiSkyBlue} />
       </Stacked>
 
       <Stacked paddingPos="top" paddingSize="narrow" wrap>
         <PlainText>
           <p>
-            当社の専任担当者から連絡させていただきます。WEB面談または訪問日時のすり合わせをさせていただきます。職務内容や応募条件、待遇などをヒヤリングさせていただいた後、求人票を提案・作成し求人情報を公開します。合わせて「人材紹介契約（完全成功報酬型）」締結させていただきます。<br/>
+            当社の専任担当者から連絡させていただきます。WEB面談または訪問日時のすり合わせをさせていただきます。職務内容や応募条件、待遇などをヒヤリングさせていただいた後、求人票を提案・作成し求人情報を公開します。合わせて「人材紹介契約（完全成功報酬型）」締結させていただきます。<br />
             ※連絡までに数日かかる場合がありますので、予めご了承ください。
           </p>
         </PlainText>
@@ -58,7 +56,7 @@ const ServiceEmployerRegisteredPage: NextPage = ({}: Props) => {
       <Stacked paddingSize="narrow" wrap>
         <Columns justify="center">
           <Block>
-            <IconButton02 name="閉じる" icon={view.url('images/icon_cross_white.png')} color={color.darkGray} kind="link" href={view.url('employer/signin')} />
+            <IconButton02 name="閉じる" icon={view.url('images/icon_cross_white.png')} color={color.darkGray} kind="link" href={view.url('service/matching/employer')} />
           </Block>
         </Columns>
       </Stacked>

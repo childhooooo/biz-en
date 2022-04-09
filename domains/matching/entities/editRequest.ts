@@ -42,3 +42,54 @@ export class EditType {
     }
   }
 }
+
+export class EditRequest {
+  constructor(
+    public readonly id: number,
+    public readonly seekerId: number,
+    public readonly editType: EditType,
+    public readonly content: string | null
+  ) {}
+
+  static fromObject(obj: any): EditRequest {
+    if(
+      obj.id === null || obj.id === undefined ||
+      obj.seekerId === null || obj.seekerId === undefined ||
+      obj.editType === null || obj.editType === undefined
+    ) {
+      throw new Error('Any required fields are not found');
+    }
+
+    return new EditRequest(obj.id, obj.seekerId, EditType.fromNumber(obj.editType), obj.content || null);
+  }
+}
+
+export class InputEditRequest {
+  constructor(
+    public readonly seekerId: number,
+    public readonly editType: number,
+    public readonly content: string | null,
+    public readonly title: string
+  ) {}
+
+  toSnake(): any {
+    return {
+      seeker_id: this.seekerId,
+      edit_type: this.editType,
+      content: this.content,
+      title: this.title
+    };
+  }
+
+  static fromObject(obj: any): InputEditRequest {
+    if(
+      obj.seekerId === null || obj.seekerId === undefined ||
+      obj.editType === null || obj.editType === undefined ||
+      !obj.title
+    ) {
+      throw new Error('Any required fields are not found');
+    }
+
+    return new InputEditRequest(obj.seekerId, obj.editType, obj.content || null, obj.title);
+  }
+}

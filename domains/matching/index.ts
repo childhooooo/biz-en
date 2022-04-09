@@ -2,11 +2,7 @@
 export { Job } from './entities/job';
 export { JobCategory } from './entities/jobCategory';
 
-export {
-  EditTypeKindValues,
-  EditType,
-  EditTypeKind
-} from './entities/editRequest';
+export { Employer, InputEmployer } from './entities/employer';
 
 export {
   Seeker,
@@ -18,7 +14,10 @@ export {
   Qualification,
   QualificationKindValues,
   JLPT,
-  JLPTKindValues
+  JLPTKindValues,
+  InputSeeker,
+  InputSeekerHashed,
+  Credential
 } from './entities/seeker';
 
 export type {
@@ -29,12 +28,15 @@ export type {
   JLPTKind
 } from './entities/seeker';
 
+export * from './entities/entry';
+
+export * from './entities/editRequest';
+
 // Repository
-export {
-  getDummyJobList,
-  getDummyJob,
-  getJobListSize
-} from './repository';
+export * from './repository';
+
+// Adapter
+export * as WordPress from './adapters/wordpress';
 
 // Usecases
 export {
@@ -52,7 +54,8 @@ export {
 export {
   useJobListState,
   JobListStateProvider,
-  JobListStateContext
+  JobListStateContext,
+  Order
 } from './presenters/JobListState';
 
 export { default as NewSeeker } from './presenters/NewSeeker';

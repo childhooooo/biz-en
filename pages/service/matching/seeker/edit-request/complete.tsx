@@ -1,12 +1,12 @@
 import type { NextPage } from 'next';
 import { Page, Stacked, PlainText } from 'unflexible-ui-legacy';
-import { Header, Footer } from 'components/layout';
+import { EnHeader, Footer } from 'components/layout';
 import { EnPageTitle } from 'components/block';
 import { Title04, CloseButton, Border } from 'components/element';
 
 import { useRouter } from 'next/router';
 import { view } from 'unflexible-ui-legacy';
-import { EditType, EditTypeKind } from 'domains/account';
+import { EditType, EditTypeKind } from 'domains/matching';
 import { color } from 'lib/config';
 
 const ServiceMatchingEditRequestCompletePage: NextPage = () => {
@@ -38,16 +38,17 @@ const ServiceMatchingEditRequestCompletePage: NextPage = () => {
       path={`/service/matching/account/user/modify-accepted`}
       ogType="article"
       header={(
-        <Header
-          title={`${title} | 縁 -en- | 群馬県内に就職を希望する外国人材就職応援サイト`}
+        <EnHeader
+          title={`申請を受け付けました | 縁 -en- | 群馬県内に就職を希望する外国人材就職応援サイト`}
           language="ja"
+          routes={routes}
         />
       )}
       footer={<Footer/>}
       fixHeader
     >
       <Stacked paddingPos="none" color={color.lightGray}>
-        <EnPageTitle routes={routes} />
+        <EnPageTitle />
       </Stacked>
 
       <Stacked isSection wrap>
@@ -66,7 +67,7 @@ const ServiceMatchingEditRequestCompletePage: NextPage = () => {
         </Stacked>
 
         <Stacked paddingPos="top" paddingSize="narrow">
-          <CloseButton redirect={view.url('service/matching/account/signin')} />
+          <CloseButton redirect={view.url('service/matching/seeker/edit-request/new')} />
         </Stacked>
       </Stacked>
     </Page>

@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import { Page, Stacked, PlainText, Columns, Block } from 'unflexible-ui-legacy';
-import { Header, Footer } from 'components/layout';
-import { PageTitle } from 'components/block';
+import { EnHeader, Footer } from 'components/layout';
+import { EnPageTitle } from 'components/block';
 import { Title04, Border, IconButton02 } from 'components/element';
 
 import { color } from 'lib/config';
@@ -18,28 +18,26 @@ const ServiceSeekerRegisteredPage: NextPage = ({}: Props) => {
 
   return (
     <Page
-      title="求職者登録完了 | 縁 -en-"
+      title="求職者登録完了 | 縁 -en- | 群馬県内に就職を希望する外国人材就職応援サイト"
       description=""
       path="/service/seeker/registered"
       ogType="article"
       header={(
-        <Header
-          title="会員登録完了 | 外国人材群馬支援事業（株式会社ビズソリューションズ）"
+        <EnHeader
+          title="求職者登録完了 | 縁 -en- | 群馬県内に就職を希望する外国人材就職応援サイト"
           language="ja"
+          routes={routes}
         />
       )}
       footer={<Footer/>}
       fixHeader
     >
       <Stacked paddingPos="none" color={color.lightGray} isSection>
-        <PageTitle
-          name="会員登録"
-          routes={routes}
-        />
+        <EnPageTitle/>
       </Stacked>
 
       <Stacked paddingPos="top" paddingSize="narrow" wrap>
-        <Title04 name="会員（求職者）登録が完了しました" tag="h2" />
+        <Title04 name="会員（求職者）登録が完了しました" tag="h2" color={color.semiSkyBlue} />
       </Stacked>
 
       <Stacked paddingPos="top" paddingSize="narrow" wrap>
@@ -58,7 +56,7 @@ const ServiceSeekerRegisteredPage: NextPage = ({}: Props) => {
       <Stacked paddingSize="narrow" wrap>
         <Columns justify="center">
           <Block>
-            <IconButton02 name="閉じる" icon={view.url('images/icon_cross_white.png')} color={color.darkGray} kind="link" href={view.url('employer/signin')} />
+            <IconButton02 name="閉じる" icon={view.url('images/icon_cross_white.png')} color={color.darkGray} kind="link" href={view.url('service/matching')} />
           </Block>
         </Columns>
       </Stacked>

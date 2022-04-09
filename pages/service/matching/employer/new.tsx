@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import { Page, Stacked, PlainText } from 'unflexible-ui-legacy';
-import { Header, Footer } from 'components/layout';
-import { PageTitle } from 'components/block';
+import { EnHeader, Footer } from 'components/layout';
+import { EnPageTitle } from 'components/block';
 import { Title04, IconButton01 } from 'components/element';
 
 import { NewEmployer } from 'domains/matching';
@@ -19,28 +19,26 @@ const ServiceEmployerNewPage: NextPage = ({}: Props) => {
 
   return (
     <Page
-      title="求人企業登録 | 縁 -en-"
+      title="求人企業登録 | 縁 -en- | 群馬県内に就職を希望する外国人材就職応援サイト"
       description=""
       path="/service/employer/new"
       ogType="article"
-      header={(
-        <Header
-          title="求人企業登録 | 外国人材群馬支援事業（株式会社ビズソリューションズ）"
+      header={
+        <EnHeader
+          title="求人企業登録 | 縁 -en- | 群馬県内に就職を希望する外国人材就職応援サイト"
           language="ja"
+          routes={routes}
         />
-      )}
+      }
       footer={<Footer/>}
       fixHeader
     >
       <Stacked paddingPos="none" color={color.lightGray} isSection>
-        <PageTitle
-          name="求人企業登録"
-          routes={routes}
-        />
+        <EnPageTitle />
       </Stacked>
 
       <Stacked paddingPos="top" paddingSize="narrow" wrap>
-        <Title04 name="求人企業（基本情報）登録" tag="h2" />
+        <Title04 name="求人企業（基本情報）登録" tag="h2" color={color.semiSkyBlue} />
       </Stacked>
 
       <Stacked paddingPos="top" paddingSize="narrow" wrap>
@@ -54,7 +52,7 @@ const ServiceEmployerNewPage: NextPage = ({}: Props) => {
 
       <Stacked paddingPos="top" paddingSize="narrow" isSection wrap>
         <Stacked paddingPos="none">
-          <IconButton01 name="求人企業登録でできること" kind="link" href={view.url('service/employer')} icon={view.url('images/icon_handshake_green.png')} />
+          <IconButton01 name="求人企業登録でできること" kind="link" href={view.url('service/matching/employer')} icon={view.url('images/icon_handshake_green.png')} />
         </Stacked>
 
         <Stacked paddingPos="top" paddingSize="thin">

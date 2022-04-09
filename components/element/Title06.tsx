@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { view } from 'unflexible-ui-legacy';
-import { color, font } from 'lib/config';
+import { color, font, screen } from 'lib/config';
 
 const tags: { [key: string]: any } = {
   'h1': styled.h1``,
@@ -48,6 +48,30 @@ const Inner = styled.span`
 
   span {
     margin: 0 .5rem;
+  }
+
+  @media only screen and (max-width: ${screen.m}px) {
+    padding: .25rem 0;
+
+    img {
+      width: 27px;
+      height: 21px;
+    }
+
+    span {
+      font-size: 1.25rem;
+    }
+  }
+
+  @media only screen and (max-width: ${screen.s}px) {
+    img {
+      width: 22px;
+      height: 17px;
+    }
+
+    span {
+      font-size: 1rem;
+    }
   }
 `;
 

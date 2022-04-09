@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { view } from 'unflexible-ui-legacy';
-import { color } from 'lib/config';
+import { color, font, screen } from 'lib/config';
 
 const Circle = ({ name, en, href }: CircleProps) => {
   return (
@@ -34,6 +34,7 @@ const CircleComponent = styled.a`
   }
 
   p, h3 {
+    font-family: ${font.sansSerif};
     transition-duration: .3s;
   }
 
@@ -45,16 +46,59 @@ const CircleComponent = styled.a`
 
     small {
       display: block;
-      font-size: 1rem;
+      font-size: .6em;
     }
   }
 
   h3 {
-    margin-top: 1rem;
+    margin-top: .75rem;
     color: ${color.purple};
     font-size: 1.25rem;
     font-weight: 400;
     text-align: center;
+  }
+
+  @media only screen and (max-width: ${screen.m}px) {
+    width: 210px;
+    height: 210px;
+
+    p {
+      font-size: 1.5rem;
+    }
+
+    h3 {
+      font-size: 1rem;
+    }
+  }
+
+  @media only screen and (max-width: ${screen.s}px) {
+    width: 140px;
+    height: 140px;
+    border: 6px solid ${color.pinkPurple};
+
+    p {
+      font-size: 1rem;
+    }
+
+    h3 {
+      margin-top: .5rem;
+      font-size: .8rem;
+    }
+  }
+
+  @media only screen and (max-width: ${screen.xs}px) {
+    width: 120px;
+    height: 120px;
+    border: 6px solid ${color.pinkPurple};
+
+    p {
+      font-size: .7rem;
+    }
+
+    h3 {
+      margin-top: .25rem;
+      font-size: .7rem;
+    }
   }
 `;
 
@@ -166,6 +210,13 @@ const Component = styled.div`
   li:nth-child(5) {
     top: 20%;
     left: 9%;
+  }
+
+  @media only screen and (max-width: ${screen.s}px) {
+    > div {
+      background-size: 80%;
+      background-position: 50% 50%;
+    }
   }
 `
 

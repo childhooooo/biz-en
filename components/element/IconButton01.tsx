@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { ButtonKind } from './buttonKind';
-import { color } from 'lib/config';
+import { color, font, screen } from 'lib/config';
 
 interface Props {
   name: string;
@@ -44,31 +44,42 @@ const Link = styled.a`
 const Inner = styled.div`
   display: flex;
   align-items: center;
-transition-duration: .3s;
+  transition-duration: .3s;
 
-&:hover {
-  transform: translateX(10px);
+  &:hover {
+    transform: translateX(10px);
+    }
+
+  img {
+    width: auto;
+    height: 3rem;
   }
 
-img {
-  width: auto;
-  height: 3rem;
-}
-
-.name {
+  .name {
     margin-top: .3rem;
     margin-left: .1rem;
     font-size: 1.5rem;
     font-weight: 400;
-    color: ${color.theme};
+    font-family: ${font.sansSerif};
+    color: ${color.semiSkyBlue};
   }
 
-.arrow {
-  margin-bottom: .25rem;
-  margin-left: .5rem;
-font-size: 3rem;
-color: ${color.theme};
-}
+  .arrow {
+    margin-bottom: .25rem;
+    margin-left: .5rem;
+    font-size: 3rem;
+    color: ${color.semiSkyBlue};
+  }
+
+  @media only screen and (max-width: ${screen.m}px) {
+    .name {
+      font-size: 1.25rem;
+    }
+
+    .arrow {
+      font-size: 2rem;
+    }
+  }
 `
 
 export default IconButton01;
