@@ -98,6 +98,8 @@ const Body = styled.div`
 const Categories = styled.ul`
   display: flex;
   flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
   list-style: none;
 `;
 

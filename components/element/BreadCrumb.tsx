@@ -27,6 +27,8 @@ const BreadCrumb = ({ routes }: Props) => {
 const Component = styled.ul`
   display: flex;
   align-items: center;
+  margin: 0;
+  padding: 0;
   list-style: none;
 
   a {

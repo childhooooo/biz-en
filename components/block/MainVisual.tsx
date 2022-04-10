@@ -184,6 +184,7 @@ p {
     top: 45%;
     right: 25px;
     font-size: 2rem;
+    font-weight: 300;
   }
 
   p {
@@ -198,7 +199,7 @@ p {
 @media only screen and (max-width: ${screen.xs}px) {
   h2 {
     right: 15px;
-    font-size: 1.75rem;
+    font-size: 1.5rem;
   }
 
   p {

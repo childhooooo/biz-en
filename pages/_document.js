@@ -49,7 +49,7 @@ export default class MyDocument extends Document {
           <meta name="theme-color" content="#ffffff" />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
-          <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100&family=M+PLUS+Rounded+1c:wght@400&display=swap" rel="stylesheet" />
+      <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300&family=M+PLUS+Rounded+1c:wght@400&display=swap" rel="stylesheet" />
         </Head>
         <body id="myapp">
           <noscript dangerouslySetInnerHTML={{ __html: `` }}></noscript>
