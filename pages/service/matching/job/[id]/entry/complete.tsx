@@ -16,7 +16,7 @@ const ServiceMatchingMatchingEntryCompletePage: NextPage = () => {
     { name: 'TOP', href: view.url('') },
     { name: 'Service', href: view.url('service') },
     { name: '外国人材マッチングサイト', href: view.url('service/matching') },
-    { name: 'マッチングエントリー', href: view.url(`service/matching/${id}/entry/new`) },
+    { name: 'マッチングエントリー', href: view.url(`service/matching/job/${id}/entry/new`) },
   ];
 
   return (

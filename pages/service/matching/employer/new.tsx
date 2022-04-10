@@ -14,7 +14,7 @@ const ServiceEmployerNewPage: NextPage = ({}: Props) => {
   const routes = [
     { name: 'TOP', href: view.url('') },
     { name: 'Service', href: view.url('service') },
-    { name: '求人企業登録', href: view.url('service/employer/new') }
+    { name: '求人企業登録', href: view.url('service/matching/employer/new') }
   ];
 
   return (
