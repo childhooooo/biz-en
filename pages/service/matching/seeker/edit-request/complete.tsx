@@ -11,8 +11,8 @@ import { color } from 'lib/config';
 
 const ServiceMatchingEditRequestCompletePage: NextPage = () => {
   const router = useRouter();
-  const rawEditType = Array.isArray(router.query?.type) ? router.query?.type[0] : router.query?.type || '0';
-  const editType = EditType.fromNumber(parseInt(rawEditType));
+  const rawEditType = Array.isArray(router.query?.type) ? router.query?.type[0] : router.query?.type || 'modify';
+  const editType = EditType.fromSlug(rawEditType);
 
   let title: string;
   let message: string;
