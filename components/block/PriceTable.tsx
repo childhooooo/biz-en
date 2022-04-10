@@ -37,6 +37,7 @@ justify-content: space-between;
 h3 {
   display: flex;
   align-items: center;
+  padding-left: .25rem;
   font-size: 1rem;
 
   &::before {
