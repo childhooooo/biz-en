@@ -167,6 +167,7 @@ const Component = styled.table`
   }
 
   select {
+    width: 100%;
     padding: .5rem;
   }
 }

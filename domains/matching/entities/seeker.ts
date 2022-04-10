@@ -1,8 +1,8 @@
 const SexKind = {
-  NOTKNOWN: 0,
-  MALE: 1,
-  FEMALE: 2,
-  NOTAPPLICABLE: 9
+  NOTKNOWN: 'notknown',
+  MALE: 'male',
+  FEMALE: 'female',
+  NOTAPPLICABLE: 'notapplicable'
 } as const;
 export type SexKind = typeof SexKind[keyof typeof SexKind];
 export const SexKindValues = Object.values(SexKind);
@@ -33,6 +33,21 @@ export class Sex {
     }
   }
 
+  static fromSlug(value: string): Sex {
+    switch (value) {
+      case 'notknown':
+        return new Sex(SexKind.NOTKNOWN);
+      case 'male':
+        return new Sex(SexKind.MALE);
+      case 'female':
+        return new Sex(SexKind.FEMALE);
+      case 'notapplicable':
+        return new Sex(SexKind.NOTAPPLICABLE);
+      default:
+        return new Sex(SexKind.NOTKNOWN);
+    }
+  }
+
   static fromNumber(value: number): Sex {
     switch (value) {
       case 0:
@@ -50,18 +65,37 @@ export class Sex {
 }
 
 const EducationKind = {
-  UNIVERSITY: 0,
-  GURADUATE_SCHOOL: 1,
-  JUNIOR_COLLEGE: 2,
-  VOCATIONAL_SCHOOL: 3,
-  JAPANESE_LANGUAGE_SCHOOL: 4,
-  OTHERS: 9
+  UNIVERSITY: 'university',
+  GURADUATE_SCHOOL: 'guraduate_school',
+  JUNIOR_COLLEGE: 'junior_college',
+  VOCATIONAL_SCHOOL: 'vocational_school',
+  JAPANESE_LANGUAGE_SCHOOL: 'japanese_language_school',
+  OTHERS: 'others'
 } as const;
 export type EducationKind = typeof EducationKind[keyof typeof EducationKind];
 export const EducationKindValues = Object.values(EducationKind);
 
 export class Education {
   constructor(public readonly kind: EducationKind) { }
+
+  static fromSlug(value: string): Education {
+    switch (value) {
+      case 'university':
+        return new Education(EducationKind.UNIVERSITY);
+      case 'guraduate_school':
+        return new Education(EducationKind.GURADUATE_SCHOOL);
+      case 'junior_college':
+        return new Education(EducationKind.JUNIOR_COLLEGE);
+      case 'vocational_school':
+        return new Education(EducationKind.VOCATIONAL_SCHOOL);
+      case 'japanese_language_school':
+        return new Education(EducationKind.JAPANESE_LANGUAGE_SCHOOL);
+      case 'others':
+        return new Education(EducationKind.OTHERS);
+      default:
+        return new Education(EducationKind.OTHERS);
+    }
+  }
 
   static fromNumber(value: number): Education {
     switch (value) {
@@ -107,14 +141,25 @@ export class Education {
 }
 
 const EducationStateKind = {
-  GURADUATED: 0,
-  LARNING: 1
+  GURADUATED: 'guraduated',
+  LARNING: 'larning'
 } as const;
 export type EducationStateKind = typeof EducationStateKind[keyof typeof EducationStateKind];
 export const EducationStateKindValues = Object.values(EducationStateKind);
 
 export class EducationState {
   constructor(public readonly kind: EducationStateKind) { }
+
+  static fromSlug(value: string): EducationState | null {
+    switch (value) {
+      case 'guraduated':
+        return new EducationState(EducationStateKind.GURADUATED);
+      case 'larning':
+        return new EducationState(EducationStateKind.LARNING);
+      default:
+        return null;
+    }
+  }
 
   static fromNumber(value: number): EducationState | null {
     switch (value) {
@@ -140,23 +185,52 @@ export class EducationState {
 }
 
 const QualificationKind = {
-  SKILL_HUMANITY_INTERNATIONAL: 0,
-  SPECIFIC_SKILL: 1,
-  TECHNICAL_INTERN_1: 2,
-  TECHNICAL_INTERN_2: 3,
-  TECHNICAL_INTERN_3: 4,
-  STUDY: 5,
-  SPECIFIC_ACTIVITY: 6,
-  NURSING: 7,
-  PROFESSION: 8,
-  FAMILY: 9,
-  OTHERS: 10
+  SKILL_HUMANITY_INTERNATIONAL: 'skill_humanity_international',
+  SPECIFIC_SKILL: 'specific_skill',
+  TECHNICAL_INTERN_1: 'technical_intern_1',
+  TECHNICAL_INTERN_2: 'technical_intern_2',
+  TECHNICAL_INTERN_3: 'technical_intern_3',
+  STUDY: 'study',
+  SPECIFIC_ACTIVITY: 'specific_activity',
+  NURSING: 'nursing',
+  PROFESSION: 'profession',
+  FAMILY: 'family',
+  OTHERS: 'others'
 }
 export type QualificationKind = typeof QualificationKind[keyof typeof QualificationKind];
 export const QualificationKindValues = Object.values(QualificationKind);
 
 export class Qualification {
   constructor(public readonly kind: QualificationKind) { }
+
+  static fromSlug(value: string) {
+    switch (value) {
+      case 'skill_humanity_international':
+        return new Qualification(QualificationKind.SKILL_HUMANITY_INTERNATIONAL);
+      case 'specific_skill':
+        return new Qualification(QualificationKind.SPECIFIC_SKILL);
+      case 'technical_intern_1':
+        return new Qualification(QualificationKind.TECHNICAL_INTERN_1);
+      case 'technical_intern_2':
+        return new Qualification(QualificationKind.TECHNICAL_INTERN_2);
+      case 'technical_intern_3':
+        return new Qualification(QualificationKind.TECHNICAL_INTERN_3);
+      case 'study':
+        return new Qualification(QualificationKind.STUDY);
+      case 'specific_activity':
+        return new Qualification(QualificationKind.SPECIFIC_ACTIVITY);
+      case 'nursing':
+        return new Qualification(QualificationKind.NURSING);
+      case 'profession':
+        return new Qualification(QualificationKind.PROFESSION);
+      case 'family':
+        return new Qualification(QualificationKind.FAMILY);
+      case 'others':
+        return new Qualification(QualificationKind.OTHERS);
+      default:
+        return null;
+    }
+  }
 
   static fromNumber(value: number) {
     switch (value) {
@@ -222,16 +296,16 @@ export class Qualification {
 }
 
 const JLPTKind = {
-  NONE: 0,
-  N_1: 1,
-  N_2: 2,
-  N_3: 3,
-  N_4: 4,
-  N_5: 5,
-  CLASS_1: 6,
-  CLASS_2: 7,
-  CLASS_3: 8,
-  CLASS_4: 9
+  NONE: 'none',
+  N_1: 'n_1',
+  N_2: 'n_2',
+  N_3: 'n_3',
+  N_4: 'n_4',
+  N_5: 'n_5',
+  CLASS_1: 'class_1',
+  CLASS_2: 'class_2',
+  CLASS_3: 'class_3',
+  CLASS_4: 'class_4'
 } as const;
 export type JLPTKind = typeof JLPTKind[keyof typeof JLPTKind];
 export const JLPTKindValues = Object.values(JLPTKind);
@@ -265,6 +339,33 @@ export class JLPT {
         return '3級';
       case JLPTKind.CLASS_4:
         return '4級';
+      default:
+        return null;
+    }
+  }
+
+  static fromSlug(value: string): JLPT | null {
+    switch (value) {
+      case 'none':
+        return new JLPT(JLPTKind.NONE);
+      case 'n_1':
+        return new JLPT(JLPTKind.N_1);
+      case 'n_2':
+        return new JLPT(JLPTKind.N_2);
+      case 'n_3':
+        return new JLPT(JLPTKind.N_3);
+      case 'n_4':
+        return new JLPT(JLPTKind.N_4);
+      case 'n_5':
+        return new JLPT(JLPTKind.N_5);
+      case 'class_1':
+        return new JLPT(JLPTKind.CLASS_1);
+      case 'class_2':
+        return new JLPT(JLPTKind.CLASS_2);
+      case 'class_3':
+        return new JLPT(JLPTKind.CLASS_3);
+      case 'class_4':
+        return new JLPT(JLPTKind.CLASS_4);
       default:
         return null;
     }
@@ -359,19 +460,10 @@ export class Seeker {
       throw new Error('Any required fields are not found');
     }
 
-    const sexKind = typeof json.sex === 'string' ? parseInt(json.sex) : json.sex;
-    const educationKind = typeof json.education === 'string' ? parseInt(json.education) : json.education;
-    const educationStateKind = typeof json.educationState === 'string' ? parseInt(json.educationState) : json.educationState;
-    const jlptKind = typeof json.jlpt === 'string' ? parseInt(json.jlpt) : json.jlpt;
-
-    if (isNaN(sexKind) || isNaN(educationKind) || isNaN(educationStateKind)) {
-      throw new Error('Some fields have invalid value');
-    }
-
-    const sex = new Sex(sexKind);
-    const education = new Education(educationKind);
-    const educationState = new EducationState(educationStateKind);
-    const jlpt = jlptKind ? new JLPT(jlptKind) : null;
+    const sex = Sex.fromSlug(json.sex);
+    const education = Education.fromSlug(json.education);
+    const educationState = EducationState.fromSlug(json.educationState);
+    const jlpt = json.jlpt ? JLPT.fromSlug(json.jlpt) : null;
 
     if (sex == null || education == null || educationState == null) {
       throw new Error('Some fields have invalid value');
@@ -404,17 +496,17 @@ export class InputSeeker {
     public readonly name: string,
     public readonly kana: string,
     public readonly birthday: string,
-    public readonly sex: number,
+    public readonly sex: string,
     public readonly postalcode: string,
     public readonly address: string,
     public readonly email: string,
     public readonly reEmail: string,
     public readonly nationality: string,
-    public readonly education: number,
-    public readonly educationState: number,
+    public readonly education: string,
+    public readonly educationState: string,
     public readonly educationSchool: string,
-    public readonly qualification: number,
-    public readonly jlpt: number | null,
+    public readonly qualification: string,
+    public readonly jlpt: string | null,
     public readonly acceptEmail: string,
     public readonly password: string
   ) { }

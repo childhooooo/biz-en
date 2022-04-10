@@ -17,9 +17,9 @@ const NewSeeker = ({ }: Props) => {
   const router = useRouter();
   const { register, handleSubmit, getValues, reset, formState: { errors } } = useForm<InputSeeker>({
     defaultValues: {
-      sex: 1,
-      educationState: 1,
-      acceptEmail: "yes"
+      sex: 'male',
+      educationState: 'guraduated',
+      acceptEmail: 'yes'
     }
   });
   const onSubmit: SubmitHandler<InputSeeker> = async data => {
@@ -89,7 +89,7 @@ const NewSeeker = ({ }: Props) => {
                       {...register("sex", { required: true })}
                       id="sex-male"
                       type="radio"
-                      value={1}
+                      value={'male'}
                       defaultChecked
                     />
                     <label htmlFor="sex-male">男性</label>
@@ -100,7 +100,7 @@ const NewSeeker = ({ }: Props) => {
                       {...register("sex", { required: true })}
                       id="sex-female"
                       type="radio"
-                      value={2}
+                      value={'female'}
                     />
                     <label htmlFor="sex-female">女性</label>
                   </li>
@@ -110,7 +110,7 @@ const NewSeeker = ({ }: Props) => {
                       {...register("sex", { required: true })}
                       id="sex-others"
                       type="radio"
-                      value={9}
+                      value={'others'}
                     />
                     <label htmlFor="sex-others">その他</label>
                   </li>
@@ -178,15 +178,14 @@ const NewSeeker = ({ }: Props) => {
                     <div className="select">
                       <select id="education" defaultValue="" {...register("education", { required: true })}>
                         <option value="" disabled>選択してください</option>
-                        {EducationKindValues.map((v: number, index: number) => {
-                          const label = Education.fromNumber(v)?.toString() || null;
+                        {EducationKindValues.map((v: string, index: number) => {
+                          const label = Education.fromSlug(v)?.toString() || null;
                           if (label !== null) {
                             return <option value={v} key={index}>{label}</option>;
                           }
                         })}
                       </select>
                     </div>
-                    {errors.education && <p className="error">正しく入力してください</p>}
                   </li>
                   <li>
                     <ul className="radio">
@@ -195,7 +194,7 @@ const NewSeeker = ({ }: Props) => {
                           {...register("educationState", { required: true })}
                           id="education-state-guraduated"
                           type="radio"
-                          value={0}
+                          value={'guraduated'}
                           defaultChecked
                         />
                         <label htmlFor="education-state-guraduated">既卒</label>
@@ -205,7 +204,7 @@ const NewSeeker = ({ }: Props) => {
                           {...register("educationState", { required: true })}
                           id="education-state-larning"
                           type="radio"
-                          value={1}
+                          value={'larning'}
                         />
                         <label htmlFor="education-state-larning">在学中</label>
                       </li>
@@ -214,7 +213,7 @@ const NewSeeker = ({ }: Props) => {
                 </ul>
                 <div>
                   <input type="text" placeholder="学校名を記入してください" {...register("educationSchool", { required: true })} />
-                  {errors.educationSchool && <p className="error">正しく入力してください</p>}
+                  {(errors.education || errors.educationState || errors.educationSchool) && <p className="error">正しく入力してください</p>}
                 </div>
               </td>
             </tr>
@@ -227,8 +226,8 @@ const NewSeeker = ({ }: Props) => {
                 <div className="select">
                   <select id="qualification" defaultValue="" {...register("qualification", { required: true })}>
                     <option value="" disabled>選択してください</option>
-                    {QualificationKindValues.map((v: number, index: number) => {
-                      const label = Qualification.fromNumber(v)?.toString() || null;
+                    {QualificationKindValues.map((v: string, index: number) => {
+                      const label = Qualification.fromSlug(v)?.toString() || null;
                       if (label !== null) {
                         return <option value={v} key={index}>{label}</option>
                       }
@@ -247,8 +246,8 @@ const NewSeeker = ({ }: Props) => {
                 <div className="select">
                   <select id="jlpt" defaultValue="" {...register("jlpt")}>
                     <option value="">選択してください</option>
-                    {JLPTKindValues.map((v: number, index: number) => {
-                      const label = JLPT.fromNumber(v)?.toString() || null;
+                    {JLPTKindValues.map((v: string, index: number) => {
+                      const label = JLPT.fromSlug(v)?.toString() || null;
                       if (label !== null) {
                         return <option value={v} key={index}>{label}</option>
                       }

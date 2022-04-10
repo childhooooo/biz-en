@@ -1,6 +1,6 @@
 export const EditTypeKind = {
-  MODIFY: 0,
-  DELETE: 1
+  MODIFY: 'modify',
+  DELETE: 'delete'
 } as const;
 export type EditTypeKind = typeof EditTypeKind[keyof typeof EditTypeKind];
 export const EditTypeKindValues = Object.values(EditTypeKind);
@@ -13,7 +13,7 @@ export class EditType {
   }
 
   static all(): EditType[] {
-    return EditTypeKindValues.map((value: number) => EditType.fromNumber(value));
+    return EditTypeKindValues.map((value: string) => EditType.fromSlug(value));
   }
 
   toString(): string | null {
@@ -28,6 +28,17 @@ export class EditType {
         return '退会（登録情報削除）';
       default:
         return '';
+    }
+  }
+
+  static fromSlug(value: string): EditType {
+    switch(value) {
+      case 'modify':
+        return new EditType(EditTypeKind.MODIFY);
+      case 'delete':
+        return new EditType(EditTypeKind.DELETE);
+      default:
+        throw new Error('Invalid value');
     }
   }
 
@@ -60,14 +71,14 @@ export class EditRequest {
       throw new Error('Any required fields are not found');
     }
 
-    return new EditRequest(obj.id, obj.seekerId, EditType.fromNumber(obj.editType), obj.content || null);
+    return new EditRequest(obj.id, obj.seekerId, EditType.fromSlug(obj.editType), obj.content || null);
   }
 }
 
 export class InputEditRequest {
   constructor(
     public readonly seekerId: number,
-    public readonly editType: number,
+    public readonly editType: string,
     public readonly content: string | null,
     public readonly title: string
   ) {}

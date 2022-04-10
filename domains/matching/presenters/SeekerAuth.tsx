@@ -89,7 +89,7 @@ const SeekerAuth = ({ withNewLink }: Props) => {
                       <IconButton03
                         name="会員（求職者）登録はこちら"
                         kind="link"
-                        href={view.url('service/matching/account/user/new')}
+                        href={view.url('service/matching/seeker/new')}
                         icon={view.url('images/arrow_white.png')}
                         color={color.theme}
                       />
