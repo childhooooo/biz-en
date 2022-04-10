@@ -452,7 +452,7 @@ const ServicePage: NextPage = ({ }: Props) => {
         </Stacked>
 
         <Stacked paddingPos="top" paddingSize="narrow">
-          <PriceTable name="在留資格申請コンサルティング" unit="料金／人（税別）">
+          <PriceTable name="在留資格諸申請取次費用" unit="料金／人（税別）">
             <tr>
               <th>特定技能外国人 在留資格認定証明書交付申請（海外在住）</th>
               <td><strong>150,000</strong>円</td>
