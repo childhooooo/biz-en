@@ -13,13 +13,13 @@ interface Props { }
 const Home: NextPage = ({ }: Props) => {
   return (
     <Page
-      title="外国人材群馬支援事業（株式会社ビズソリューションズ）"
+      title="群馬外国人材就職支援事業（株式会社ビズソリューションズ）"
       description=""
       path="/"
       ogType="website"
       header={(
         <Header
-          title="外国人材群馬支援事業（株式会社ビズソリューションズ）"
+          title="群馬外国人材就職支援事業（株式会社ビズソリューションズ）"
           language="ja"
         />
       )}

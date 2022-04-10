@@ -17,7 +17,7 @@ const Footer = ({}: Props) => {
               <h3>About us</h3>
               <Menu>
                 <li>
-                  <a href={view.url('about/description')}>外国人材群馬就職支援事業とは</a>
+                  <a href={view.url('about/description')}>群馬外国人材就職支援事業とは</a>
                 </li>
                 <li>
                   <a href={view.url('about/greeting')}>ご挨拶</a>

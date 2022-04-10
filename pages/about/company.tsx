@@ -17,13 +17,13 @@ const AboutCompanyPage: NextPage = ({}: Props) => {
 
   return (
     <Page
-      title="会社概要 | 縁 -en-"
+      title="会社概要 | 群馬外国人材就職支援事業（株式会社ビズソリューションズ）"
       description=""
       path="/about/company"
       ogType="article"
       header={(
         <Header
-          title="会社概要 | 外国人材群馬支援事業（株式会社ビズソリューションズ）"
+          title="会社概要 | 群馬外国人材就職支援事業（株式会社ビズソリューションズ）"
           language="ja"
           selected="about"
         />
@@ -38,7 +38,7 @@ const AboutCompanyPage: NextPage = ({}: Props) => {
         />
       </Stacked>
 
-      <Stacked paddingSize="narrow" isSection wrap>
+      <Stacked paddingSize="normal" isSection wrap>
         <Table01>
           <tr>
             <th>会社名</th>
@@ -68,12 +68,12 @@ const AboutCompanyPage: NextPage = ({}: Props) => {
 
           <tr>
             <th>本社所在地</th>
-            <td>〒370-1301　群馬県高崎市新町3044番地2</td>
+            <td>〒370-3503　群馬県北群馬郡榛東村新井2653番地6</td>
           </tr>
 
           <tr>
             <th>事業所</th>
-            <td>〒370-0852　群馬県高崎市上中居町3丁目4-7　プレミール中居Ⅱ 1055</td>
+            <td>〒370-0852　群馬県高崎市上中居町3丁目4-7　プレミール中居Ⅱ 105</td>
           </tr>
 
           <tr>

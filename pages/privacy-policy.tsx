@@ -17,13 +17,13 @@ const ServicePage: NextPage = ({ }: Props) => {
 
   return (
     <Page
-      title="プライバシーポリシー | 外国人材採用支援事業（株式会社ビズソリューションズ）"
+      title="プライバシーポリシー | 外国人材就職支援事業（株式会社ビズソリューションズ）"
       description=""
       path="/service/lesson"
       ogType="article"
       header={(
         <Header
-          title="プライバシーポリシー | 外国人材採用支援事業（株式会社ビズソリューションズ）"
+          title="プライバシーポリシー | 外国人材就職支援事業（株式会社ビズソリューションズ）"
           language="ja"
         />
       )}

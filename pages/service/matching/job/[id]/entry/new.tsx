@@ -97,8 +97,8 @@ const ServiceMatchingEntryNewPage: NextPage<Props> = ({ seeker, jobRaw }) => {
     { name: 'TOP', href: view.url('') },
     { name: 'Service', href: view.url('service') },
     { name: '外国人材マッチングサイト', href: view.url('service/matching') },
-    { name: '募集要項', href: view.url(`service/matching/${id || ''}`) },
-    { name: 'マッチングエントリー', href: view.url(`service/matching/${id || ''}/entry/new`) }
+    { name: '募集要項', href: view.url(`service/matching/job/${id || ''}`) },
+    { name: 'マッチングエントリー', href: view.url(`service/matching/job/${id || ''}/entry/new`) }
   ];
 
   return (

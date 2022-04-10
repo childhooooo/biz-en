@@ -39,7 +39,7 @@ const ServiceMatchingSinglePage: NextPage<Props> = ({ jobData }) => {
     { name: 'TOP', href: view.url('') },
     { name: 'Service', href: view.url('service') },
     { name: '外国人材マッチングサイト', href: view.url('service/matching') },
-    { name: '募集要項', href: view.url(`service/matching/${id || ''}`) }
+    { name: '募集要項', href: view.url(`service/matching/job/${id || ''}`) }
   ];
 
   let job: Job | null;
@@ -82,7 +82,7 @@ const ServiceMatchingSinglePage: NextPage<Props> = ({ jobData }) => {
             </Title>
           </Stacked>
 
-          <Stacked paddingPos="top" paddingSize="thin" wrap>
+          <Stacked paddingPos="top" paddingSize="narrow" wrap>
             <Columns justify="center">
               <Button04 name="この求人にマッチングエントリーする" color={color.orange} kind="link" href={view.url(`service/matching/job/${job.id}/entry/new`)} />
             </Columns>

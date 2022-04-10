@@ -21,13 +21,13 @@ const ServicePage: NextPage = ({ }: Props) => {
 
   return (
     <Page
-      title="外国人材紹介サービス | 株式会社ビズソリューションズ"
+      title="外国人材紹介サービス | 群馬外国人材就職支援事業（株式会社ビズソリューションズ）"
       description=""
       path="/service/lesson"
       ogType="article"
       header={(
         <Header
-          title="外国人材紹介サービス | 外国人材採用支援サービス（株式会社ビズソリューションズ）"
+          title="外国人材紹介サービス | 群馬外国人材就職支援事業（株式会社ビズソリューションズ）"
           language="ja"
           selected="service"
         />
@@ -260,7 +260,7 @@ const ServicePage: NextPage = ({ }: Props) => {
             <Block height="50%" fixRatio>
               <Figure
                 name="特定技能"
-                src={view.url('images/profile_staff-agency_02.jpg')}
+                src={view.url('images/profile_staff-agency_03.jpg')}
                 width="100%"
                 height="100%"
               />
@@ -418,7 +418,7 @@ const ServicePage: NextPage = ({ }: Props) => {
         </Stacked>
 
         <Stacked paddingPos="top" paddingSize="thin">
-          <PlainText baseFamily={font.sansSerif} baseSizeXS=".9rem">
+          <PlainText baseFamily={font.sansSerif} baseSizeS=".9rem">
             <p>
               ※想定年収は月額給与×12ヶ月とする。（賞与含まず）<br />
               ※月額給与=基本給＋職務手当＋みなし残業手当＋住宅手当＋その他固定的に毎月支給される手当<br />（但し、交通費は除く）
@@ -455,15 +455,15 @@ const ServicePage: NextPage = ({ }: Props) => {
           <PriceTable name="在留資格申請コンサルティング" unit="料金／人（税別）">
             <tr>
               <th>特定技能外国人 在留資格認定証明書交付申請（海外在住）</th>
-              <td><strong>98,000</strong>円</td>
+              <td><strong>150,000</strong>円</td>
             </tr>
             <tr>
               <th>特定技能外国人 在留資格変更許可申請（国内在住）</th>
-              <td><strong>98,000</strong>円</td>
+              <td><strong>150,000</strong>円</td>
             </tr>
             <tr>
               <th>高度人材（技・人・国）在留資格認定証明書交付申請（海外在住）</th>
-              <td><strong>45,000</strong>円</td>
+              <td><strong>100,000</strong>円</td>
             </tr>
           </PriceTable>
         </Stacked>
@@ -490,6 +490,7 @@ const Limitation = styled.div`
   overflow: scroll;
 
 table {
+  width: 100%;
   min-width: 680px;
   border-collapse: collapse;
 }

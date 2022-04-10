@@ -17,13 +17,13 @@ const ServicePage: NextPage = ({ }: Props) => {
 
   return (
     <Page
-      title="日本語レッスン | 株式会社ビズソリューションズ"
+      title="日本語レッスン | 外国人材群馬就職支援事業（株式会社ビズソリューションズ）"
       description=""
       path="/service/lesson"
       ogType="article"
       header={(
         <Header
-          title="日本語レッスン | 外国人材採用支援サービス（株式会社ビズソリューションズ）"
+          title="日本語レッスン | 外国人材群馬就職支援事業（株式会社ビズソリューションズ）"
           language="ja"
         />
       )}
@@ -40,8 +40,8 @@ const ServicePage: NextPage = ({ }: Props) => {
         <Block width="100%">
           <Figure
             name="アイキャッチ"
-            src={view.url('lesson_01@1500.jpg')}
-            srcSet={`${view.url('images/lesson_01@2000.jpg')} 2000w, ${view.url('images/lesson_02@1500.jpg')} 1500w, ${view.url('images/lesson_01@1250.jpg')} 1250w, ${view.url('images/lesson_04@750.jpg')} 750w`}
+            src={view.url('images/lesson_01@1500.jpg')}
+            srcSet={`${view.url('images/lesson_01@2000.jpg')} 2000w, ${view.url('images/lesson_01@1500.jpg')} 1500w, ${view.url('images/lesson_01@1250.jpg')} 1250w, ${view.url('images/lesson_01@750.jpg')} 750w`}
           />
         </Block>
       </Stacked>

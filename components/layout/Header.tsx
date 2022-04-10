@@ -59,7 +59,7 @@ const Header = ({ title, language, selected }: Props) => {
               <h3 className={selected === 'about' ? 'selected' : ''}><a href={view.url('about')}>About us</a></h3>
               <ul>
                 <li>
-                  <a href={view.url('about/description')}><span>外国人材群馬就職支援事業について</span></a>
+                  <a href={view.url('about/description')}><span>群馬外国人材就職支援事業について</span></a>
                 </li>
                 <li>
                   <a href={view.url('about/greeting')}><span>ご挨拶</span></a>
