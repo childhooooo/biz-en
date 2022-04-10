@@ -141,7 +141,7 @@ const ServiceMatchingSeekerResumePage: NextPage<Props> = ({ seekerRaw }) => {
 
                 {resume &&
                   <Stacked paddingPos="top" paddingSize="narrow">
-                    <Pdf url={view.url('resume.pdf')} />
+                    <Pdf url={resume.url} />
                   </Stacked>
                 }
 
