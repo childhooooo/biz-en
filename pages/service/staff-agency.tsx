@@ -9,6 +9,7 @@ import styled from 'styled-components';
 import { rgba } from 'polished';
 import { color, font, screen } from 'lib/config';
 import { view } from 'unflexible-ui-legacy';
+import { useAppState } from 'domains/app';
 
 interface Props { }
 
@@ -18,6 +19,8 @@ const ServicePage: NextPage = ({ }: Props) => {
     { name: 'Service', href: view.url('service') },
     { name: '外国人材紹介サービス', href: view.url('service/staff-agency') }
   ];
+
+  const appState = useAppState();
 
   return (
     <Page
@@ -45,8 +48,8 @@ const ServicePage: NextPage = ({ }: Props) => {
         <StaffAgencyTitle />
       </Stacked>
 
-      <Stacked isSection wrap>
-        <Stacked paddingPos="none">
+      <Stacked isSection wrap zIndex={2}>
+        <Stacked paddingPos="none" zIndex={2}>
           <Columns repeat={2} repeatS={1} gap="normal" align="flex-start">
             <Block height="50%" fixRatio>
               <Figure
@@ -72,9 +75,14 @@ const ServicePage: NextPage = ({ }: Props) => {
                 </Columns>
               </Stacked>
 
-              <Stacked paddingPos="top" paddingSize="narrow">
+              <Stacked paddingPos="top" paddingSize="narrow" zIndex={2}>
                 <Columns gap="normal">
-                  <Block>
+                  <button onClick={() => {
+                    appState.popupImage.setState({
+                      name: '求人→入社フロー１',
+                      url: view.url('images/flow_staff-agency_l_0101.png')
+                    })
+                  }}>
                     <Stacked paddingPos="none">
                       <Figure name="フロー" src={view.url('images/flow_staff-agency_0101.png')} width="120px" />
                     </Stacked>
@@ -84,9 +92,14 @@ const ServicePage: NextPage = ({ }: Props) => {
                         <p>求人→入社フロー１</p>
                       </PlainText>
                     </Stacked>
-                  </Block>
+                  </button>
 
-                  <Block>
+                  <button onClick={() => {
+                    appState.popupImage.setState({
+                      name: '求人→入社フロー２',
+                      url: view.url('images/flow_staff-agency_l_0102.png')
+                    })
+                  }}>
                     <Stacked paddingPos="none">
                       <Figure name="フロー" src={view.url('images/flow_staff-agency_0102.png')} width="120px" />
                     </Stacked>
@@ -96,7 +109,7 @@ const ServicePage: NextPage = ({ }: Props) => {
                         <p>求人→入社フロー２</p>
                       </PlainText>
                     </Stacked>
-                  </Block>
+                  </button>
                 </Columns>
               </Stacked>
             </Block>
@@ -175,7 +188,12 @@ const ServicePage: NextPage = ({ }: Props) => {
 
               <Stacked paddingPos="top" paddingSize="narrow">
                 <Columns gap="normal">
-                  <Block>
+                  <button onClick={() => {
+                    appState.popupImage.setState({
+                      name: '求人→入社フロー２',
+                      url: view.url('images/flow_staff-agency_l_0201.png')
+                    })
+                  }}>
                     <Stacked paddingPos="none">
                       <Figure name="フロー" src={view.url('images/flow_staff-agency_0201.png')} width="120px" />
                     </Stacked>
@@ -185,9 +203,14 @@ const ServicePage: NextPage = ({ }: Props) => {
                         <p>求人→入社フロー１</p>
                       </PlainText>
                     </Stacked>
-                  </Block>
+                  </button>
 
-                  <Block>
+                  <button onClick={() => {
+                    appState.popupImage.setState({
+                      name: '求人→入社フロー２',
+                      url: view.url('images/flow_staff-agency_l_0202.png')
+                    })
+                  }}>
                     <Stacked paddingPos="none">
                       <Figure name="フロー" src={view.url('images/flow_staff-agency_0202.png')} width="120px" />
                     </Stacked>
@@ -197,7 +220,7 @@ const ServicePage: NextPage = ({ }: Props) => {
                         <p>求人→入社フロー２</p>
                       </PlainText>
                     </Stacked>
-                  </Block>
+                  </button>
                 </Columns>
               </Stacked>
             </Block>
@@ -283,7 +306,12 @@ const ServicePage: NextPage = ({ }: Props) => {
 
               <Stacked paddingPos="top" paddingSize="narrow">
                 <Columns gap="normal">
-                  <Block>
+                  <button onClick={() => {
+                    appState.popupImage.setState({
+                      name: '求人→入社フロー２',
+                      url: view.url('images/flow_staff-agency_l_0301.png')
+                    })
+                  }}>
                     <Stacked paddingPos="none">
                       <Figure name="フロー" src={view.url('images/flow_staff-agency_0301.png')} width="120px" />
                     </Stacked>
@@ -293,9 +321,14 @@ const ServicePage: NextPage = ({ }: Props) => {
                         <p>求人→入社フロー１</p>
                       </PlainText>
                     </Stacked>
-                  </Block>
+                  </button>
 
-                  <Block>
+                  <button onClick={() => {
+                    appState.popupImage.setState({
+                      name: '求人→入社フロー２',
+                      url: view.url('images/flow_staff-agency_l_0302.png')
+                    })
+                  }}>
                     <Stacked paddingPos="none">
                       <Figure name="フロー" src={view.url('images/flow_staff-agency_0302.png')} width="120px" />
                     </Stacked>
@@ -305,7 +338,7 @@ const ServicePage: NextPage = ({ }: Props) => {
                         <p>求人→入社フロー２</p>
                       </PlainText>
                     </Stacked>
-                  </Block>
+                  </button>
                 </Columns>
               </Stacked>
             </Block>
