@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { Employer, InputEmployer } from '../entities/employer';
-import { Seeker, InputSeeker, Credential } from '../entities/seeker';
+import { Seeker, InputSeeker, InputSeekerHashed, Credential } from '../entities/seeker';
 import { Job } from '../entities/job';
 import { JobCategory } from '../entities/jobCategory';
 import { Entry, NewEntry } from '../entities/entry';
