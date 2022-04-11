@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { EditRequest, InputEditRequest, createEditRequest } from 'domains/matching';
+import { EditRequest, InputEditRequest, createEditRequest, notifyNewEditRequest } from 'domains/matching';
 
 interface Result {
   message: string;

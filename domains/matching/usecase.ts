@@ -1,7 +1,10 @@
 import { Job } from './entities/job';
+import { InputEmployer } from './entities/employer';
+import { InputSeeker } from './entities/seeker';
 import { JobListState, Order } from './presenters/JobListState';
 import { SeekerAuthState } from './presenters/SeekerAuthState';
 import { getJobs } from './repository';
+import * as WordPress from './adapters/wordpress';
 
 interface FetchOptions {
   perPage?: number;
@@ -83,4 +86,20 @@ export async function signIn(state: SeekerAuthState, email: string, password: st
 
 export async function signedIn(state: SeekerAuthState, seekerId: string) {
   state.seekerId.setValue(seekerId);
+}
+
+export async function notifyNewSeeker(input: InputSeeker) {
+  WordPress.notifyNewSeeker(input);
+}
+
+export async function notifyNewEntry(input: any) {
+  WordPress.notifyNewEntry(input);
+}
+
+export async function notifyNewEditRequest(input: any) {
+  WordPress.notifyNewEditRequest(input);
+}
+
+export async function notifyNewEmployer(input: InputEmployer) {
+  WordPress.notifyNewEmployer(input);
 }

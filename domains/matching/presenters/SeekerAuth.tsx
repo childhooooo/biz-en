@@ -69,7 +69,7 @@ const SeekerAuth = ({ withNewLink }: Props) => {
               </td>
               <td className="actions">
                 <div>
-                  <a href="">▶会員IDやパスワードを忘れた方</a>
+                  <a href={view.url('contact')}>▶会員IDやパスワードを忘れた方</a>
                 </div>
 
                 <div>

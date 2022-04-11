@@ -8,6 +8,7 @@ import { view } from 'unflexible-ui-legacy';
 import { color, screen } from 'lib/config';
 import { InputEditRequest, EditType } from '../entities/editRequest';
 import { Seeker } from '../entities/seeker';
+import { notifyNewEditRequest } from '../usecase';
 
 interface Props {
   seeker: Seeker;
@@ -42,10 +43,20 @@ const NewEditRequestForm = ({ seeker }: Props) => {
         throw new Error(`${res.status}: ${res.statusText}`);
       }
     } catch (e: any) {
-      console.error(e);
       alert('何か問題が発生しました。もう一度お試しください。');
       reset();
       return;
+    }
+
+    try {
+      notifyNewEditRequest({
+        email: seeker.email,
+        name: seeker.name,
+        kind: EditType.fromSlug(input.editType),
+        details: input.content
+      });
+    } catch(e) {
+      console.log('Failed to send mail');
     }
 
     router.push(view.url(`service/matching/seeker/edit-request/complete?type=${input.editType}`));
@@ -80,6 +91,7 @@ const NewEditRequestForm = ({ seeker }: Props) => {
               id="edit-content"
               placeholder="登録情報の変更を申請する場合のみ記入してください"
               rows={10}
+              {...register('content')}
             />
           </td>
         </tr>

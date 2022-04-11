@@ -7,7 +7,7 @@ import { view } from 'unflexible-ui-legacy';
 import { color, screen } from 'lib/config';
 import {
   Education, EducationKindValues, Qualification, QualificationKindValues, JLPT, JLPTKindValues, InputSeeker,
-  getSeekerByEmail
+  getSeekerByEmail, notifyNewSeeker
 } from 'domains/matching';
 
 interface Props {
@@ -37,10 +37,15 @@ const NewSeeker = ({ }: Props) => {
         throw new Error(`${res.status}: ${res.statusText}`);
       }
     } catch (e: any) {
-      console.error(e);
       alert('何か問題が発生しました。もう一度お試しください。');
       reset();
       return;
+    }
+
+    try {
+      notifyNewSeeker(InputSeeker.fromObject(data));
+    } catch {
+      console.log('Failed to send mail')
     }
 
     router.push(view.url('service/matching/seeker/registered'));

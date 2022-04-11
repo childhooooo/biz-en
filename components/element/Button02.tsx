@@ -31,6 +31,10 @@ const Button = styled.button`
 
 const Link = styled.a`
   text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
 `;
 
 const Inner = styled.span`

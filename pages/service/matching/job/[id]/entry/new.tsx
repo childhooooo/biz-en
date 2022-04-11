@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react';
 import { withSessionSsr } from 'lib/session';
 import { color, font } from 'lib/config';
 import { view } from 'unflexible-ui-legacy';
-import { Job, getJob, Seeker } from 'domains/matching';
+import { Job, getJob, Seeker, notifyNewEntry } from 'domains/matching';
 import { useAppState } from 'domains/app';
 
 export const getServerSideProps = withSessionSsr(async function({ req, query }) {
@@ -79,10 +79,19 @@ const ServiceMatchingEntryNewPage: NextPage<Props> = ({ seeker, jobRaw }) => {
         }
 
         const data = await res.json();
-        console.log(data);
 
         if(!data.entry) {
           throw new Error('');
+        }
+
+        try {
+          notifyNewEntry({
+            name: seeker.name,
+            email: seeker.email,
+            job: job.name
+          });
+        } catch {
+          console.log('Failed to send mail');
         }
 
         router.push(view.url('/service/matching/job/[id]/entry/complete'));

@@ -28,6 +28,10 @@ const Button02 = ({ name, color, href, kind, onClick }: Props) => {
 
 const Link = styled.a`
   text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
 `;
 
 interface InnerProps {

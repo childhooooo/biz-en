@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { Employer, InputEmployer } from '../entities/employer';
-import { Seeker, InputSeekerHashed, Credential } from '../entities/seeker';
+import { Seeker, InputSeeker, Credential } from '../entities/seeker';
 import { Job } from '../entities/job';
 import { JobCategory } from '../entities/jobCategory';
 import { Entry, NewEntry } from '../entities/entry';
@@ -86,6 +86,30 @@ export async function getEmployerByEmail(email: string): Promise<Employer | null
   }
 }
 
+export async function notifyNewEmployer(input: InputEmployer) {
+  const data = new FormData();
+  data.set('your-company', input.companyName);
+  data.set('your-company-kana', input.companyKana);
+  data.set('your-lastname', input.lastName);
+  data.set('your-firstname', input.firstName);
+  data.set('your-email', input.email);
+  data.set('your-tel', input.tel);
+
+  let res;
+  try {
+    res = await axios(`${process.env.NEXT_PUBLIC_API_BASE}/contact-form-7/v1/contact-forms/${process.env.NEXT_PUBLIC_NOTIFY_EMPLOYER_ID}/feedback`, {
+      method: 'POST',
+      data
+    });
+  } catch(e: any) {
+    throw new Error(`${e.response?.status | 500}: ${e.message}`);
+  }
+
+  if(res.data.status !== 'mail_sent') {
+    throw new Error(res.data.status);
+  }
+}
+
 export function wpToSeeker(obj: any): Seeker {
   try {
     return Seeker.fromObject({
@@ -135,6 +159,27 @@ export async function getSeekerByEmail(email: string): Promise<Seeker | null> {
     return res.data[0] ? wpToSeeker(res.data[0]) : null;
   } catch (e: any) {
     throw new Error(`Failed to parsae response to Seeker: ${e.message}`);
+  }
+}
+
+export async function notifyNewSeeker(input: InputSeeker) {
+  const data = new FormData();
+  data.set('your-name', input.name);
+  data.set('your-kana', input.kana);
+  data.set('your-email', input.email);
+
+  let res;
+  try {
+    res = await axios(`${process.env.NEXT_PUBLIC_API_BASE}/contact-form-7/v1/contact-forms/${process.env.NEXT_PUBLIC_NOTIFY_SEEKER_ID}/feedback`, {
+      method: 'POST',
+      data
+    });
+  } catch(e: any) {
+    throw new Error(`${e.response?.status | 500}: ${e.message}`);
+  }
+
+  if(res.data.status !== 'mail_sent') {
+    throw new Error(res.data.status);
   }
 }
 
@@ -226,6 +271,27 @@ export async function createEntry(params: NewEntry): Promise<Entry> {
   return wpToEntry(res.data);
 }
 
+export async function notifyNewEntry(input: any) {
+  const data = new FormData();
+  data.set('your-name', input.name);
+  data.set('your-email', input.email);
+  data.set('target-job', input.job);
+
+  let res;
+  try {
+    res = await axios(`${process.env.NEXT_PUBLIC_API_BASE}/contact-form-7/v1/contact-forms/${process.env.NEXT_PUBLIC_NOTIFY_ENTRY_ID}/feedback`, {
+      method: 'POST',
+      data
+    });
+  } catch(e: any) {
+    throw new Error(`${e.response?.status | 500}: ${e.message}`);
+  }
+
+  if(res.data.status !== 'mail_sent') {
+    throw new Error(res.data.status);
+  }
+}
+
 export function wpToEditRequest(obj: any): EditRequest {
   return EditRequest.fromObject({
     id: obj.id,
@@ -254,4 +320,26 @@ export async function createEditRequest(params: InputEditRequest): Promise<EditR
   }
 
   return wpToEditRequest(res.data);
+}
+
+export async function notifyNewEditRequest(input: any) {
+  const data = new FormData();
+  data.set('your-email', input.email);
+  data.set('your-name', input.name);
+  data.set('your-kind', input.kind);
+  data.set('your-details', input.details);
+
+  let res;
+  try {
+    res = await axios(`${process.env.NEXT_PUBLIC_API_BASE}/contact-form-7/v1/contact-forms/${process.env.NEXT_PUBLIC_NOTIFY_EDIT_ID}/feedback`, {
+      method: 'POST',
+      data
+    });
+  } catch(e: any) {
+    throw new Error(`${e.response?.status | 500}: ${e.message}`);
+  }
+
+  if(res.data.status !== 'mail_sent') {
+    throw new Error(res.data.status);
+  }
 }

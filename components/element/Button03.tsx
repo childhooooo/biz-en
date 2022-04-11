@@ -64,6 +64,10 @@ const Button02 = ({ name, description, href, kind, onClick }: Props) => {
 const Link = styled.a`
   color: ${color.black};
   text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
 `;
 
 const Inner = styled.div`

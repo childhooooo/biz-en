@@ -2,11 +2,10 @@ import styled from 'styled-components';
 import { useForm, SubmitHandler } from "react-hook-form";
 import { FormTable } from 'components/block';
 
-import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { view } from 'unflexible-ui-legacy';
 import { color, screen } from 'lib/config';
-import { InputEmployer, getEmployerByEmail } from 'domains/matching';
+import { InputEmployer, getEmployerByEmail, notifyNewEmployer } from 'domains/matching';
 
 interface Props {
 }
@@ -29,10 +28,15 @@ const NewEmployer = ({ }: Props) => {
         throw new Error(`${res.status}: ${res.statusText}`);
       }
     } catch (e: any) {
-      console.error(e);
       alert('何か問題が発生しました。もう一度お試しください。');
       reset();
       return;
+    }
+
+    try {
+      notifyNewEmployer(InputEmployer.fromObject(data));
+    } catch {
+      console.log('Failed to send mail');
     }
 
     router.push(view.url('service/matching/employer/registered'));
