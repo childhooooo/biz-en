@@ -68,6 +68,7 @@ const Component = styled.div`
   width: 100vw;
   margin-top: 96px;
   overflow-x: hidden;
+  overflow-y: hidden;
 
   @media only screen and (max-width: ${screen.m}px) {
     margin-top: 70px;
