@@ -18,13 +18,13 @@ const AboutDescriptionPage: NextPage = ({}: Props) => {
 
   return (
     <Page
-      title="群馬外国人材就職支援事業（株式会社ビズソリューションズ）"
+      title="外国人材群馬就職支援事業（株式会社ビズソリューションズ）"
       description=""
       path="/about/description"
       ogType="article"
       header={(
         <Header
-          title="群馬外国人材就職支援事業（株式会社ビズソリューションズ）"
+          title="外国人材群馬就職支援事業（株式会社ビズソリューションズ）"
           language="ja"
           selected="about"
         />

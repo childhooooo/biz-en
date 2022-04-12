@@ -46,13 +46,13 @@ const ContactPage: NextPage = ({ }: Props) => {
 
   return (
     <Page
-      title="お問い合わせ | 群馬外国人材就職支援事業（株式会社ビズソリューションズ）"
+      title="お問い合わせ | 外国人材群馬就職支援事業（株式会社ビズソリューションズ）"
       description=""
       path="/contact"
       ogType="article"
       header={(
         <Header
-          title="お問い合わせ | 群馬外国人材就職支援事業（株式会社ビズソリューションズ）"
+          title="お問い合わせ | 外国人材群馬就職支援事業（株式会社ビズソリューションズ）"
           language="ja"
           selected="contact"
         />

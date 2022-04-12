@@ -17,13 +17,13 @@ const AboutGreetingPage: NextPage = ({}: Props) => {
 
   return (
     <Page
-      title="ご挨拶 | 群馬外国人材就職支援事業（株式会社ビズソリューションズ）"
+      title="ご挨拶 | 外国人材群馬就職支援事業（株式会社ビズソリューションズ）"
       description=""
       path="/about/greeting"
       ogType="article"
       header={(
         <Header
-          title="ご挨拶 | 群馬外国人材就職支援事業（株式会社ビズソリューションズ）"
+          title="ご挨拶 | 外国人材群馬就職支援事業（株式会社ビズソリューションズ）"
           language="ja"
           selected="about"
         />

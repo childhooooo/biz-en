@@ -24,13 +24,13 @@ const ServicePage: NextPage = ({ }: Props) => {
 
   return (
     <Page
-      title="外国人材紹介サービス | 群馬外国人材就職支援事業（株式会社ビズソリューションズ）"
+      title="外国人材紹介サービス | 外国人材群馬就職支援事業（株式会社ビズソリューションズ）"
       description=""
       path="/service/lesson"
       ogType="article"
       header={(
         <Header
-          title="外国人材紹介サービス | 群馬外国人材就職支援事業（株式会社ビズソリューションズ）"
+          title="外国人材紹介サービス | 外国人材群馬就職支援事業（株式会社ビズソリューションズ）"
           language="ja"
           selected="service"
         />

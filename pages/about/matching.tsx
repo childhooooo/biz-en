@@ -18,13 +18,13 @@ const AboutMatchigPage: NextPage = ({ }: Props) => {
 
   return (
     <Page
-      title="外国人材就職応援サービスについて | 群馬外国人材就職支援事業（株式会社ビズソリューションズ）"
+      title="外国人材就職応援サービスについて | 外国人材群馬就職支援事業（株式会社ビズソリューションズ）"
       description=""
       path="/about/matchig"
       ogType="article"
       header={(
         <Header
-          title="外国人材就職応援サービスについて | 群馬外国人材就職支援事業（株式会社ビズソリューションズ）"
+          title="外国人材就職応援サービスについて | 外国人材群馬就職支援事業（株式会社ビズソリューションズ）"
           language="ja"
         />
       )}
