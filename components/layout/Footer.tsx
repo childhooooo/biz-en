@@ -62,6 +62,7 @@ const Footer = ({ }: Props) => {
                 </Menu>
               </Stacked>
 
+              {/*
               <Stacked paddingPos="top" paddingSize="narrow">
                 <h3>Link</h3>
                 <Menu>
@@ -70,6 +71,7 @@ const Footer = ({ }: Props) => {
                   </li>
                 </Menu>
               </Stacked>
+              */}
             </Block>
 
             <Block>
@@ -115,7 +117,7 @@ const Footer = ({ }: Props) => {
               <PlainText baseAlign="right" baseFamily={font.sansSerif}>
                 <p>
                   株式会社ビズソリューションズ<br />
-                  〒370-1301 群馬県高崎市新町3044-2<br />
+                  〒370-3503 群馬県北群馬郡榛東村新井2653番地6<br />
                   TEL: 027-329-7846 FAX: 027-329-6901
                 </p>
               </PlainText>
