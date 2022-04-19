@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { view } from 'unflexible-ui-legacy';
 import { color, font } from 'lib/config';
+import { nl2br } from 'lib/util';
 import { Job, getJob } from 'domains/matching';
 
 export async function getServerSideProps({ params }: any) {
@@ -92,57 +93,57 @@ const ServiceMatchingSinglePage: NextPage<Props> = ({ jobData }) => {
             <Table01>
               <tr>
                 <th>募集職種</th>
-                <td dangerouslySetInnerHTML={{ __html: job.position }} />
+                <td dangerouslySetInnerHTML={{ __html: nl2br(job.position) }} />
               </tr>
 
               <tr>
                 <th>仕事内容</th>
-                <td dangerouslySetInnerHTML={{ __html: job.description }} />
+                <td dangerouslySetInnerHTML={{ __html: nl2br(job.description) }} />
               </tr>
 
               <tr>
                 <th>応募資格</th>
-                <td dangerouslySetInnerHTML={{ __html: job.requirements }} />
+                <td dangerouslySetInnerHTML={{ __html: nl2br(job.requirements) }} />
               </tr>
 
               <tr>
                 <th>雇用形態</th>
-                <td dangerouslySetInnerHTML={{ __html: job.employmentStatus }} />
+                <td dangerouslySetInnerHTML={{ __html: nl2br(job.employmentStatus) }} />
               </tr>
 
               <tr>
                 <th>勤務地</th>
-                <td dangerouslySetInnerHTML={{ __html: job.workAt }} />
+                <td dangerouslySetInnerHTML={{ __html: nl2br(job.workAt) }} />
               </tr>
 
               <tr>
                 <th>在留資格</th>
-                <td dangerouslySetInnerHTML={{ __html: job.qualifications || '' }} />
+                <td dangerouslySetInnerHTML={{ __html: nl2br(job.qualifications) || '' }} />
               </tr>
 
               <tr>
                 <th>給与</th>
-                <td dangerouslySetInnerHTML={{ __html: job.salary }} />
+                <td dangerouslySetInnerHTML={{ __html: nl2br(job.salary) }} />
               </tr>
 
               <tr>
                 <th>勤務時間</th>
-                <td dangerouslySetInnerHTML={{ __html: job.officeHours }} />
+                <td dangerouslySetInnerHTML={{ __html: nl2br(job.officeHours) }} />
               </tr>
 
               <tr>
                 <th>休日・休暇</th>
-                <td dangerouslySetInnerHTML={{ __html: job.holiday }} />
+                <td dangerouslySetInnerHTML={{ __html: nl2br(job.holiday) }} />
               </tr>
 
               <tr>
                 <th>福利厚生</th>
-                <td dangerouslySetInnerHTML={{ __html: job.welfare || '' }} />
+                <td dangerouslySetInnerHTML={{ __html: nl2br(job.welfare || '') }} />
               </tr>
 
               <tr>
                 <th>採用の流れ</th>
-                <td dangerouslySetInnerHTML={{ __html: job.flow || '' }} />
+                <td dangerouslySetInnerHTML={{ __html: nl2br(job.flow || '') }} />
               </tr>
             </Table01>
           </Stacked>
