@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 export const middleware = (req: NextRequest) => {
+  /*
   const basicAuth = req.headers.get('authorization');
   if(basicAuth) {
     const auth = basicAuth.split(' ')[1];
@@ -16,4 +17,5 @@ export const middleware = (req: NextRequest) => {
     }
   });
   return NextResponse.next();
+  */
 }

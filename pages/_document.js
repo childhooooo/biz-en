@@ -1,7 +1,7 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet, createGlobalStyle } from 'styled-components';
 import { view } from 'unflexible-ui-legacy';
-import { color, font } from 'lib/config';
+import { font } from 'lib/config';
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -48,7 +48,7 @@ export default class MyDocument extends Document {
           <meta name="msapplication-TileColor" content="#ffffff" />
           <meta name="theme-color" content="#ffffff" />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin={true} />
       <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300&family=M+PLUS+Rounded+1c:wght@400&display=swap" rel="stylesheet" />
         </Head>
         <body id="myapp">
