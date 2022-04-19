@@ -7,7 +7,7 @@ import { color, font, screen } from 'lib/config';
 interface Props {
 }
 
-const Footer = ({}: Props) => {
+const Footer = ({ }: Props) => {
   return (
     <Component>
       <Stacked wrap>
@@ -84,14 +84,16 @@ const Footer = ({}: Props) => {
             <Block>
               <Stacked>
                 <Socials>
+                  {/*
                   <li>
                     <a href={view.url('')} target="_blank" rel="noreferrer">
                       <img src={view.url('images/icon_twitter.png')} alt="Twitter" />
                     </a>
                   </li>
+                  */}
 
                   <li>
-                    <a href={view.url('')} target="_blank" rel="noreferrer">
+                    <a href="https://www.facebook.com/profile.php?id=100076870838720" target="_blank" rel="noreferrer">
                       <img src={view.url('images/icon_facebook.png')} alt="Facebook" />
                     </a>
                   </li>
@@ -110,10 +112,10 @@ const Footer = ({}: Props) => {
             </Block>
 
             <Block>
-            <PlainText baseAlign="right" baseFamily={font.sansSerif}>
+              <PlainText baseAlign="right" baseFamily={font.sansSerif}>
                 <p>
-                  株式会社ビズソリューションズ<br/>
-                  〒370-1301 群馬県高崎市新町3044-2<br/>
+                  株式会社ビズソリューションズ<br />
+                  〒370-1301 群馬県高崎市新町3044-2<br />
                   TEL: 027-329-7846 FAX: 027-329-6901
                 </p>
               </PlainText>
