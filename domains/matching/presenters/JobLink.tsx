@@ -4,6 +4,7 @@ import { JobCategory } from '../entities/jobCategory';
 
 import { view } from 'unflexible-ui-legacy';
 import { color, font } from 'lib/config';
+import { nl2br } from 'lib/util';
 
 interface Props {
   job: Job;
@@ -31,27 +32,27 @@ const JobLink = ({ job, categories }: Props) => {
           <Details>
             <div>
               <dt>仕事内容</dt>
-              <dd dangerouslySetInnerHTML={{ __html: job.description }} />
+              <dd dangerouslySetInnerHTML={{ __html: nl2br(job.description) }} />
             </div>
 
             <div>
               <dt>勤 務 地</dt>
-              <dd dangerouslySetInnerHTML={{ __html: job.workAt }} />
+              <dd dangerouslySetInnerHTML={{ __html: nl2br(job.workAt) }} />
             </div>
 
             <div>
               <dt>給　　与</dt>
-              <dd dangerouslySetInnerHTML={{ __html: job.salary }} />
+              <dd dangerouslySetInnerHTML={{ __html: nl2br(job.salary) }} />
             </div>
 
             <div>
               <dt>勤務時間</dt>
-              <dd dangerouslySetInnerHTML={{ __html: job.officeHours }} />
+              <dd dangerouslySetInnerHTML={{ __html: nl2br(job.officeHours) }} />
             </div>
 
             <div>
               <dt>休　　日</dt>
-              <dd dangerouslySetInnerHTML={{ __html: job.holiday }} />
+              <dd dangerouslySetInnerHTML={{ __html: nl2br(job.holiday) }} />
             </div>
           </Details>
         </Body>
@@ -88,7 +89,7 @@ const Header = styled.div`
 const Name = styled.h3`
   font-size: 1.25rem;
   font-weight: 400;
-  line-height: 1;
+  line-height: 1.25;
 `;
 
 const Body = styled.div`
@@ -135,6 +136,7 @@ const Details = styled.dl`
 
   dd {
     margin-left: 1rem;
+    line-height: 1.75;
   }
 `;
 
