@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { rgba } from 'polished';
-import { view } from 'unflexible-ui';
-import { color } from 'lib/config';
+import { view } from 'unflexible-ui-legacy';
+import { color, screen } from 'lib/config';
 
 interface Props {
   href: string;
@@ -60,7 +60,7 @@ figure {
     width: 30vw;
     height: 30vw;
     transform: translateY(-50%);
-    background-color: var(--red);
+    background-color: ${color.red};
     border-radius: 50%;
     mix-blend-mode: multiply;
     transition-duration: .3s;
@@ -87,7 +87,7 @@ a {
   height: 30vw;
   padding: 3rem;
   transform: translateY(-50%);
-  color: var(--white);
+  color: ${color.white};
   text-decoration: none;
   transition-duration: .3s;
 }
@@ -109,6 +109,24 @@ text-align: left;
 &:hover {
   figure:before, a {
     left: -30px;
+  }
+}
+
+@media only screen and (max-width: ${screen.s}px) {
+  figure {
+    &:before {
+      top: 75%;
+      left: -30px;
+      width: 95vw;
+      height: 95vw;
+    }
+  }
+
+  a {
+    top: 75%;
+    left: -30px;
+    width: 95vw;
+    height: 95vw;
   }
 }
 `

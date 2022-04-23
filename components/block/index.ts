@@ -1,1 +1,12 @@
 export { default as MainVisual } from './MainVisual';
+export { default as PageTitle } from './PageTitle';
+export { default as EnPageTitle } from './EnPageTitle';
+export { default as ServiceCircle } from './ServiceCircle';
+export { default as Match } from './Match';
+export { default as List01 } from './List01';
+export { default as List02 } from './List02';
+export { default as Table01 } from './Table01';
+export { default as FormTable } from './FormTable';
+export { default as StaffAgencyTitle } from './StaffAgencyTitle';
+export { default as PriceTable } from './PriceTable';
+export { default as CTA } from './CTA';

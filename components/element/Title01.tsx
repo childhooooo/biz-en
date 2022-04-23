@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { Stacked } from 'unflexible-ui';
+import { Stacked } from 'unflexible-ui-legacy';
 
-import { color } from 'lib/config';
+import { color, screen } from 'lib/config';
 
 const tags: { [key: string]: any } = {
   'h1': styled.h1``,
@@ -34,7 +34,7 @@ const Inner = styled.span`
   padding: .5rem .75rem;
   font-size: 1.25rem;
   font-weight: 400;
-  color: var(--white);
+  color: ${color.white};
 `;
 
 export default Title01;

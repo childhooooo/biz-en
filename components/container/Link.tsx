@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import styled from 'styled-components';
+import { color } from 'lib/config';
 
 interface Props {
   href: string;
@@ -17,7 +18,7 @@ const Link = ({ href, children }: Props) => {
 const Component = styled.a`
   display: block;
   width: 100%;
-  color: var(--black);
+  color: ${color.black};
   text-decoration: none;
 `
 

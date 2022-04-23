@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { font, screen } from 'lib/config';
 
 const tags: { [key: string]: any } = {
   'h1': styled.h1``,
@@ -30,13 +31,19 @@ const Component = styled.div`
 
   p {
     font-size: 3rem;
-    font-family: var(--en);
+    font-family: ${font.en};
     line-height: 1.25;
   }
 
   h1, h2, h3, h4 , h5 {
     font-size: 1rem;
     font-weight: 400;
+  }
+
+  @media only screen and (max-width: ${screen.m}px) {
+    p {
+      font-size: 2rem;
+    }
   }
 `
 
